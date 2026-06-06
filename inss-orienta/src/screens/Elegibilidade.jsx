@@ -3,9 +3,9 @@ import { FaArrowLeft, FaExclamationTriangle } from 'react-icons/fa';
 import BeneficiosGrid from '../components/BeneficiosGrid';
 
 // 1. Importando as 3 imagens do banner (ajuste os nomes conforme salvou no seu PC)
-import bannerNormal from '../assets/Elegibilidade/elegibilidade.png'; 
-import bannerEscuro from '../assets/Elegibilidade/elegibilidade_dark_mode.png'; 
-import bannerAltoContraste from '../assets/Elegibilidade/elegibilidade_alto_contraste.png'; 
+import bannerNormal from '../assets/elegibilidade/img_elegibilidade.png'; 
+import bannerEscuro from '../assets/elegibilidade/img_elegibilidade_dark_mode.png'; 
+import bannerAltoContraste from '../assets/elegibilidade/img_elegibilidade_alto_contraste.png'; 
 
 // 2. Adicionamos o 'theme' aqui para a tela saber qual cor o usuário escolheu
 export default function Elegibilidade({ theme, voltarParaHome }) {
