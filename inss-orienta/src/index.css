@@ -1,0 +1,1107 @@
+/* VARIÁVEIS DO MODO CLARO (PADRÃO) */
+:root {
+  --inss-blue: #0b3d60;
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --card-bg: #ffffff;
+  --card-bgType2: #ffffff;
+  --border-color: #e0e0e0;
+  --nav-bg: #ffffff;
+  --nav-gray: #757575;
+  --nav-active: #0b3d60; /* Cor do botão ativo no Claro */
+}
+
+/* VARIÁVEIS DO MODO ESCURO */
+.app-container.dark {
+  --inss-blue: #1c1c1c; 
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --card-bg: #1e1e1e;
+  --card-bgType2: #121212;
+  --border-color: #333333;
+  --nav-bg: #1e1e1e;
+  --nav-gray: #aaaaaa;
+  --nav-active: #64b5f6; /* Azul clarinho para destacar no Escuro */
+}
+
+/* =========================================
+   CORREÇÃO DE VISIBILIDADE DOS ÍCONES (TEMA ESCURO E AC)
+   ========================================= */
+
+/* No modo escuro, trocamos o azul escuro por um azul claro vibrante */
+.app-container.dark .blue-icon {
+  color: #64b5f6; 
+}
+
+/* No Alto Contraste, a regra de ouro é: TUDO que for ícone importante deve ficar amarelo neon */
+.app-container.high-contrast .service-icon {
+  color: #ffff00; 
+}
+
+/* VARIÁVEIS DO ALTO CONTRASTE */
+.app-container.high-contrast {
+  --inss-blue: #000000;
+  --bg-color: #000000;
+  --text-color: #ffff00; 
+  --card-bg: #000000;
+  --card-bgType2: #000000;
+  --border-color: #ffff00;
+  --nav-bg: #000000;
+  --nav-gray: #ffff00;
+  --nav-active: #ffffff; /* Branco absoluto para o Alto Contraste */
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #e0e0e0; /* Fundo escuro fora do app para o PC */
+  display: flex;
+  justify-content: center;
+}
+
+/* Container que simula o celular */
+.app-container {
+  width: 100vw;
+  max-width: 400px;
+  height: 100vh;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  position: relative;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* CABEÇALHO SUPERIOR */
+.app-header {
+  background-color: var(--inss-blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  height: 60px;
+  box-sizing: border-box;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  color: white;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ÁREA CENTRAL ROLÁVEL */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  padding-bottom: 70px; /* Espaço para não bater no menu de baixo */
+}
+
+/* TELA INICIAL (HOME) */
+.logo-card {
+  background-color: var(--inss-blue);
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  overflow: hidden; /* Garante que a imagem não vaze do card */
+}
+
+/*configuração da nova imagem */
+.logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz a imagem preencher todo o espaço como uma capa */
+  object-position: center; /* Centraliza o "INS?S" perfeitamente na tela */
+}
+
+/* No modo escuro e alto contraste, caso queira que a imagem fique mais suave */
+.app-container.dark .logo-image {
+  opacity: 0.9;
+}
+
+.section-title {
+  font-size: 20px;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+/* NOTÍCIAS */
+.news-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  position: relative;
+  
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
+
+.news-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 10px;
+  padding: 4px 8px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.news-image-placeholder {
+  height: 160px;
+  background-color: #cccccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-weight: bold;
+}
+
+.news-content {
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  margin-top: -60px; /* Puxa o texto pra cima da imagem, igual a foto */
+  position: relative;
+}
+
+.news-content h3 {
+  margin: 0 0 5px 0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.news-content p {
+  margin: 0;
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+.dot.active {
+  background-color: #666;
+}
+
+/* NAVEGAÇÃO INFERIOR */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--nav-bg);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--nav-gray);
+  font-size: 12px;
+  cursor: pointer;
+  width: 33%;
+}
+
+.nav-item span {
+  margin-top: 4px;
+}
+
+.nav-item.active {
+  color: var(--nav-active); /* Agora ele usa a nossa nova variável */
+  font-weight: bold;
+}
+
+.app-container.high-contrast .nav-item.active span {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/*--------------------------------------------*/
+/* GRADE DE SERVIÇOS (BOTÕES QUADRADOS) */
+/*--------------------------------------------*/
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas do mesmo tamanho */
+  gap: 15px; /* Espaço entre os botões */
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.service-btn {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.service-btn:active {
+  transform: scale(0.95); /* Dá um efeitinho de "clique" ao tocar */
+}
+
+.service-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+/* Cores específicas para imitar a imagem original */
+.green-icon { color: #27ae60; }
+.blue-icon { color: var(--inss-blue); }
+.gold-icon { color: #f39c12; }
+
+.service-btn span {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-color); /* Para que o texto mude também */
+  text-align: center;
+  line-height: 1.2;
+}
+
+/*--------------------------------------------*/
+/* TELA DE ACESSIBILIDADE */
+/*--------------------------------------------*/
+
+.acessibilidade-screen {
+  padding: 10px;
+}
+
+.screen-title {
+  font-size: 22px;
+  color: var(--inss-blue);
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+/* No alto contraste e modo escuro o título precisa mudar */
+.app-container.dark .screen-title,
+.app-container.high-contrast .screen-title {
+  color: var(--text-color);
+}
+
+.screen-desc {
+  font-size: 14px;
+  margin-bottom: 25px;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.theme-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.theme-card {
+  background-color: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  color: var(--text-color);
+}
+
+.theme-card:active {
+  transform: scale(0.98);
+}
+
+.theme-card.active-theme {
+  border-color: #27ae60; /* Contorno verde de selecionado */
+  box-shadow: 0 0 10px rgba(39, 174, 96, 0.2);
+}
+
+.app-container.high-contrast .theme-card.active-theme {
+  border-color: #ffff00;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+.theme-icon {
+  font-size: 30px;
+  margin-right: 20px;
+}
+
+.theme-text h3 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.theme-text p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Suavidade na transição de telas */
+.animate-fade {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* =========================================
+   ESTILOS DOS BOTÕES DE TAMANHO
+   ========================================= */
+.section-subtitle {
+  font-size: 16px;
+  color: var(--inss-blue);
+  margin-top: 25px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-container.dark .section-subtitle,
+.app-container.high-contrast .section-subtitle {
+  color: var(--text-color);
+}
+
+.size-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.size-btn {
+  flex: 1;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.size-btn:active {
+  transform: scale(0.95);
+}
+
+.size-btn.active-size {
+  border-color: #27ae60;
+  background-color: rgba(39, 174, 96, 0.1);
+}
+
+.app-container.high-contrast .size-btn.active-size {
+  border-color: #ffff00;
+  background-color: rgba(255, 255, 0, 0.2);
+}
+
+/* =========================================
+   CLASSE ATIVADORA DO TAMANHO GRANDE (A+)
+   Isso aumenta todos os textos e ícones do app
+   ========================================= */
+.app-container.font-grande .service-btn span { font-size: 14px; } /* Texto da grade */
+.app-container.font-grande .service-icon { font-size: 56px; } /* Ícones da grade */
+.app-container.font-grande .news-content h3 { font-size: 16px; line-height: 1.5; } /* Título da notícia */
+.app-container.font-grande .news-content p { font-size: 13px; } /* Texto da notícia */
+.app-container.font-grande .screen-title { font-size: 26px; } /* Títulos das abas */
+.app-container.font-grande .screen-desc { font-size: 17px; } /* Descrições */
+.app-container.font-grande .theme-text h3 { font-size: 20px; } /* Textos dos cards */
+.app-container.font-grande .theme-text p { font-size: 15px; } 
+.app-container.font-grande .nav-item span { font-size: 15px; } /* Texto do rodapé */
+.app-container.font-grande .header-title { font-size: 22px; } /* Cabeçalho */
+
+
+
+/* =========================================
+   TELA DE AJUDA E DICIONÁRIO
+   ========================================= */
+.ajuda-screen {
+  padding: 10px;
+}
+
+.ajuda-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.ajuda-icone-grande {
+  font-size: 50px;
+  color: #d4af37; /* Dourado/Amarelo do print original */
+}
+
+.ajuda-titulo-topo {
+  font-size: 28px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.ajuda-chamada {
+  font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 25px;
+  color: var(--text-color);
+  text-align: left;
+}
+
+.dicionario-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.termo-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.termo-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.termo-titulo-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+}
+
+.icone-check {
+  color: #27ae60; /* Verde do check */
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.app-container.high-contrast .icone-check {
+  color: #ffff00;
+}
+
+.termo-titulo {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-color);
+}
+
+.termo-explicacao {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+/* Botão de Ouvir em Voz Alta */
+.btn-ouvir {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--inss-blue);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-ouvir:active {
+  opacity: 0.7;
+}
+
+.app-container.dark .btn-ouvir {
+  background-color: #64b5f6;
+  color: #121212;
+}
+
+.app-container.high-contrast .btn-ouvir {
+  background-color: #ffff00;
+  color: #000000;
+}
+
+
+/* =========================================
+   BARRA DE PESQUISA NA HOME
+   ========================================= */
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--card-bg);
+  border: 2px solid var(--inss-blue); /* Fica em destaque */
+  border-radius: 25px;
+  padding: 12px 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.app-container.high-contrast .search-container {
+  border-color: #ffff00;
+}
+
+.search-icon {
+  color: var(--nav-gray);
+  font-size: 18px;
+  margin-right: 12px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: var(--text-color);
+  outline: none;
+}
+
+/* Ajuste a cor do texto de placeholder */
+.search-input::placeholder {
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+.app-container.font-grande .search-input {
+  font-size: 20px;
+}
+
+
+/* =========================================
+   TELA DE ELEGIBILIDADE / BENEFÍCIOS
+   ========================================= */
+.elegibilidade-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--bg-color);
+  margin: -15px; /* Remove o padding padrão do App.jsx para colar no topo */
+}
+
+.interno-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--inss-blue);
+  color: white;
+  padding: 15px;
+  gap: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-voltar {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.interno-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.conteudo-scroll {
+  padding: 15px;
+  overflow-y: auto;
+  padding-bottom: 80px; /* Evita que o rodapé cubra o conteúdo */
+}
+
+/* Banner Escuro Simulado */
+/* Container do Banner Limpo */
+.banner-beneficios {
+  border-radius: 8px; /* Deixa os cantinhos arredondados */
+  margin-bottom: 25px;
+  display: flex;
+  overflow: hidden; /* Garante que a imagem não vaze das bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* A nova classe da imagem do banner */
+.banner-imagem {
+  width: 100%; /* Ocupa toda a largura da tela do celular */
+  height: auto; /* Mantém a proporção original da imagem */
+  display: block;
+}
+
+.titulo-beneficios {
+  font-size: 22px;
+  color: var(--text-color);
+  text-align: left;
+  margin-bottom: 30px;
+  line-height: 1.3;
+}
+
+.lista-categorias {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.categoria-card {
+  background-color: var(--card-bgType2);
+  border: none;
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Estilo das imagens dos botões de benefícios */
+.categoria-imagem {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Garante que a imagem preencha o espaço sem amassar */
+  border-radius: 30px; /* Bordas bem arredondadas como no print */
+  /*box-shadow: 0 4px 10px rgba(0,0,0,0.1); */ /* Sombra suave */
+  margin-bottom: -15px; /* Esse é o truque que puxa o texto azul para cima da imagem */
+  z-index: 1;
+  background-color: var(--card-bgType2);
+}
+
+/* Um brilhozinho ao clicar na imagem inteira */
+.categoria-card:active .categoria-imagem {
+  transform: scale(0.95);
+  transition: transform 0.1s;
+}
+
+.categoria-card span {
+  color: var(--inss-blue);
+  font-weight: 900;
+  text-align: center;
+  font-size: 14px;
+  z-index: 2;
+  background-color: var(--card-bgtype2);
+  padding: 0 10px;
+}
+
+.divisor {
+  border: none;
+  border-top: 2px solid var(--border-color);
+  margin: 40px 0;
+}
+
+/* O Grande Aviso */
+.aviso-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.aviso-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.aviso-icone {
+  color: #cda434; /* Amarelo ouro do alerta */
+  font-size: 60px;
+}
+
+.aviso-titulo h2 {
+  margin: 0;
+  font-size: 50px;
+  font-weight: 900;
+  color: var(--text-color);
+  letter-spacing: -2px;
+}
+
+.aviso-texto {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-color);
+  text-align: left;
+}
+
+/* Ajustes para Alto Contraste e Escuro */
+.app-container.dark .categoria-card span { color: #64b5f6; }
+.app-container.high-contrast .categoria-card span { color: var(--text-color); }
+.app-container.high-contrast .aviso-icone { color: #ffff00; }
+
+/* =========================================
+   MENU LATERAL (SANDUÍCHE / DRAWER)
+   ========================================= */
+
+/* O fundo escuro que fica atrás do menu */
+.menu-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99; /* Fica acima de tudo, menos do próprio menu */
+  animation: fadeIn 0.3s ease;
+}
+
+/* A Gaveta em si */
+.menu-lateral {
+  position: absolute;
+  top: 0;
+  left: -280px; /* Fica escondida para fora da tela na esquerda */
+  width: 260px;
+  height: 100%;
+  background-color: var(--card-bg);
+  box-shadow: 2px 0 15px rgba(0,0,0,0.3);
+  z-index: 100;
+  transition: left 0.3s ease-in-out; /* O efeito de deslizar */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Quando ativamos o estado, a classe .aberto puxa ela para a tela */
+.menu-lateral.aberto {
+  left: 0;
+}
+
+/* Cabeçalho da Gaveta */
+.menu-lateral-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--inss-blue);
+  color: white;
+}
+
+.menu-lateral-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.btn-fechar {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+/* Opções (Links) do Menu */
+.menu-lateral-links {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.menu-link:active {
+  background-color: var(--border-color);
+}
+
+.menu-link-icone {
+  color: var(--inss-blue);
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+/* Ajustes de Tema para os Ícones do Menu Lateral */
+.app-container.dark .menu-link-icone {
+  color: #64b5f6;
+}
+
+.app-container.high-contrast .menu-link-icone {
+  color: #ffff00;
+}
+
+/* Estilo temporário para as opções em branco */
+.placeholder-link {
+  opacity: 0.5;
+  border-style: dashed;
+}
+
+
+
+
+
+/* =========================================
+   TELA DE TERMOS E PRIVACIDADE
+   ========================================= */
+.documento-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.documento-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--inss-blue);
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.documento-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.documento-card ul {
+  padding-left: 20px;
+  color: var(--text-color);
+}
+
+.documento-card li {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* Ajustes de Tema */
+.app-container.dark .documento-card h3 {
+  color: #64b5f6;
+}
+
+.app-container.high-contrast .documento-card h3 {
+  color: #ffff00;
+  border-bottom-color: #ffff00;
+}
+
+.app-container.high-contrast .doc-icone {
+  color: #ffff00;
+}
+
+
+
+
+
+
+
+/* =========================================
+   TELA DO ASSISTENTE VIRTUAL (CHAT)
+   ========================================= */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 120px); /* Ocupa a tela tirando cabeçalho e rodapé */
+  background-color: var(--bg-color);
+}
+
+.chat-historico {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.chat-bolha-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 85%;
+}
+
+.chat-bolha-wrapper.usuario {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.chat-bolha-wrapper.ia {
+  align-self: flex-start;
+}
+
+.chat-icone-autor {
+  background-color: var(--inss-blue);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.chat-bolha-wrapper.usuario .chat-icone-autor {
+  background-color: #27ae60;
+}
+
+.chat-bolha {
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 1.4;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.chat-bolha p { margin: 0; }
+
+.chat-bolha.ia {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-bottom-left-radius: 4px;
+}
+
+.chat-bolha.usuario {
+  background-color: #dcf8c6; /* Verde tipo WhatsApp */
+  color: #121212;
+  border-bottom-right-radius: 4px;
+}
+
+/* Modo escuro para o balão do usuário */
+.app-container.dark .chat-bolha.usuario {
+  background-color: #054d44;
+  color: white;
+}
+
+.app-container.high-contrast .chat-bolha.usuario {
+  background-color: #ffff00;
+  color: #000000;
+}
+
+/* Área de Input */
+.chat-input-area {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  gap: 10px;
+}
+
+.chat-input-area input {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 25px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 16px;
+  outline: none;
+}
+
+.btn-microfone, .btn-enviar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s;
+}
+
+.btn-microfone {
+  background-color: #e74c3c;
+}
+
+.btn-microfone.gravando {
+  animation: pulsar 1.5s infinite;
+  background-color: #c0392b;
+}
+
+.btn-enviar {
+  background-color: var(--inss-blue);
+}
+
+.btn-enviar:active, .btn-microfone:active {
+  transform: scale(0.9);
+}
+
+@keyframes pulsar {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+}
+
+/* Animação de "Digitando..." */
+.digitando span {
+  animation: blink 1.4s infinite both;
+  font-size: 24px;
+  line-height: 10px;
+}
+.digitando span:nth-child(2) { animation-delay: 0.2s; }
+.digitando span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0% { opacity: 0.2; }
+  20% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
