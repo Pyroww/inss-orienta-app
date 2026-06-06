@@ -977,7 +977,9 @@ body {
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 120px); /* Ocupa a tela tirando cabeçalho e rodapé */
+  
+  /* A MÁGICA AQUI: 100dvh (tela dinâmica do celular) menos 180px (60 do header + 120 do footer) */
+  height: calc(100dvh - 180px);
   background-color: var(--bg-color);
 }
 
