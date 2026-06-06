@@ -3,7 +3,7 @@ import { FaArrowLeft, FaPaperPlane, FaMicrophone, FaRobot, FaUser } from 'react-
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 // Inicialize a IA com a sua chave (Para protótipos acadêmicos apenas)
-const API_KEY = 'AQ.Ab8RN6JXRJR6s28N-4iy4MzD09czcxLnsi3Ym3QZ4LSkIK4wfg'; 
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY; 
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 export default function AssistenteVirtual({ voltarParaHome }) {
