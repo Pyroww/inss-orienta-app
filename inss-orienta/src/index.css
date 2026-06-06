@@ -81,7 +81,7 @@ body {
   /* ✅ ADICIONAMOS O RESPIRO AQUI NO FINAL DA SUA CAIXA PRINCIPAL */
   padding-bottom: 100px; 
 
-  padding-top: 60px;    /* Empurra o conteúdo para baixo do cabeçalho (Ajuste esse número conforme a altura real do seu cabeçalho) */
+  padding-top: 55px;    /* Empurra o conteúdo para baixo do cabeçalho (Ajuste esse número conforme a altura real do seu cabeçalho) */
   padding-bottom: 120px; /* Empurra o conteúdo final para cima do rodapé fixo */
 }
 
