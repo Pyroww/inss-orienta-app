@@ -57,26 +57,30 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #e0e0e0; /* Fundo escuro fora do app para o PC */
-  display: flex;
-  overflow-x: hidden; /* Evita que o site role sem querer para os lados */
+  background-color: #e0e0e0; 
+  overflow-x: hidden; 
   overflow-y: auto;
-  justify-content: center;
   
+  /* ❌ APAGAMOS AQUI O display: flex e o justify-content: center */
 }
 
 /* Container que simula o celular */
 .app-container {
-  width: 100vw;
+  /* ✅ TROCAMOS 100vw por 100% (muito mais seguro para mobile) */
+  width: 100%; 
   min-height: 100vh;
-  background-color: var(--bg-color);
+  
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   position: relative;
+  
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
+  
+  /* ✅ ADICIONAMOS O RESPIRO AQUI NO FINAL DA SUA CAIXA PRINCIPAL */
+  padding-bottom: 100px; 
 }
 
 /* CABEÇALHO SUPERIOR */
