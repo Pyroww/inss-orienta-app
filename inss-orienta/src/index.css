@@ -222,6 +222,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
 }
 
 .nav-item {
@@ -1108,3 +1109,4 @@ body {
   20% { opacity: 1; }
   100% { opacity: 0.2; }
 }
+
