@@ -222,7 +222,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-bottom: env(safe-area-inset-bottom, 20px);
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
 }
 
 .nav-item {
