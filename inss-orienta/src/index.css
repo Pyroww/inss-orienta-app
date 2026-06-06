@@ -81,6 +81,9 @@ body {
   
   /* ✅ ADICIONAMOS O RESPIRO AQUI NO FINAL DA SUA CAIXA PRINCIPAL */
   padding-bottom: 100px; 
+
+  padding-top: 60px;    /* Empurra o conteúdo para baixo do cabeçalho (Ajuste esse número conforme a altura real do seu cabeçalho) */
+  padding-bottom: 120px; /* Empurra o conteúdo final para cima do rodapé fixo */
 }
 
 /* CABEÇALHO SUPERIOR */
@@ -92,6 +95,12 @@ body {
   padding: 15px;
   height: 60px;
   box-sizing: border-box;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Garante que ele fique por cima de todo o resto */
 }
 
 .menu-button {
@@ -129,6 +138,7 @@ body {
 
 /*configuração da nova imagem */
 .logo-image {
+  
   width: 100%;
   height: 100%;
   object-fit: cover; /* Faz a imagem preencher todo o espaço como uma capa */
@@ -228,6 +238,10 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
   padding-bottom: calc(10px + env(safe-area-inset-bottom));
 }
 
