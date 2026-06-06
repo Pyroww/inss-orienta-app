@@ -60,13 +60,12 @@ body {
   display: flex;
   overflow-x: hidden; /* Evita que o site role sem querer para os lados */
   justify-content: center;
-  overflow-y: auto; /* GARANTE a rolagem vertical */min-height: 100vh;
 }
 
 /* Container que simula o celular */
 .app-container {
   width: 100vw;
-  min-height: 100vh; 
+  height: 100vh;
   background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
