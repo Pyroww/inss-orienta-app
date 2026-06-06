@@ -6,7 +6,7 @@ import React from 'react';
 // 1. Aposentadoria Geral
 import apoNormal from '../assets/elegibilidade/img_aposentadoria_geral_elegibilidade.png';
 import apoEscuro from '../assets/elegibilidade/img_aposentadoria_geral_dark_mode.png';
-import apoHC from '../assets/Elegibilidade/img_aposentadoria_geral_alto_contraste_amarelo.png';
+import apoHC from '../assets/elegibilidade/img_aposentadoria_geral_alto_contraste_amarelo.png';
 
 // 2. Auxílios Suporte e Proteção
 import auxNormal from '../assets/elegibilidade/img_auxilio_Assistencial_elegibilidade.png';
@@ -14,7 +14,7 @@ import auxEscuro from '../assets/elegibilidade/img_auxilio_assistencial_dark_mod
 import auxHC from '../assets/elegibilidade/img_auxilio_assistencial_alto_contraste.png';
 
 // 3. Benefícios Assistenciais
-import assNormal from '../assets/elegibilidade/img_beneficios_assistenciais_elegibilidade.png';
+import assNormal from '../assets/elegibilidade/img_Beneficios_assistenciais_elegibilidade.png';
 import assEscuro from '../assets/elegibilidade/img_beneficios_assistenciais_dark_mode.png';
 import assHC from '../assets/elegibilidade/img_beneficios_assistenciais_alto_contraste.png';
 
