@@ -1,3 +1,5 @@
+
+
 /* VARIÁVEIS DO MODO CLARO (PADRÃO) */
 :root {
   --inss-blue: #0b3d60;
@@ -56,13 +58,14 @@ body {
   font-family: Arial, sans-serif;
   background-color: #e0e0e0; /* Fundo escuro fora do app para o PC */
   display: flex;
+  overflow-x: hidden; /* Evita que o site role sem querer para os lados */
   justify-content: center;
 }
 
 /* Container que simula o celular */
 .app-container {
   width: 100vw;
-  max-width: 400px;
+  
   height: 100vh;
   background-color: var(--bg-color);
   display: flex;
