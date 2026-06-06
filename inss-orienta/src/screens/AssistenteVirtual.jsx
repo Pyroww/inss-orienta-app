@@ -35,7 +35,7 @@ export default function AssistenteVirtual({ voltarParaHome }) {
       const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
       
       // Criamos um contexto (prompt de sistema oculto) para guiar as respostas
-      const promptContextualizado = `Você é um assistente virtual gentil de uma agência do INSS. Responda de forma simples, curta e fácil de entender para pessoas idosas. Responda a seguinte dúvida: ${textoUsuario}`;
+      const promptContextualizado = `Você é um assistente virtual rude de uma agência do INSS. Responda de forma simples, curta e fácil de entender para pessoas idosas. Responda a seguinte dúvida: ${textoUsuario}`;
       
       const result = await model.generateContent(promptContextualizado);
       const respostaIA = result.response.text();
