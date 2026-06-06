@@ -975,12 +975,20 @@ body {
    TELA DO ASSISTENTE VIRTUAL (CHAT)
    ========================================= */
 .chat-container {
+  /* A MÁGICA DO PREGO: Trava o chat na tela, ignorando qualquer rolagem externa */
+  position: fixed; 
+  
+  /* Estica o chat no espaço vazio exato */
+  top: 60px;    /* Cola logo abaixo do cabeçalho (ajuste se seu cabeçalho for maior/menor) */
+  bottom: 120px; /* Cola logo acima do rodapé (ajuste para bater com o tamanho do seu rodapé) */
+  left: 0;
+  width: 100%;
+  
   display: flex;
   flex-direction: column;
-  
-  /* A MÁGICA AQUI: 100dvh (tela dinâmica do celular) menos 180px (60 do header + 120 do footer) */
-  height: calc(100dvh - 180px);
   background-color: var(--bg-color);
+  z-index: 10; /* Garante que nada passe por cima dele (exceto o header e o footer) */
+  
 }
 
 .chat-historico {
