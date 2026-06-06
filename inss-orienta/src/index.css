@@ -11,7 +11,8 @@
   --nav-bg: #ffffff;
   --nav-gray: #757575;
   --nav-active: #0b3d60; /* Cor do botão ativo no Claro */
-  
+  width: 100%;
+  height: 100%; /* Passa o tamanho travado adiante */
 }
 
 /* VARIÁVEIS DO MODO ESCURO */
@@ -60,16 +61,14 @@ body {
   background-color: #e0e0e0; 
   overflow-x: hidden; 
   overflow-y: auto;
-  
-  /* ❌ APAGAMOS AQUI O display: flex e o justify-content: center */
 }
 
 /* Container que simula o celular */
 .app-container {
   /* ✅ TROCAMOS 100vw por 100% (muito mais seguro para mobile) */
   width: 100%; 
-  min-height: 100vh;
-  
+  height: 100vh;
+  overflow-y: auto; /* A rolagem acontece internamente aqui! */
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
