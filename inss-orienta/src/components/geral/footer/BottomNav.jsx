@@ -1,4 +1,5 @@
 import React from 'react';
+import './footer.css'; // Importamos o CSS específico para a barra de navegação inferior
 import { FaHome, FaUniversalAccess, FaQuestionCircle } from 'react-icons/fa';
 
 export default function BottomNav({ activeTab, setActiveTab }) {
