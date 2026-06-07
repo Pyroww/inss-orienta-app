@@ -1,0 +1,46 @@
+/*--------------------------------------------*/
+/* GRADE DE SERVIÇOS (BOTÕES QUADRADOS) */
+/*--------------------------------------------*/
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas do mesmo tamanho */
+  gap: 15px; /* Espaço entre os botões */
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.service-btn {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.service-btn:active {
+  transform: scale(0.95); /* Dá um efeitinho de "clique" ao tocar */
+}
+
+.service-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+/* Cores específicas para imitar a imagem original */
+.green-icon { color: #27ae60; }
+.blue-icon { color: var(--inss-blue); }
+.gold-icon { color: #f39c12; }
+
+.service-btn span {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-color); /* Para que o texto mude também */
+  text-align: center;
+  line-height: 1.2;
+}

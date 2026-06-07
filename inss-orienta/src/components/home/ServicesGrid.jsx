@@ -1,4 +1,6 @@
 import React from 'react';
+import './servicegrid.css'; // Importamos o CSS específico para a grade de serviços
+
 import { 
   FaClipboardCheck, 
   FaKey, 

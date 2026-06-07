@@ -1,4 +1,5 @@
 import React from 'react';
+import './termosdeuso.css'; // Importamos o CSS específico para os termos de uso
 import { FaArrowLeft, FaFileContract } from 'react-icons/fa';
 
 export default function TermosDeUso({ voltarParaHome }) {

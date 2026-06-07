@@ -1,4 +1,5 @@
 import React, { useState } from 'react'; // Importamos o useState aqui
+import './home.css';
 import { FaSearch } from 'react-icons/fa'; // Importamos o ícone da lupa
 import ServicesGrid from '../../components/home/ServicesGrid';
 import logoNormal from '../../assets/home/logo-cabecalho-v2.png';

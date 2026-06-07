@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaArrowLeft, FaExclamationTriangle } from 'react-icons/fa';
+import './elegibilidade.css'; // Importamos o CSS específico para a tela de elegibilidade
 import BeneficiosGrid from '../../components/elegibilidade/BeneficiosGrid';
 
 // 1. Importando as 3 imagens do banner (ajuste os nomes conforme salvou no seu PC)

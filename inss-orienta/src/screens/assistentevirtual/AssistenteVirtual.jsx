@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import './assistentevirtual.css'; // Importamos o CSS específico para o assistente virtual
 import { FaArrowLeft, FaPaperPlane, FaMicrophone, FaRobot, FaUser } from 'react-icons/fa';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 

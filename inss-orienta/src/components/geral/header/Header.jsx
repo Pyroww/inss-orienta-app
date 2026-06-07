@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './header.css'; // Importamos o CSS específico para o header
 import { FaBars, FaTimes, FaFileContract, FaUserShield, FaInfoCircle, FaRobot, FaCog } from 'react-icons/fa';
 
 // Recebendo o setActiveTab aqui no topo!

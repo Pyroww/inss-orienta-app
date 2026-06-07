@@ -1,4 +1,5 @@
 import React from 'react';
+import './politicadeprivacidade.css'; // Importamos o CSS específico para a política de privacidade
 import { FaArrowLeft, FaUserShield } from 'react-icons/fa';
 
 export default function PoliticaPrivacidade({ voltarParaHome }) {

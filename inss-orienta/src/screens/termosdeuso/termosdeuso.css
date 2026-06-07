@@ -1,0 +1,55 @@
+/* =========================================
+   TELA DE TERMOS E PRIVACIDADE
+   ========================================= */
+.documento-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.documento-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--inss-blue);
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.documento-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.documento-card ul {
+  padding-left: 20px;
+  color: var(--text-color);
+}
+
+.documento-card li {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* Ajustes de Tema */
+.app-container.dark .documento-card h3 {
+  color: #64b5f6;
+}
+
+.app-container.high-contrast .documento-card h3 {
+  color: #ffff00;
+  border-bottom-color: #ffff00;
+}
+
+.app-container.high-contrast .doc-icone {
+  color: #ffff00;
+}
