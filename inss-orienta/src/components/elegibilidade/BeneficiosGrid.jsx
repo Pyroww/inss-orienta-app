@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './beneficiogrid.css'; // Importamos o CSS específico para a tela de elegibilidade
 // ==========================================
 // IMPORTAÇÃO DAS IMAGENS (Salve na pasta assets)
 // ==========================================
