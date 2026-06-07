@@ -1,9 +1,9 @@
 import React, { useState } from 'react'; // Importamos o useState aqui
 import { FaSearch } from 'react-icons/fa'; // Importamos o ícone da lupa
-import ServicesGrid from '../components/home/ServicesGrid';
-import logoNormal from '../assets/home/logo-cabecalho-v2.png';
-import logoEscura from '../assets/home/logo-cabecalho-v2_modo_escuro.png'; 
-import logoAltoContraste from '../assets/home/logo-cabecalho-v2_modo_AltoContraste.png'; 
+import ServicesGrid from '../../components/home/ServicesGrid';
+import logoNormal from '../../assets/home/logo-cabecalho-v2.png';
+import logoEscura from '../../assets/home/logo-cabecalho-v2_modo_escuro.png'; 
+import logoAltoContraste from '../../assets/home/logo-cabecalho-v2_modo_AltoContraste.png'; 
 
 export default function Home({ theme, setActiveTab }) {
   // Estado que guarda o que o usuário está digitando na pesquisa
