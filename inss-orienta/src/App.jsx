@@ -3,7 +3,7 @@ import './index.css';
 import Header from './components/geral/header/Header';
 import BottomNav from './components/geral/footer/BottomNav';
 import Home from './screens/Home';
-import Acessibilidade from './screens/Acessibilidade';
+import Acessibilidade from './screens/acessabilidade/Acessibilidade';
 import Ajuda from './screens/Ajuda';
 import Elegibilidade from './screens/Elegibilidade';
 import TermosDeUso from './screens/TermosDeUso';
