@@ -1,0 +1,118 @@
+/*----------------------------------------------------------------------*/
+/*--------------------- TELA DE AJUDA E DICIONÁRIO ---------------------*/
+/*----------------------------------------------------------------------*/
+.ajuda-screen {
+  padding: 10px;
+}
+
+.ajuda-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.ajuda-icone-grande {
+  font-size: 50px;
+  color: #d4af37; /* Dourado/Amarelo do print original */
+}
+
+.ajuda-titulo-topo {
+  font-size: 28px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.ajuda-chamada {
+  font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 25px;
+  color: var(--text-color);
+  text-align: left;
+}
+
+.dicionario-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.termo-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.termo-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.termo-titulo-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+}
+
+.icone-check {
+  color: #27ae60; /* Verde do check */
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.app-container.high-contrast .icone-check {
+  color: #ffff00;
+}
+
+.termo-titulo {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-color);
+}
+
+.termo-explicacao {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+/* Botão de Ouvir em Voz Alta */
+.btn-ouvir {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--inss-blue);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-ouvir:active {
+  opacity: 0.7;
+}
+
+.app-container.dark .btn-ouvir {
+  background-color: #64b5f6;
+  color: #121212;
+}
+
+.app-container.high-contrast .btn-ouvir {
+  background-color: #ffff00;
+  color: #000000;
+}

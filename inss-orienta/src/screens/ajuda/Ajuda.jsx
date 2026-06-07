@@ -1,4 +1,5 @@
 import React from 'react';
+import './ajuda.css';
 import { FaCheckSquare, FaVolumeUp, FaQuestionCircle } from 'react-icons/fa';
 
 export default function Ajuda() {

@@ -1,4 +1,5 @@
 import React from 'react';
+import './acessabilidade.css';
 import { FaSun, FaMoon, FaEye, FaSearchPlus, FaPalette } from 'react-icons/fa';
 
 export default function Acessibilidade({ theme, setTheme, textSize, setTextSize }) {

@@ -1,0 +1,153 @@
+/*----------------------------------------------------------------------*/
+/*-------------------------- TELA DE ACESSIBILIDADE --------------------*/
+/*----------------------------------------------------------------------*/
+
+.acessibilidade-screen {
+  padding: 10px;
+}
+
+.screen-title {
+  font-size: 22px;
+  color: var(--inss-blue);
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+/* No alto contraste e modo escuro o título precisa mudar */
+.app-container.dark .screen-title,
+.app-container.high-contrast .screen-title {
+  color: var(--text-color);
+}
+
+.screen-desc {
+  font-size: 14px;
+  margin-bottom: 25px;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.theme-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.theme-card {
+  background-color: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  color: var(--text-color);
+}
+
+.theme-card:active {
+  transform: scale(0.98);
+}
+
+.theme-card.active-theme {
+  border-color: #27ae60; /* Contorno verde de selecionado */
+  box-shadow: 0 0 10px rgba(39, 174, 96, 0.2);
+}
+
+.app-container.high-contrast .theme-card.active-theme {
+  border-color: #ffff00;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+.theme-icon {
+  font-size: 30px;
+  margin-right: 20px;
+}
+
+.theme-text h3 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.theme-text p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Suavidade na transição de telas */
+.animate-fade {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* =========================================
+   ESTILOS DOS BOTÕES DE TAMANHO
+   ========================================= */
+.section-subtitle {
+  font-size: 16px;
+  color: var(--inss-blue);
+  margin-top: 25px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-container.dark .section-subtitle,
+.app-container.high-contrast .section-subtitle {
+  color: var(--text-color);
+}
+
+.size-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.size-btn {
+  flex: 1;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.size-btn:active {
+  transform: scale(0.95);
+}
+
+.size-btn.active-size {
+  border-color: #27ae60;
+  background-color: rgba(39, 174, 96, 0.1);
+}
+
+.app-container.high-contrast .size-btn.active-size {
+  border-color: #ffff00;
+  background-color: rgba(255, 255, 0, 0.2);
+}
+
+/* =========================================
+   CLASSE ATIVADORA DO TAMANHO GRANDE (A+)
+   Isso aumenta todos os textos e ícones do app
+   ========================================= */
+.app-container.font-grande .service-btn span { font-size: 14px; } /* Texto da grade */
+.app-container.font-grande .service-icon { font-size: 56px; } /* Ícones da grade */
+.app-container.font-grande .news-content h3 { font-size: 16px; line-height: 1.5; } /* Título da notícia */
+.app-container.font-grande .news-content p { font-size: 13px; } /* Texto da notícia */
+.app-container.font-grande .screen-title { font-size: 26px; } /* Títulos das abas */
+.app-container.font-grande .screen-desc { font-size: 17px; } /* Descrições */
+.app-container.font-grande .theme-text h3 { font-size: 20px; } /* Textos dos cards */
+.app-container.font-grande .theme-text p { font-size: 15px; } 
+.app-container.font-grande .nav-item span { font-size: 15px; } /* Texto do rodapé */
+.app-container.font-grande .header-title { font-size: 22px; } /* Cabeçalho */
