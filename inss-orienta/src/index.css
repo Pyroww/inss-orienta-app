@@ -862,32 +862,40 @@ body {
 .menu-lateral-links {
   display: flex;
   flex-direction: column;
-  padding: 15px 0;
+  gap: 16px; /* Espaço generoso entre cada opção para evitar cliques acidentais */
+  padding: 20px;
+  overflow-y: auto; /* Se adicionar muitas opções no futuro, permite rolar apenas o menu */
 }
 
 .menu-link {
   display: flex;
   align-items: center;
-  padding: 15px 20px;
-  background: none;
-  border: none;
-  border-bottom: 1px solid var(--border-color);
-  color: var(--text-color);
-  font-size: 16px;
-  font-weight: 500;
-  text-align: left;
+  width: 100%;
+  padding: 18px 20px; /* Enchimento enorme para criar a "caixa" do botão */
+  background-color: #ffffff; /* Fundo branco para destacar no menu */
+  border: 2px solid #e5e7eb; /* Borda cinza clara para delimitar onde o botão começa e termina */
+  border-radius: 12px; /* Cantos arredondados, mais amigáveis */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra para dar a ilusão de ser um botão físico */
+  
+  font-size: 1.15rem; /* Fonte grande */
+  font-weight: 600;
+  color: #334155; /* Texto cinza escuro (mais confortável para ler que preto puro) */
+  text-align: left; /* Garante que o texto fique alinhado após o ícone */
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
 }
 
 .menu-link:active {
-  background-color: var(--border-color);
+  background-color: #f1f5f9;
+  border-color: var(--inss-blue, #1e3a8a); /* Acende com a cor do aplicativo */
+  transform: scale(0.98); /* O botão "afunda" ao toque */
 }
 
 .menu-link-icone {
-  color: var(--inss-blue);
-  font-size: 20px;
-  margin-right: 15px;
+  font-size: 26px; /* Ícone bem destacado */
+  color: var(--inss-blue, #1e3a8a); /* Usa a cor principal do seu app */
+  margin-right: 18px; /* Empurra o texto para dar respiro */
+  flex-shrink: 0; /* Proíbe o ícone de ser esmagado caso o texto seja grande */
 }
 
 /* Ajustes de Tema para os Ícones do Menu Lateral */
@@ -901,8 +909,9 @@ body {
 
 /* Estilo temporário para as opções em branco */
 .placeholder-link {
-  opacity: 0.5;
-  border-style: dashed;
+  background-color: #f8f9fa;
+  color: #94a3b8;
+  border-style: dashed; /* Borda tracejada para indicar que não está pronto */
 }
 
 
