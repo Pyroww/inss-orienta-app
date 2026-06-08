@@ -9,6 +9,7 @@ import Elegibilidade from './screens/elegibilidade/Elegibilidade';
 import TermosDeUso from './screens/termosdeuso/TermosDeUso';
 import PoliticaPrivacidade from './screens/politicadeprivacidade/PoliticaPrivacidade';
 import AssistenteVirtual from './screens/assistentevirtual/AssistenteVirtual';
+import aposentadoriageral from './screens/elegibilidade/aposentadoriageral/aposentadoriageral';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
@@ -26,6 +27,9 @@ export default function App() {
       {activeTab === 'assistente' && (
         <AssistenteVirtual voltarParaHome={() => setActiveTab('inicio')} />
       )}
+
+      {activeTab === 'aposentadoria' && <AposentadoriaGeral setActiveTab={setActiveTab} />}
+
         {activeTab === 'termos' && (
         <TermosDeUso voltarParaHome={() => setActiveTab('inicio')} />
       )}

@@ -1,0 +1,117 @@
+.aposentadoria-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+}
+
+.aposentadoria-conteudo {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.secao-info h3, .secao-documentos h3 {
+  color: var(--inss-blue);
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Grid de Requisitos - Visual de "Painel" */
+.grid-requisitos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.requisito-item {
+  background-color: white;
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.requisito-item .label {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.requisito-item .valor {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.requisito-item.total {
+  grid-column: span 2; /* Ocupa as duas colunas */
+  flex-direction: row;
+  gap: 10px;
+  background-color: #f0f7ff;
+  border-color: #bae6fd;
+}
+
+/* Lista de Documentos */
+.lista-documentos {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lista-documentos li {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 5px solid #22c55e; /* Faixa verde lateral */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.check-icon {
+  color: #22c55e;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* Aviso de rodapé */
+.aviso-auxiliar {
+  background-color: #fff7ed;
+  border: 1px dashed #fb923c;
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.aviso-icone {
+  color: #ea580c;
+  font-size: 24px;
+}
+
+.aviso-auxiliar p {
+  font-size: 0.9rem;
+  color: #9a3412;
+  margin: 0;
+}
+
+/* Botão voltar do Header Interno */
+.btn-voltar {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
