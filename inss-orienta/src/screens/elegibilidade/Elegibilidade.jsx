@@ -9,7 +9,7 @@ import bannerEscuro from '../../assets/elegibilidade/img_elegibilidade_dark_mode
 import bannerAltoContraste from '../../assets/elegibilidade/img_elegibilidade_alto_contraste.png'; 
 
 // 2. Adicionamos o 'theme' aqui para a tela saber qual cor o usuário escolheu
-export default function Elegibilidade({ theme, voltarParaHome }) {
+export default function Elegibilidade({ theme, voltarParaHome, setActiveTab }) {
   
   // 3. Função inteligente que decide qual banner carregar
   const renderBanner = () => {
@@ -17,7 +17,8 @@ export default function Elegibilidade({ theme, voltarParaHome }) {
     if (theme === 'high-contrast') return bannerAltoContraste;
     return bannerNormal; // Padrão
   };
-
+  
+  console.log("1. A tela Elegibilidade recebeu a função?", setActiveTab);
   return (
     <div className="elegibilidade-screen animate-fade">
       
@@ -39,7 +40,7 @@ export default function Elegibilidade({ theme, voltarParaHome }) {
           Saiba se possui direito a algum dos benefícios do INSS
         </h3>
 
-        <BeneficiosGrid theme={theme} />
+        <BeneficiosGrid theme={theme} setActiveTab={setActiveTab} />
 
         <hr className="divisor" />
 

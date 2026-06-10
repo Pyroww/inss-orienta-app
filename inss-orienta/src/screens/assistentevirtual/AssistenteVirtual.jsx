@@ -49,7 +49,7 @@ export default function AssistenteVirtual({ voltarParaHome }) {
     }
   };
 
-  // Função mágica do navegador: Transcrever Áudio para Texto
+  //  Transcrever Áudio para Texto
   const iniciarGravacao = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     

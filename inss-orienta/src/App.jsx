@@ -9,13 +9,13 @@ import Elegibilidade from './screens/elegibilidade/Elegibilidade';
 import TermosDeUso from './screens/termosdeuso/TermosDeUso';
 import PoliticaPrivacidade from './screens/politicadeprivacidade/PoliticaPrivacidade';
 import AssistenteVirtual from './screens/assistentevirtual/AssistenteVirtual';
-import aposentadoriageral from './screens/elegibilidade/aposentadoriageral/aposentadoriageral';
+import AposentadoriaGeral from './screens/elegibilidade/aposentadoriageral/aposentadoriageral';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
   const [theme, setTheme] = useState('light');
   
-  // NOVO: Controle do tamanho da fonte ('normal' ou 'grande')
+  // Controle do tamanho da fonte ('normal' ou 'grande')
   const [textSize, setTextSize] = useState('normal');
 
   return (
@@ -28,7 +28,7 @@ export default function App() {
         <AssistenteVirtual voltarParaHome={() => setActiveTab('inicio')} />
       )}
 
-      {activeTab === 'aposentadoria' && <AposentadoriaGeral setActiveTab={setActiveTab} />}
+      
 
         {activeTab === 'termos' && (
         <TermosDeUso voltarParaHome={() => setActiveTab('inicio')} />
@@ -41,7 +41,8 @@ export default function App() {
 
         {/* NOVA TELA AQUI: */}
         {activeTab === 'elegibilidade' && (
-        <Elegibilidade theme={theme} voltarParaHome={() => setActiveTab('inicio')} />
+        <Elegibilidade theme={theme} voltarParaHome={() => setActiveTab('inicio')}
+        setActiveTab={setActiveTab} />
       )}
 
         {activeTab === 'acessibilidade' && (
@@ -52,6 +53,12 @@ export default function App() {
             setTextSize={setTextSize}
           />
         )}
+
+        {/* NOVA TELA AQUI: */}
+        {activeTab === 'aposentadoriaGeral' && (
+          <AposentadoriaGeral setActiveTab={setActiveTab} />
+        )}
+
         {activeTab === 'ajuda' && (
           <Ajuda />
         )}

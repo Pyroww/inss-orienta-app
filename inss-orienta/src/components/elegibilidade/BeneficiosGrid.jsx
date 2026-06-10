@@ -18,8 +18,8 @@ import assNormal from '../../assets/elegibilidade/img_Beneficios_assistenciais_e
 import assEscuro from '../../assets/elegibilidade/img_beneficios_assistenciais_dark_mode.png';
 import assHC from '../../assets/elegibilidade/img_beneficios_assistenciais_alto_contraste.png';
 
-export default function BeneficiosGrid({ theme }) {
-  
+export default function BeneficiosGrid({ theme, setActiveTab }) {
+  console.log("O Grid recebeu a função?", setActiveTab);
   // Funções inteligentes para decidir qual imagem carregar para cada botão
   const getImgAposentadoria = () => {
     if (theme === 'dark') return apoEscuro;
@@ -43,7 +43,7 @@ export default function BeneficiosGrid({ theme }) {
     <div className="lista-categorias">
       
       {/* Botão 1: Aposentadoria */}
-      <button className="categoria-card">
+      <button className="categoria-card" onClick={() => setActiveTab('aposentadoriaGeral')}>
         <img src={getImgAposentadoria()} alt="Aposentadoria Geral" className="categoria-imagem" />
         <span>APOSENTADORIA<br/>GERAL</span>
       </button>
