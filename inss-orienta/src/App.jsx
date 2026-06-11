@@ -10,6 +10,8 @@ import TermosDeUso from './screens/termosdeuso/TermosDeUso';
 import PoliticaPrivacidade from './screens/politicadeprivacidade/PoliticaPrivacidade';
 import AssistenteVirtual from './screens/assistentevirtual/AssistenteVirtual';
 import AposentadoriaGeral from './screens/elegibilidade/aposentadoriageral/aposentadoriageral';
+import Auxilios from './screens/elegibilidade/auxilio/Auxilios';
+import BeneficiosAssistenciais from './screens/elegibilidade/assistenciais/BeneficiosAssistenciais';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
@@ -53,10 +55,18 @@ export default function App() {
             setTextSize={setTextSize}
           />
         )}
-
+      
         {/* NOVA TELA AQUI: */}
         {activeTab === 'aposentadoriaGeral' && (
           <AposentadoriaGeral setActiveTab={setActiveTab} />
+        )}
+
+        {activeTab === 'auxilios' && (
+          <Auxilios setActiveTab={setActiveTab} />
+        )}
+
+        {activeTab === 'assistenciais' && (
+          <BeneficiosAssistenciais setActiveTab={setActiveTab} />
         )}
 
         {activeTab === 'ajuda' && (

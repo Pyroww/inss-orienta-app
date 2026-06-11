@@ -49,13 +49,13 @@ export default function BeneficiosGrid({ theme, setActiveTab }) {
       </button>
 
       {/* Botão 2: Auxílios */}
-      <button className="categoria-card">
+      <button className="categoria-card" onClick={() => setActiveTab('auxilios')}>
         <img src={getImgAuxilios()} alt="Auxílios Suporte e Proteção" className="categoria-imagem" />
         <span>AUXÍLIOS<br/>SUPORTE E PROTEÇÃO</span>
       </button>
 
       {/* Botão 3: Assistenciais */}
-      <button className="categoria-card">
+      <button className="categoria-card" onClick={() => setActiveTab('assistenciais')}>
         <img src={getImgAssistenciais()} alt="Benefícios Assistenciais" className="categoria-imagem" />
         <span>BENEFÍCIOS<br/>ASSISTENCIAIS</span>
       </button>

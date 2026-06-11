@@ -1,0 +1,158 @@
+.assistenciais-container {
+  /* O Prego na Parede para ignorar o index.css */
+  position: fixed;
+  top: 60px; 
+  bottom: 70px; 
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-color);
+  z-index: 15; 
+  display: flex;
+  flex-direction: column;
+}
+
+.interno-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--inss-blue);
+  color: white;
+  padding: 15px;
+  gap: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-shrink: 0; 
+}
+
+.assistenciais-conteudo {
+  flex: 1; 
+  overflow-y: auto; 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Alerta de "Não é aposentadoria" */
+.alerta-importante {
+  background-color: #fef2f2;
+  border-left: 5px solid #ef4444;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.icone-alerta {
+  color: #ef4444;
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.alerta-importante p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #7f1d1d;
+  line-height: 1.4;
+}
+
+.titulo-secao {
+  font-size: 1.2rem;
+  color: var(--inss-blue);
+  margin: 0;
+  margin-top: 10px;
+}
+
+.mt-3 {
+  margin-top: 20px;
+}
+
+/* Cards BPC */
+.lista-assistenciais {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-assistencial {
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  color: white;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.icone-assistencial {
+  font-size: 24px;
+}
+
+/* Cores dos cards */
+.card-header.idoso { background-color: #10b981; } /* Verde Esmeralda */
+.card-header.pcd { background-color: #8b5cf6; } /* Roxo */
+
+.card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-body p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.4;
+}
+
+/* Card Especial CadÚnico */
+.card-cadunico {
+  display: flex;
+  background-color: white;
+  border-radius: 12px;
+  border: 2px dashed #cbd5e1;
+  overflow: hidden;
+  align-items: center;
+}
+
+.cadunico-icone-area {
+  background-color: #f1f5f9;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icone-grande {
+  font-size: 40px;
+  color: #64748b;
+}
+
+.cadunico-texto {
+  padding: 15px;
+}
+
+.cadunico-texto h4 {
+  margin: 0 0 5px 0;
+  color: #1e293b;
+  font-size: 1.1rem;
+}
+
+.cadunico-texto p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.3;
+}
