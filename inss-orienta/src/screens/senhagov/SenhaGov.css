@@ -43,16 +43,6 @@
   display: block;
 }
 
-/* Apagar depois que colocar a imagem real */
-.banner-placeholder {
-  height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #cbd5e1;
-  color: #475569;
-  font-weight: bold;
-}
 
 /* Introdução */
 .texto-introducao {
