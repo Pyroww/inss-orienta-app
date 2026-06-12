@@ -12,6 +12,7 @@ import AssistenteVirtual from './screens/assistentevirtual/AssistenteVirtual';
 import AposentadoriaGeral from './screens/elegibilidade/aposentadoriageral/aposentadoriageral';
 import Auxilios from './screens/elegibilidade/auxilio/Auxilios';
 import BeneficiosAssistenciais from './screens/elegibilidade/assistenciais/BeneficiosAssistenciais';
+import SenhaGov from './screens/senhagov/SenhaGov';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
@@ -55,7 +56,7 @@ export default function App() {
             setTextSize={setTextSize}
           />
         )}
-      
+
         {/* NOVA TELA AQUI: */}
         {activeTab === 'aposentadoriaGeral' && (
           <AposentadoriaGeral setActiveTab={setActiveTab} />
@@ -67,6 +68,11 @@ export default function App() {
 
         {activeTab === 'assistenciais' && (
           <BeneficiosAssistenciais setActiveTab={setActiveTab} />
+        )}
+
+        {activeTab === 'senhaGov' && (
+          <SenhaGov setActiveTab={setActiveTab}
+          theme={theme} /* Adicione esta linha! */ />
         )}
 
         {activeTab === 'ajuda' && (

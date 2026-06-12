@@ -45,9 +45,11 @@ export default function ServicesGrid({ textoPesquisa, setActiveTab }) {
             key={index} 
             className="service-btn"
             onClick={() => {
-              // Executa a troca de tela ao clicar especificamente neste serviço
+              // 👇 ADICIONAMOS O GATILHO DA SENHA GOV AQUI 👇
               if (servico.titulo === "VERIFICAR ELEGIBILIDADE") {
                 setActiveTab('elegibilidade');
+              } else if (servico.titulo === "RECUPERAR SENHA") {
+                setActiveTab('senhaGov');
               }
             }}
           >
