@@ -8,6 +8,7 @@ import {
 
 // Banner (Opcional, descomente quando tiver a imagem)
 import bannerSenhaGov from '../../assets/senhagov/banner.jpg'; 
+import SenhaGovGrid from '../../components/senhagov/SenhaGovGrid'; // 👈 Importando o nosso novo componente!
 
 // ==========================================
 // IMPORTAÇÃO DAS IMAGENS DOS BOTÕES
@@ -73,26 +74,8 @@ export default function SenhaGov({ theme, setActiveTab }) {
           </p>
         </div>
 
-        {/* 👇 NOVA GRADE DE IMAGENS (Estilo Elegibilidade) 👇 */}
-        <div className="lista-categorias">
-          
-          <button className="categoria-card" onClick={() => {/* Ação Futura */}}>
-            <img src={getImgBanco()} alt="Entrar pelo Banco" className="categoria-imagem" />
-            <span>ENTRAR PELO<br/>BANCO</span>
-          </button>
-
-          <button className="categoria-card" onClick={() => {/* Ação Futura */}}>
-            <img src={getImgSms()} alt="Por Mensagem SMS" className="categoria-imagem" />
-            <span>POR MENSAGEM<br/>(SMS) OU E-MAIL</span>
-          </button>
-
-          <button className="categoria-card" onClick={() => {/* Ação Futura */}}>
-            <img src={getImgFacial()} alt="Reconhecimento Facial" className="categoria-imagem" />
-            <span>PELO RECONHECIMENTO<br/>FACIAL (A MAIS RÁPIDA)</span>
-          </button>
-
-        </div>
-        {/* 👆 FIM DA GRADE 👆 */}
+        {/* 👇 Aqui nós apenas chamamos o componente e repassamos as props 👇 */}
+        <SenhaGovGrid theme={theme} setActiveTab={setActiveTab} />
 
         {/* Seção de Avisos Mantida */}
         <div className="secao-avisos">
