@@ -2,8 +2,8 @@ import React from 'react';
 import './ProvaDeVida.css';
 import { FaArrowLeft, FaCheckCircle, FaInfoCircle } from 'react-icons/fa';
 
-// Descomente e ajuste o caminho quando tiver a imagem do banner salva na pasta assets
-import bannerProvaVida from '../../assets/provavida/banner_provavida.png';
+
+import bannerProvaVida from '../../assets/provavida/provavida.png';
 
 export default function ProvaDeVida({ setActiveTab }) {
   return (
@@ -22,6 +22,7 @@ export default function ProvaDeVida({ setActiveTab }) {
         {/* Banner */}
         <div className="banner-area">
           <img src={bannerProvaVida} alt="Prova de Vida Automática" />
+          
         </div>
 
         <div className="texto-principal">
