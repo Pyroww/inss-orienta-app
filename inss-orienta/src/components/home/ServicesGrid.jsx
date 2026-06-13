@@ -50,6 +50,8 @@ export default function ServicesGrid({ textoPesquisa, setActiveTab }) {
                 setActiveTab('elegibilidade');
               } else if (servico.titulo === "RECUPERAR SENHA") {
                 setActiveTab('senhaGov');
+              } else if (servico.titulo === "PROVA DE VIDA") {
+                setActiveTab('provaVida'); // 👈 Adicionamos esse aqui!
               }
             }}
           >
