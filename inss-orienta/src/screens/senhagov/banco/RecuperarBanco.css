@@ -1,0 +1,167 @@
+.banco-container {
+  position: fixed;
+  top: 60px; 
+  bottom: 70px; 
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-color);
+  z-index: 20; /* Fica acima da tela anterior */
+  display: flex;
+  flex-direction: column;
+}
+
+.interno-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--inss-blue);
+  color: white;
+  padding: 15px;
+  gap: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-shrink: 0; 
+}
+
+.banco-conteudo {
+  flex: 1; 
+  overflow-y: auto; 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Alerta de Segurança */
+.alerta-banco {
+  background-color: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.icone-alerta-banco {
+  font-size: 30px;
+  color: #16a34a;
+  flex-shrink: 0;
+}
+
+.alerta-texto h4 {
+  margin: 0 0 5px 0;
+  color: #166534;
+  font-size: 1.05rem;
+}
+
+.alerta-texto p {
+  margin: 0;
+  color: #14532d;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.texto-introdutorio {
+  color: #475569;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Estilo do Passo a Passo */
+.passo-a-passo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+}
+
+/* A linha vertical que conecta os números */
+.passo-a-passo::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background-color: #cbd5e1;
+  z-index: 1;
+}
+
+.passo-card {
+  display: flex;
+  gap: 15px;
+  z-index: 2; /* Fica acima da linha */
+}
+
+.passo-numero {
+  width: 42px;
+  height: 42px;
+  background-color: var(--inss-blue);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  border: 4px solid var(--bg-color); /* Apaga a linha atrás do número */
+}
+
+.passo-detalhe {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 15px;
+  flex: 1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.passo-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.passo-icone {
+  color: #2563eb;
+  font-size: 18px;
+}
+
+.passo-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1e293b;
+}
+
+.passo-detalhe p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+/* Box de Sucesso Final */
+.sucesso-box {
+  background-color: #eff6ff;
+  border: 1px dashed #93c5fd;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.icone-sucesso {
+  color: #3b82f6;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.sucesso-box p {
+  margin: 0;
+  color: #1e3a8a;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}

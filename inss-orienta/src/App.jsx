@@ -13,6 +13,9 @@ import AposentadoriaGeral from './screens/elegibilidade/aposentadoriageral/apose
 import Auxilios from './screens/elegibilidade/auxilio/Auxilios';
 import BeneficiosAssistenciais from './screens/elegibilidade/assistenciais/BeneficiosAssistenciais';
 import SenhaGov from './screens/senhagov/SenhaGov';
+import RecuperarBanco from './screens/senhagov/banco/RecuperarBanco';
+import RecuperarSms from './screens/senhagov/sms/RecuperarSms';
+import RecuperarFacial from './screens/senhagov/facial/RecuperarFacial';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
@@ -31,11 +34,10 @@ export default function App() {
         <AssistenteVirtual voltarParaHome={() => setActiveTab('inicio')} />
       )}
 
-      
-
         {activeTab === 'termos' && (
         <TermosDeUso voltarParaHome={() => setActiveTab('inicio')} />
       )}
+
       {activeTab === 'privacidade' && (
         <PoliticaPrivacidade voltarParaHome={() => setActiveTab('inicio')} />
       )}
@@ -75,6 +77,18 @@ export default function App() {
           theme={theme} /* Adicione esta linha! */ />
         )}
 
+        {activeTab === 'recuperarBanco' && (
+          <RecuperarBanco setActiveTab={setActiveTab} />
+        )}
+
+        {activeTab === 'recuperarSms' && (
+          <RecuperarSms setActiveTab={setActiveTab} />
+        )}
+        
+        {activeTab === 'recuperarFacial' && (
+          <RecuperarFacial setActiveTab={setActiveTab} />
+        )}
+        
         {activeTab === 'ajuda' && (
           <Ajuda />
         )}
