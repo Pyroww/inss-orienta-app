@@ -7,18 +7,18 @@ import './senhagovgrid.css';
 // ==========================================
 // 1. Entrar pelo Banco
 import bancoNormal from '../../assets/senhagov/img_banco.png';
-import bancoEscuro from '../../assets/senhagov/img_banco.png';
-import bancoHC from '../../assets/senhagov/img_banco.png';
+import bancoEscuro from '../../assets/senhagov/img_banco_dark_mode.png';
+import bancoHC from '../../assets/senhagov/img_banco_alto_contraste.png';
 
 // 2. SMS ou E-mail
 import smsNormal from '../../assets/senhagov/img_sms.png';
-import smsEscuro from '../../assets/senhagov/img_sms.png';
-import smsHC from '../../assets/senhagov/img_sms.png';
+import smsEscuro from '../../assets/senhagov/img_sms_dark_mode.png';
+import smsHC from '../../assets/senhagov/img_sms_alto_contraste.png';
 
 // 3. Reconhecimento Facial
 import facialNormal from '../../assets/senhagov/img_facial.png';
-import facialEscuro from '../../assets/senhagov/img_facial.png';
-import facialHC from '../../assets/senhagov/img_facial.png';
+import facialEscuro from '../../assets/senhagov/img_facial_dark_mode.png';
+import facialHC from '../../assets/senhagov/img_facial_alto_contraste.png';
 
 export default function SenhaGovGrid({ theme, setActiveTab }) {
   
