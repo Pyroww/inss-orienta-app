@@ -1,0 +1,240 @@
+.calendario-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--bg-color);
+  margin: -15px; 
+}
+
+.interno-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--inss-blue);
+  color: white;
+  padding: 15px;
+  gap: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-shrink: 0; 
+}
+
+.calendario-conteudo {
+  flex: 1; 
+  overflow-y: auto; 
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  padding-bottom: 90px; 
+}
+
+/* Banner */
+.banner-area {
+  width: 100%;
+  height: 180px;
+  background-color: #f1f5f9;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.banner-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.banner-placeholder {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-weight: bold;
+}
+
+/* Introdução */
+.texto-introducao {
+  padding: 5px 0 15px 0;
+}
+
+.texto-introducao h3 {
+  color: var(--text-color);
+  font-size: 1.4rem;
+  margin: 0 0 10px 0;
+}
+
+.texto-introducao p {
+  color: var(--text-color);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================
+   CALCULADORA DE PREVISÃO
+   ========================================== */
+.calculadora-box {
+  background-color: var(--card-bgType2);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.calc-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.icone-calc {
+  color: var(--inss-blue);
+  font-size: 24px;
+}
+
+.calc-header h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input[type="text"] {
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: white;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.btn-consultar {
+  width: 100%;
+  background-color: var(--inss-blue);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-consultar:active {
+  background-color: #0d47a1;
+  transform: scale(0.98);
+}
+
+/* Área de Resultado */
+.resultado-alerta {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.resultado-alerta.erro {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  flex-direction: row;
+  text-align: left;
+}
+
+.resultado-alerta.sucesso {
+  background-color: #f0fdfa;
+  border: 1px solid #99f6e4;
+  color: #0f766e;
+}
+
+.res-icone {
+  font-size: 24px;
+}
+
+.digito-destaque {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.digito-destaque span {
+  font-size: 0.9rem;
+  color: #0f766e;
+}
+
+.digito-destaque strong {
+  font-size: 3rem;
+  line-height: 1;
+  color: #0d9488;
+}
+
+.resultado-alerta p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Avisos */
+.mt-3 {
+  margin-top: 20px;
+}
+
+.aviso-informativo {
+  background-color: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  padding: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: 4px;
+}
+
+.icone-info {
+  color: #3b82f6;
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.aviso-informativo p {
+  margin: 0;
+  color: #1e3a8a;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}

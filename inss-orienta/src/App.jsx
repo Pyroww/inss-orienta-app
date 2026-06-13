@@ -17,7 +17,7 @@ import RecuperarBanco from './screens/senhagov/banco/RecuperarBanco';
 import RecuperarSms from './screens/senhagov/sms/RecuperarSms';
 import RecuperarFacial from './screens/senhagov/facial/RecuperarFacial';
 import ProvaDeVida from './screens/provavida/ProvaDeVida';
-
+import Calendario from './screens/calendario/Calendario';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
@@ -95,6 +95,10 @@ export default function App() {
           <ProvaDeVida setActiveTab={setActiveTab} />
         )}
         
+        {activeTab === 'calendario' && (
+          <Calendario setActiveTab={setActiveTab} />
+        )}
+
         {activeTab === 'ajuda' && (
           <Ajuda />
         )}

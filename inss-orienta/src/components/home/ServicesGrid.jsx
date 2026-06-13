@@ -52,6 +52,8 @@ export default function ServicesGrid({ textoPesquisa, setActiveTab }) {
                 setActiveTab('senhaGov');
               } else if (servico.titulo === "PROVA DE VIDA") {
                 setActiveTab('provaVida'); // 👈 Adicionamos esse aqui!
+              } else if (servico.titulo === "CALENDÁRIO DE PAGAMENTO") {
+                setActiveTab('calendario'); // 👈 Adicione isso!
               }
             }}
           >
