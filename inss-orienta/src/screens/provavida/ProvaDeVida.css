@@ -27,10 +27,7 @@
   overflow-y: auto; 
   display: flex;
   flex-direction: column;
-  /*padding-bottom: 30px; configuração padrão*/ 
-  /*nova alteração*/
-  padding: 20px;
-  padding-bottom: 120px; /* Força a rolagem ir bem mais além do texto final */
+  padding-bottom: 30px;
 }
 
 /* Banner */
