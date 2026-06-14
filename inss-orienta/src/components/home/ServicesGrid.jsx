@@ -56,6 +56,8 @@ export default function ServicesGrid({ textoPesquisa, setActiveTab }) {
                 setActiveTab('calendario'); // 👈 Adicione isso!
               } else if (servico.titulo === "AGENDAR ATENDIMENTO") {
                 setActiveTab('agendamento'); // 👈 O novo gatilho!
+              } else if (servico.titulo === "DOCUMENTOS") {
+                setActiveTab('documentos'); // 👈 O botão final!
               }
             }}
           >

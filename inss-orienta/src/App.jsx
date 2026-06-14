@@ -19,7 +19,7 @@ import RecuperarFacial from './screens/senhagov/facial/RecuperarFacial';
 import ProvaDeVida from './screens/provavida/ProvaDeVida';
 import Calendario from './screens/calendario/Calendario';
 import Agendamento from './screens/agendamento/Agendamento';
-
+import Documentos from './screens/documentos/Documentos';
 
 
 export default function App() {
@@ -104,6 +104,10 @@ export default function App() {
 
         {activeTab === 'agendamento' && (
           <Agendamento setActiveTab={setActiveTab} />
+        )}
+
+        {activeTab === 'documentos' && (
+          <Documentos setActiveTab={setActiveTab} />
         )}
         
         {activeTab === 'ajuda' && (

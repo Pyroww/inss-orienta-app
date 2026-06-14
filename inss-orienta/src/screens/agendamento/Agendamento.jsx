@@ -8,7 +8,7 @@ import {
   FaCalendarPlus
 } from 'react-icons/fa';
 
-// import bannerAgendamento from '../../assets/agendamento/banner_agendamento.png'; // Descomente quando tiver a imagem
+import bannerAgendamento from '../../assets/agendamento/banneragendamento.png'; // Descomente quando tiver a imagem
 
 export default function Agendamento({ setActiveTab }) {
   return (
@@ -26,10 +26,7 @@ export default function Agendamento({ setActiveTab }) {
         
         {/* Banner Principal */}
         <div className="banner-area">
-          {/* <img src={bannerAgendamento} alt="Como agendar seu atendimento" /> */}
-          <div className="banner-placeholder">
-            <span>[ Banner Agendamento ]</span>
-          </div>
+          <img src={bannerAgendamento} alt="Como agendar seu atendimento" />
         </div>
 
         <div className="texto-introducao">
