@@ -3,23 +3,21 @@ import './Calendario.css';
 import { 
   FaArrowLeft, 
   FaSearch, 
-  FaInfoCircle, 
+  FaQuestionCircle, 
   FaCalendarCheck,
-  FaExclamationTriangle
+  FaExclamationTriangle,
+  FaCreditCard
 } from 'react-icons/fa';
 
-// Descomente e ajuste quando tiver a imagem salva em src/assets/calendario/banner_calendario.png
-// import bannerCalendario from '../../assets/calendario/banner_calendario.png';
+import bannerCalendario from '../../assets/calendario/bannercalendario.png';
+import imgCartaoExemplo from '../../assets/calendario/calendario.png'; // 👈 Descomente quando tiver a imagem do cartão
 
 export default function Calendario({ setActiveTab }) {
-  // Estados para a nossa Calculadora
   const [nb, setNb] = useState('');
   const [renda, setRenda] = useState('ate_um'); 
   const [resultado, setResultado] = useState(null);
 
-  // A Lógica de Ouro para descobrir o dia
   const calcularPrevisao = () => {
-    // Remove qualquer ponto ou traço que o usuário tenha digitado
     const apenasNumeros = nb.replace(/\D/g, '');
 
     if (apenasNumeros.length < 10) {
@@ -27,7 +25,6 @@ export default function Calendario({ setActiveTab }) {
       return;
     }
 
-    // Pega exatamente o número ANTES do traço (o penúltimo da sequência de 10)
     const digitoFinal = apenasNumeros.charAt(apenasNumeros.length - 2);
 
     let textoPrevisao = '';
@@ -42,7 +39,6 @@ export default function Calendario({ setActiveTab }) {
 
   return (
     <div className="calendario-container">
-      {/* Cabeçalho */}
       <div className="interno-header">
         <button className="btn-voltar" onClick={() => setActiveTab('inicio')}>
           <FaArrowLeft />
@@ -50,43 +46,42 @@ export default function Calendario({ setActiveTab }) {
         <h2>Calendário de Pagamento</h2>
       </div>
 
-      {/* Conteúdo Rolável */}
       <div className="calendario-conteudo">
         
-        {/* Banner */}
+        {/* Banner Principal */}
         <div className="banner-area">
-          {/* <img src={bannerCalendario} alt="Quando vou receber meu benefício?" /> */}
-          <div className="banner-placeholder">
-            <span>[ Banner Calendário ]</span>
+          <img src={bannerCalendario} alt="Quando vou receber meu benefício?" />
+        </div>
+
+        {/* Título Principal */}
+        <h3 className="titulo-secao">O calendário de pagamento</h3>
+
+        {/* Passo 1 */}
+        <div className="passo-instrucao">
+          <h4>Passo 1: Descubra o número certo do seu cartão</h4>
+          <p>
+            Para saber o dia do seu pagamento, você precisa olhar para o número do seu benefício (NB). Mas atenção: o número que vale é o <strong>ÚLTIMO NÚMERO ANTES DO TRAÇO.</strong>
+          </p>
+          
+          {/* Espaço para a imagem do cartão ensinando a olhar o número */}
+          <div className="cartao-ilustracao">
+            <FaCreditCard className="icone-cartao-bg" />
+            
+            <img src={imgCartaoExemplo} alt="Exemplo do número no cartão" />
           </div>
         </div>
 
-        <div className="texto-introducao">
-          <h3>O calendário de pagamento</h3>
-          <p>
-            <strong>Passo 1: Descubra o número certo do seu cartão</strong><br/>
-            Para saber o dia do seu pagamento, você precisa olhar para o penúltimo número do seu cartão de benefício, ignorando o dígito que fica depois do traço.
-          </p>
+        {/* Passo 2 */}
+        <div className="passo-instrucao">
+          <h4>Passo 2: Qual é o valor do seu benefício?</h4>
+          <p>O INSS divide os pagamentos em dois grupos. Clique na opção que se encaixa no seu caso para ver as datas:</p>
         </div>
 
-        {/* ==========================================
-            MECÂNICA DA CALCULADORA
-            ========================================== */}
+        {/* Calculadora (A mecânica continua a mesma) */}
         <div className="calculadora-box">
           <div className="calc-header">
             <FaCalendarCheck className="icone-calc" />
             <h4>Previsão de Pagamento</h4>
-          </div>
-
-          <div className="form-group">
-            <label>Digite o Número do Benefício (NB):</label>
-            <input 
-              type="text" 
-              placeholder="Ex: 123.456.789-0"
-              value={nb}
-              onChange={(e) => setNb(e.target.value)}
-              maxLength={14}
-            />
           </div>
 
           <div className="form-group">
@@ -115,11 +110,22 @@ export default function Calendario({ setActiveTab }) {
             </div>
           </div>
 
+          <div className="form-group mt-2">
+            <label>Digite o Número do Benefício (NB):</label>
+            <input 
+              type="text" 
+              placeholder="Ex: 123.456.789-0"
+              value={nb}
+              onChange={(e) => setNb(e.target.value)}
+              maxLength={14}
+            />
+          </div>
+
           <button className="btn-consultar" onClick={calcularPrevisao}>
             <FaSearch /> Consultar Previsão
           </button>
 
-          {/* Área de Resultado */}
+          {/* Resultado */}
           {resultado && (
             <div className={`resultado-alerta ${resultado.erro ? 'erro' : 'sucesso'}`}>
               {resultado.erro ? (
@@ -140,12 +146,14 @@ export default function Calendario({ setActiveTab }) {
           )}
 
         </div>
-        {/* FIM DA CALCULADORA */}
 
-        {/* Aviso Padrão */}
-        <div className="aviso-informativo mt-3">
-          <FaInfoCircle className="icone-info" />
-          <p>O calendário oficial completo pode ser consultado no aplicativo Meu INSS. Dias de pagamento podem adiantar se caírem em feriados.</p>
+        {/* Dúvida Comum (O seu texto final exato) */}
+        <div className="duvida-comum">
+          <div className="duvida-header">
+            <FaQuestionCircle className="icone-duvida" />
+            <h4>Dúvida comum</h4>
+          </div>
+          <p>Se o dia do seu pagamento cair em um feriado, o dinheiro estará na conta no próximo dia útil.</p>
         </div>
 
       </div>
