@@ -54,6 +54,8 @@ export default function ServicesGrid({ textoPesquisa, setActiveTab }) {
                 setActiveTab('provaVida'); // 👈 Adicionamos esse aqui!
               } else if (servico.titulo === "CALENDÁRIO DE PAGAMENTO") {
                 setActiveTab('calendario'); // 👈 Adicione isso!
+              } else if (servico.titulo === "AGENDAR ATENDIMENTO") {
+                setActiveTab('agendamento'); // 👈 O novo gatilho!
               }
             }}
           >

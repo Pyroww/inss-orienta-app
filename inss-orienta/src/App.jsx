@@ -18,6 +18,9 @@ import RecuperarSms from './screens/senhagov/sms/RecuperarSms';
 import RecuperarFacial from './screens/senhagov/facial/RecuperarFacial';
 import ProvaDeVida from './screens/provavida/ProvaDeVida';
 import Calendario from './screens/calendario/Calendario';
+import Agendamento from './screens/agendamento/Agendamento';
+
+
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
@@ -99,6 +102,10 @@ export default function App() {
           <Calendario setActiveTab={setActiveTab} />
         )}
 
+        {activeTab === 'agendamento' && (
+          <Agendamento setActiveTab={setActiveTab} />
+        )}
+        
         {activeTab === 'ajuda' && (
           <Ajuda />
         )}
