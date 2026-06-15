@@ -95,11 +95,11 @@ export default function App() {
         )}
         
         {activeTab === 'provaVida' && (
-          <ProvaDeVida setActiveTab={setActiveTab} />
+          <ProvaDeVida theme={theme} setActiveTab={setActiveTab} />
         )}
         
         {activeTab === 'calendario' && (
-          <Calendario setActiveTab={setActiveTab} />
+          <Calendario theme={theme} setActiveTab={setActiveTab} />
         )}
 
         {activeTab === 'agendamento' && (

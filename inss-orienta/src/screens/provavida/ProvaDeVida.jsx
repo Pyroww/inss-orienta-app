@@ -4,8 +4,18 @@ import { FaArrowLeft, FaCheckCircle, FaInfoCircle } from 'react-icons/fa';
 
 
 import bannerProvaVida from '../../assets/provavida/provavida.png';
+import bannerEscuro from '../../assets/provavida/provavida_dark_mode.png'; 
+import bannerAltoContraste from '../../assets/provavida/provavida_alto_contraste.png'; 
 
-export default function ProvaDeVida({ setActiveTab }) {
+export default function ProvaDeVida({ theme, setActiveTab }) {
+
+  // Função inteligente que decide qual imagem carregar
+    const renderLogo = () => {
+      if (theme === 'dark') return bannerEscuro;
+      if (theme === 'high-contrast') return bannerAltoContraste;
+      return bannerProvaVida; // Padrão
+    };
+
   return (
     <div className="provavida-container">
       {/* Cabeçalho Interno Blindado */}
@@ -21,7 +31,7 @@ export default function ProvaDeVida({ setActiveTab }) {
         
         {/* Banner */}
         <div className="banner-area">
-          <img src={bannerProvaVida} alt="Prova de Vida Automática" />
+          <img src={renderLogo()} alt="Prova de Vida Automática" />
           
         </div>
 
