@@ -11,12 +11,23 @@
   --nav-bg: #ffffff;
   --nav-gray: #757575;
   --nav-active: #0b3d60; 
-  
   /* Novas Variáveis Específicas do Menu Lateral */
   --menu-icon-color: #0b3d60;
   --menu-active-border: #0b3d60;
   --menu-header-border: none;
   --menu-close-btn: #ffffff;
+  /* Cores Semânticas (Sucesso/Avisos) */
+  --success-color: #22c55e; /* Verde */
+  --warning-border: #fb923c; /* Laranja Claro */
+  --warning-icon: #ea580c; /* Laranja Forte */
+  --title-color: #0b3d60; /* Azul escuro original */
+  /* Cores das Categorias de Auxílio (Claro) */
+  --cat-doenca: #3b82f6;      /* Azul */
+  --cat-maternidade: #ec4899; /* Rosa */
+  --cat-acidente: #f59e0b;    /* Laranja */
+  --cat-reclusao: #64748b;    /* Cinza */
+  --cat-text: #ffffff;
+  --cat-border: none;
 }
 
 /* VARIÁVEIS DO MODO ESCURO */
@@ -36,6 +47,20 @@
   --menu-active-border: #64b5f6;
   --menu-header-border: none;
   --menu-close-btn: #ffffff;
+
+  /* Cores Semânticas (Escuro) */
+  --success-color: #4ade80; /* Verde mais claro para ler melhor no preto */
+  --warning-border: #fb923c; 
+  --warning-icon: #fb923c;
+  --title-color: #64b5f6; /* Azul bebê que brilha no escuro */
+
+  /* Cores das Categorias de Auxílio (Escuro - Tons levemente mais suaves) */
+  --cat-doenca: #1d4ed8;      
+  --cat-maternidade: #be185d; 
+  --cat-acidente: #b45309;    
+  --cat-reclusao: #334155;    
+  --cat-text: #ffffff;
+  --cat-border: none;
 }
 
 /* =========================================
@@ -63,12 +88,23 @@
   --nav-bg: #000000;
   --nav-gray: #ffff00;
   --nav-active: #ffffff; 
-  
   /* Novas Variáveis Específicas do Menu Lateral (Alto Contraste) */
   --menu-icon-color: #ffff00;
   --menu-active-border: #ffff00;
   --menu-header-border: 2px solid #ffff00;
   --menu-close-btn: #ffff00;
+  /* Cores Semânticas (Alto Contraste) - TUDO FICA AMARELO NEON! */
+  --success-color: #ffff00;
+  --warning-border: #ffff00;
+  --warning-icon: #ffff00;
+  --title-color: #ffff00; /* Amarelo neon absoluto */
+  /* Cores das Categorias de Auxílio (Alto Contraste) - Tudo Preto e Amarelo! */
+  --cat-doenca: #000000;
+  --cat-maternidade: #000000;
+  --cat-acidente: #000000;
+  --cat-reclusao: #000000;
+  --cat-text: #ffff00;
+  --cat-border: 2px solid #ffff00;
 }
 
 body {
