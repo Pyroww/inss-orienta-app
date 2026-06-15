@@ -1,5 +1,5 @@
 .assistenciais-container {
-  /* O Prego na Parede para ignorar o index.css */
+  /* O Prego na Parede para ignorar o index.css (Estrutura mantida!) */
   position: fixed;
   top: 60px; 
   bottom: 70px; 
@@ -33,8 +33,8 @@
 
 /* Alerta de "Não é aposentadoria" */
 .alerta-importante {
-  background-color: #fef2f2;
-  border-left: 5px solid #ef4444;
+  background-color: var(--card-bgType2); /* Fundo inteligente */
+  border-left: 5px solid #ef4444; /* Mantido o vermelho para alerta */
   padding: 15px;
   border-radius: 8px;
   display: flex;
@@ -52,13 +52,13 @@
 .alerta-importante p {
   margin: 0;
   font-size: 0.95rem;
-  color: #7f1d1d;
+  color: var(--text-color); /* Texto inteligente */
   line-height: 1.4;
 }
 
 .titulo-secao {
   font-size: 1.2rem;
-  color: var(--inss-blue);
+  color: var(--title-color); /* Mudado para title-color para brilhar no escuro */
   margin: 0;
   margin-top: 10px;
 }
@@ -75,9 +75,9 @@
 }
 
 .card-assistencial {
-  background-color: white;
+  background-color: var(--card-bgType2); /* Fundo inteligente */
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color); /* Borda inteligente */
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
@@ -87,7 +87,8 @@
   align-items: center;
   gap: 12px;
   padding: 15px;
-  color: white;
+  color: var(--cat-text); /* Variável de texto de categoria do index */
+  border-bottom: var(--cat-border);
 }
 
 .card-header h3 {
@@ -99,9 +100,9 @@
   font-size: 24px;
 }
 
-/* Cores dos cards */
-.card-header.idoso { background-color: #10b981; } /* Verde Esmeralda */
-.card-header.pcd { background-color: #8b5cf6; } /* Roxo */
+/* Cores dos cards dinâmicas puxadas do index.css */
+.card-header.idoso { background-color: var(--cat-idoso); } 
+.card-header.pcd { background-color: var(--cat-pcd); } 
 
 .card-body {
   padding: 15px;
@@ -110,25 +111,26 @@
   gap: 10px;
 }
 
-.card-body p {
+/* Blindagem MÁXIMA dos parágrafos contra o cache/WebView do celular */
+.assistenciais-container .card-assistencial .card-body p {
   margin: 0;
   font-size: 0.95rem;
-  color: #334155;
+  color: var(--text-color) !important; /* Força a cor do tema */
   line-height: 1.4;
 }
 
 /* Card Especial CadÚnico */
 .card-cadunico {
   display: flex;
-  background-color: white;
+  background-color: var(--card-bgType2); /* Fundo inteligente */
   border-radius: 12px;
-  border: 2px dashed #cbd5e1;
+  border: 2px dashed var(--border-color); /* Borda inteligente */
   overflow: hidden;
   align-items: center;
 }
 
 .cadunico-icone-area {
-  background-color: #f1f5f9;
+  background-color: var(--bg-color); /* Inverte suavemente conforme o tema */
   padding: 20px;
   display: flex;
   align-items: center;
@@ -137,7 +139,7 @@
 
 .icone-grande {
   font-size: 40px;
-  color: #64748b;
+  color: var(--title-color); /* Ícone inteligente */
 }
 
 .cadunico-texto {
@@ -146,13 +148,14 @@
 
 .cadunico-texto h4 {
   margin: 0 0 5px 0;
-  color: #1e293b;
+  color: var(--title-color); /* Título inteligente */
   font-size: 1.1rem;
 }
 
-.cadunico-texto p {
+/* Blindagem do parágrafo do CadÚnico */
+.assistenciais-container .card-cadunico .cadunico-texto p {
   margin: 0;
   font-size: 0.9rem;
-  color: #475569;
+  color: var(--text-color) !important; /* Força a cor do tema */
   line-height: 1.3;
 }
