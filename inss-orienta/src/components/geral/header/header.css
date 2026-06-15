@@ -10,7 +10,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 99; /* Fica acima de tudo, menos do próprio menu */
+  z-index: 99; 
   animation: fadeIn 0.3s ease;
 }
 
@@ -18,18 +18,17 @@
 .menu-lateral {
   position: absolute;
   top: 0;
-  left: -280px; /* Fica escondida para fora da tela na esquerda */
+  left: -280px; 
   width: 260px;
   height: 100%;
-  background-color: var(--card-bg);
+  background-color: var(--card-bg); 
   box-shadow: 2px 0 15px rgba(0,0,0,0.3);
   z-index: 100;
-  transition: left 0.3s ease-in-out; /* O efeito de deslizar */
+  transition: left 0.3s ease-in-out; 
   display: flex;
   flex-direction: column;
 }
 
-/* Quando ativamos o estado, a classe .aberto puxa ela para a tela */
 .menu-lateral.aberto {
   left: 0;
 }
@@ -42,6 +41,7 @@
   padding: 20px;
   background-color: var(--inss-blue);
   color: white;
+  border-bottom: var(--menu-header-border); /* Usando variável para o AC */
 }
 
 .menu-lateral-header h2 {
@@ -52,7 +52,7 @@
 .btn-fechar {
   background: none;
   border: none;
-  color: white;
+  color: var(--menu-close-btn); /* Usando variável para o AC */
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -63,54 +63,43 @@
 .menu-lateral-links {
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Espaço generoso entre cada opção para evitar cliques acidentais */
+  gap: 16px; 
   padding: 20px;
-  overflow-y: auto; /* Se adicionar muitas opções no futuro, permite rolar apenas o menu */
+  overflow-y: auto; 
 }
 
 .menu-link {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 18px 20px; /* Enchimento enorme para criar a "caixa" do botão */
-  background-color: #ffffff; /* Fundo branco para destacar no menu */
-  border: 2px solid #e5e7eb; /* Borda cinza clara para delimitar onde o botão começa e termina */
-  border-radius: 12px; /* Cantos arredondados, mais amigáveis */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra para dar a ilusão de ser um botão físico */
+  padding: 18px 20px; 
+  background-color: var(--card-bgType2); 
+  border: 2px solid var(--border-color); 
+  border-radius: 12px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
   
-  font-size: 1.15rem; /* Fonte grande */
+  font-size: 1.15rem; 
   font-weight: 600;
-  color: #334155; /* Texto cinza escuro (mais confortável para ler que preto puro) */
-  text-align: left; /* Garante que o texto fique alinhado após o ícone */
+  color: var(--text-color); 
+  text-align: left; 
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .menu-link:active {
-  background-color: #f1f5f9;
-  border-color: var(--inss-blue, #1e3a8a); /* Acende com a cor do aplicativo */
-  transform: scale(0.98); /* O botão "afunda" ao toque */
+  background-color: var(--bg-color);
+  border-color: var(--menu-active-border); /* Variável inteligente */
+  transform: scale(0.98); 
 }
 
 .menu-link-icone {
-  font-size: 26px; /* Ícone bem destacado */
-  color: var(--inss-blue, #1e3a8a); /* Usa a cor principal do seu app */
-  margin-right: 18px; /* Empurra o texto para dar respiro */
-  flex-shrink: 0; /* Proíbe o ícone de ser esmagado caso o texto seja grande */
+  font-size: 26px; 
+  color: var(--menu-icon-color); /* Variável inteligente */
+  margin-right: 18px; 
+  flex-shrink: 0; 
 }
 
-/* Ajustes de Tema para os Ícones do Menu Lateral */
-.app-container.dark .menu-link-icone {
-  color: #64b5f6;
-}
-
-.app-container.high-contrast .menu-link-icone {
-  color: #ffff00;
-}
-
-/* Estilo temporário para as opções em branco */
 .placeholder-link {
-  background-color: #f8f9fa;
-  color: #94a3b8;
-  border-style: dashed; /* Borda tracejada para indicar que não está pronto */
+  opacity: 0.6;
+  border-style: dashed; 
 }

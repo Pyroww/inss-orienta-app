@@ -10,9 +10,13 @@
   --border-color: #e0e0e0;
   --nav-bg: #ffffff;
   --nav-gray: #757575;
-  --nav-active: #0b3d60; /* Cor do botão ativo no Claro */
-  width: 100%;
-  height: 100%; /* Passa o tamanho travado adiante */
+  --nav-active: #0b3d60; 
+  
+  /* Novas Variáveis Específicas do Menu Lateral */
+  --menu-icon-color: #0b3d60;
+  --menu-active-border: #0b3d60;
+  --menu-header-border: none;
+  --menu-close-btn: #ffffff;
 }
 
 /* VARIÁVEIS DO MODO ESCURO */
@@ -25,7 +29,13 @@
   --border-color: #333333;
   --nav-bg: #1e1e1e;
   --nav-gray: #aaaaaa;
-  --nav-active: #64b5f6; /* Azul clarinho para destacar no Escuro */
+  --nav-active: #64b5f6; 
+  
+  /* Novas Variáveis Específicas do Menu Lateral (Escuro) */
+  --menu-icon-color: #64b5f6;
+  --menu-active-border: #64b5f6;
+  --menu-header-border: none;
+  --menu-close-btn: #ffffff;
 }
 
 /* =========================================
@@ -52,7 +62,13 @@
   --border-color: #ffff00;
   --nav-bg: #000000;
   --nav-gray: #ffff00;
-  --nav-active: #ffffff; /* Branco absoluto para o Alto Contraste */
+  --nav-active: #ffffff; 
+  
+  /* Novas Variáveis Específicas do Menu Lateral (Alto Contraste) */
+  --menu-icon-color: #ffff00;
+  --menu-active-border: #ffff00;
+  --menu-header-border: 2px solid #ffff00;
+  --menu-close-btn: #ffff00;
 }
 
 body {
