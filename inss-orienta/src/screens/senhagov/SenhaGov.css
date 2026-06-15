@@ -153,6 +153,7 @@
 }
 
 .aviso-box p {
+  
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.4;
@@ -160,15 +161,15 @@
 
 /* Cores específicas dos avisos */
 .aviso-box.alerta {
-  background-color: #fffbeb;
-  border: 1px solid #fde68a;
+  background-color: var(--card-bgType2); /* Fundo inteligente */
+  border: 1px solid var(--border-color);
 }
-.aviso-box.alerta .aviso-cabecalho { color: #b45309; }
-.aviso-box.alerta p { color: #92400e; }
+.aviso-box.alerta .aviso-cabecalho { color: var(--text-color); }
+.aviso-box.alerta p { color: var(--text-color); }
 
 .aviso-box.inss {
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
+  background-color: var(--card-bgType2); /* Fundo inteligente */
+  border: 1px solid var(--border-color); /* Borda inteligente puxada do index */
 }
-.aviso-box.inss .aviso-cabecalho { color: #b91c1c; }
-.aviso-box.inss p { color: #991b1b; }
+.aviso-box.inss .aviso-cabecalho { color: var(--text-color); }
+.aviso-box.inss p { color: var(--text-color); }

@@ -28,6 +28,8 @@
   --cat-reclusao: #64748b;    /* Cinza */
   --cat-text: #ffffff;
   --cat-border: none;
+
+  --facial-color: #8b5cf6; /* Roxo vibrante */
 }
 
 /* VARIÁVEIS DO MODO ESCURO */
@@ -61,6 +63,8 @@
   --cat-reclusao: #334155;    
   --cat-text: #ffffff;
   --cat-border: none;
+
+  --facial-color: #a78bfa; /* Roxo mais clarinho para destacar no fundo preto */
 }
 
 /* =========================================
@@ -105,6 +109,8 @@
   --cat-reclusao: #000000;
   --cat-text: #ffff00;
   --cat-border: 2px solid #ffff00;
+
+  --facial-color: #ffff00; /* Amarelo Neon absoluto! */
 }
 
 body {

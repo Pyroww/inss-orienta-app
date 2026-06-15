@@ -1,5 +1,5 @@
 .sms-container {
-  /* Blindagem contra bordas do app principal */
+  /* Blindagem mantida na estrutura atual */
   position: fixed;
   top: 60px; 
   bottom: 70px; 
@@ -32,9 +32,9 @@
 }
 
 /* Alerta de Atenção Específico para SMS (Amarelo/Laranja) */
-.alerta-sms {
-  background-color: #fffbeb;
-  border: 1px solid #fde68a;
+.sms-container .alerta-sms {
+  background-color: var(--card-bgType2); /* Fundo inteligente */
+  border: 1px dashed var(--warning-border); /* Borda inteligente puxada do index */
   border-radius: 12px;
   padding: 15px;
   display: flex;
@@ -42,32 +42,33 @@
   gap: 15px;
 }
 
-.icone-alerta-sms {
+.sms-container .icone-alerta-sms {
   font-size: 30px;
-  color: #d97706;
+  color: var(--warning-icon); /* Ícone laranja/amarelo inteligente */
   flex-shrink: 0;
 }
 
-.alerta-texto h4 {
+.sms-container .alerta-texto h4 {
   margin: 0 0 5px 0;
-  color: #b45309;
+  color: var(--title-color); /* Título inteligente */
   font-size: 1.05rem;
 }
 
-.alerta-texto p {
+/* 👇 Blindagem do parágrafo do Alerta 👇 */
+.sms-container .alerta-sms .alerta-texto p {
   margin: 0;
-  color: #92400e;
+  color: var(--text-color) !important; /* Texto forçado para não sumir no escuro */
   font-size: 0.9rem;
   line-height: 1.4;
 }
 
-.texto-introdutorio {
-  color: #475569;
+.sms-container .texto-introdutorio {
+  color: var(--text-color); /* Texto inteligente */
   font-size: 1rem;
   margin: 0;
 }
 
-/* Estilo do Passo a Passo (Mesma estrutura, novas cores) */
+/* Estilo do Passo a Passo */
 .passo-a-passo {
   display: flex;
   flex-direction: column;
@@ -75,14 +76,14 @@
   position: relative;
 }
 
-.passo-a-passo::before {
+.sms-container .passo-a-passo::before {
   content: '';
   position: absolute;
   left: 20px;
   top: 10px;
   bottom: 10px;
   width: 2px;
-  background-color: #cbd5e1;
+  background-color: var(--border-color); /* Linha inteligente */
   z-index: 1;
 }
 
@@ -92,11 +93,11 @@
   z-index: 2; 
 }
 
-.passo-numero {
+.sms-container .passo-numero {
   width: 42px;
   height: 42px;
-  background-color: #16a34a; /* Verde para diferenciar do azul do Banco */
-  color: white;
+  background-color: var(--success-color); /* Fundo verde adaptável do index */
+  color: var(--bg-color); /* 👈 Truque de mestre: inverte a cor do texto conforme o fundo! */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -107,9 +108,9 @@
   border: 4px solid var(--bg-color); 
 }
 
-.passo-detalhe {
-  background-color: white;
-  border: 1px solid #e2e8f0;
+.sms-container .passo-detalhe {
+  background-color: var(--card-bgType2); /* Fundo inteligente */
+  border: 1px solid var(--border-color); /* Borda inteligente */
   border-radius: 12px;
   padding: 15px;
   flex: 1;
@@ -124,19 +125,20 @@
 }
 
 .passo-icone {
-  color: #16a34a; /* Ícones em verde */
+  color: var(--success-color); /* Ícone verde adaptável */
   font-size: 18px;
 }
 
-.passo-header h3 {
+.sms-container .passo-header h3 {
   margin: 0;
   font-size: 1.1rem;
-  color: #1e293b;
+  color: var(--title-color); /* Título inteligente */
 }
 
-.passo-detalhe p {
+/* 👇 Blindagem do parágrafo do Passo a Passo 👇 */
+.sms-container .passo-card .passo-detalhe p {
   margin: 0;
   font-size: 0.95rem;
-  color: #475569;
+  color: var(--text-color) !important; /* Texto forçado */
   line-height: 1.4;
 }

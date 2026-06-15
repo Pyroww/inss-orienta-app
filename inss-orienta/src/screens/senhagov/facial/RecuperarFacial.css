@@ -1,5 +1,5 @@
 .facial-container {
-  /* Blindagem contra bordas do app principal */
+  /* Blindagem contra bordas do app principal mantida */
   position: fixed;
   top: 60px; 
   bottom: 70px; 
@@ -31,10 +31,10 @@
   gap: 20px;
 }
 
-/* Alerta de Dicas do Reconhecimento (Roxo/Lilás) */
+/* Alerta de Dicas do Reconhecimento (Usando a nossa variável Roxa) */
 .alerta-facial {
-  background-color: #f3e8ff;
-  border: 1px solid #c084fc;
+  background-color: var(--card-bgType2); /* Fundo inteligente */
+  border: 1px dashed var(--facial-color); /* Reutilizando a variável roxa do index.css! */
   border-radius: 12px;
   padding: 15px;
   display: flex;
@@ -44,25 +44,26 @@
 
 .icone-alerta-facial {
   font-size: 30px;
-  color: #7c3aed;
+  color: var(--facial-color); /* Ícone roxo inteligente */
   flex-shrink: 0;
 }
 
 .alerta-texto h4 {
   margin: 0 0 5px 0;
-  color: #6d28d9;
+  color: var(--title-color); /* Título inteligente */
   font-size: 1.05rem;
 }
 
-.alerta-texto p {
+/* 👇 Blindagem do parágrafo do Alerta 👇 */
+.facial-container .alerta-facial .alerta-texto p {
   margin: 0;
-  color: #5b21b6;
+  color: var(--text-color) !important; /* Texto forçado para não sumir no escuro */
   font-size: 0.9rem;
   line-height: 1.4;
 }
 
 .texto-introdutorio {
-  color: #475569;
+  color: var(--text-color); /* Texto inteligente */
   font-size: 1rem;
   margin: 0;
 }
@@ -82,7 +83,7 @@
   top: 10px;
   bottom: 10px;
   width: 2px;
-  background-color: #cbd5e1;
+  background-color: var(--border-color); /* Linha inteligente */
   z-index: 1;
 }
 
@@ -92,11 +93,11 @@
   z-index: 2; 
 }
 
-.passo-numero {
+.facial-container .passo-numero {
   width: 42px;
   height: 42px;
-  background-color: #8b5cf6; /* Roxo para combinar com a categoria */
-  color: white;
+  background-color: var(--success-color); /* Roxo dinâmico puxado do index.css */
+  color: var(--bg-color); /* Inverte a cor do texto conforme o fundo */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -107,9 +108,9 @@
   border: 4px solid var(--bg-color); 
 }
 
-.passo-detalhe {
-  background-color: white;
-  border: 1px solid #e2e8f0;
+.facial-container .passo-detalhe {
+  background-color: var(--card-bgType2); /* Fundo inteligente */
+  border: 1px solid var(--border-color); /* Borda inteligente */
   border-radius: 12px;
   padding: 15px;
   flex: 1;
@@ -124,19 +125,20 @@
 }
 
 .passo-icone {
-  color: #8b5cf6;
+  color: var(--facial-color); /* Ícone roxo inteligente */
   font-size: 18px;
 }
 
 .passo-header h3 {
   margin: 0;
   font-size: 1.1rem;
-  color: #1e293b;
+  color: var(--title-color); /* Título inteligente */
 }
 
-.passo-detalhe p {
+/* 👇 Blindagem do parágrafo do Passo a Passo 👇 */
+.facial-container .passo-card .passo-detalhe p {
   margin: 0;
   font-size: 0.95rem;
-  color: #475569;
+  color: var(--text-color) !important; /* Texto forçado */
   line-height: 1.4;
 }
