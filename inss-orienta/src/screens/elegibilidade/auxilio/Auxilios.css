@@ -18,6 +18,14 @@
   line-height: 1.4;
 }
 
+/* Forçamos o caminho completo para garantir que nenhuma outra regra ignore o tema */
+.auxilios-container .texto-introdutorio {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-color) !important; /* 👈 O !important garante que o modo escuro/AC mude a cor de forma obrigatória */
+  line-height: 1.4;
+}
+
 .interno-header {
   display: flex;
   align-items: center;

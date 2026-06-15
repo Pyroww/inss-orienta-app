@@ -9,13 +9,23 @@ import {
   FaCreditCard
 } from 'react-icons/fa';
 
-import bannerCalendario from '../../assets/calendario/bannercalendario.png';
-import imgCartaoExemplo from '../../assets/calendario/calendario.png'; // 👈 Descomente quando tiver a imagem do cartão
 
-export default function Calendario({ setActiveTab }) {
+import imgCartaoExemplo from '../../assets/calendario/calendario.png'; // 👈 Descomente quando tiver a imagem do cartão
+import bannerCalendario from '../../assets/calendario/bannercalendario.png';
+import bannerEscuro from '../../assets/calendario/bannercalendario_dark_mode.png'; 
+import bannerAltoContraste from '../../assets/calendario/bannercalendario_alto_contraste.png'; 
+
+export default function Calendario({ theme, setActiveTab }) {
   const [nb, setNb] = useState('');
   const [renda, setRenda] = useState('ate_um'); 
   const [resultado, setResultado] = useState(null);
+
+  // Função inteligente que decide qual imagem carregar
+  const renderLogo = () => {
+    if (theme === 'dark') return bannerEscuro;
+    if (theme === 'high-contrast') return bannerAltoContraste;
+    return bannerCalendario; // Padrão
+  };
 
   const calcularPrevisao = () => {
     const apenasNumeros = nb.replace(/\D/g, '');
@@ -50,7 +60,7 @@ export default function Calendario({ setActiveTab }) {
         
         {/* Banner Principal */}
         <div className="banner-area">
-          <img src={bannerCalendario} alt="Quando vou receber meu benefício?" />
+          <img src={renderLogo()} alt="Quando vou receber meu benefício?" />
         </div>
 
         {/* Título Principal */}
