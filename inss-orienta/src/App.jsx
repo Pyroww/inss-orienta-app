@@ -103,7 +103,7 @@ export default function App() {
         )}
 
         {activeTab === 'agendamento' && (
-          <Agendamento setActiveTab={setActiveTab} />
+          <Agendamento theme={theme} setActiveTab={setActiveTab} />
         )}
 
         {activeTab === 'documentos' && (

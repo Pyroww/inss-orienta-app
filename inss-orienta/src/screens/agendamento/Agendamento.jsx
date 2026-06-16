@@ -9,8 +9,19 @@ import {
 } from 'react-icons/fa';
 
 import bannerAgendamento from '../../assets/agendamento/banneragendamento.png'; // Descomente quando tiver a imagem
+import bannerCalendario from '../../assets/agendamento/banneragendamento.png';
+import bannerEscuro from '../../assets/agendamento/banneragendamento_dark_mode.png'; 
+import bannerAltoContraste from '../../assets/agendamento/banneragendamento_Alto_contraste.png'; 
 
-export default function Agendamento({ setActiveTab }) {
+export default function Agendamento({ theme, setActiveTab }) {
+
+  // Função inteligente que decide qual imagem carregar
+    const renderLogo = () => {
+      if (theme === 'dark') return bannerEscuro;
+      if (theme === 'high-contrast') return bannerAltoContraste;
+      return bannerCalendario; // Padrão
+    };
+
   return (
     <div className="agendamento-container">
       {/* Cabeçalho */}
@@ -26,7 +37,7 @@ export default function Agendamento({ setActiveTab }) {
         
         {/* Banner Principal */}
         <div className="banner-area">
-          <img src={bannerAgendamento} alt="Como agendar seu atendimento" />
+          <img src={renderLogo()} alt="Como agendar seu atendimento" />
         </div>
 
         <div className="texto-introducao">
