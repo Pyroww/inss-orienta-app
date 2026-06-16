@@ -52,9 +52,9 @@ export default function Header({ setActiveTab }) {
             Assistente Virtual (IA)
           </button>
           
-          <button className="menu-link placeholder-link">
-            <FaCog className="menu-link-icone" />
-            Opção 4 (Em breve)
+          <button className="menu-link" onClick={() => navegarPara('comunidade')}>
+            <FaRobot className="menu-link-icone" />
+            Comunidade
           </button>
 
         </nav>

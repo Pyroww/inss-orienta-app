@@ -1,0 +1,393 @@
+.comunidade-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--bg-color);
+  margin: -15px; 
+}
+
+.interno-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--inss-blue);
+  color: white;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-shrink: 0; 
+}
+
+.btn-atualizar {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.girando {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.comunidade-conteudo {
+  flex: 1; 
+  overflow-y: auto; 
+  padding: 15px;
+  padding-bottom: 90px; 
+}
+
+/* Caixa de Publicar */
+.caixa-publicar {
+  background-color: var(--card-bgType2);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.publicar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--title-color);
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.icone-anonimo {
+  font-size: 18px;
+}
+
+.form-publicar textarea {
+  width: 100%;
+  height: 90px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  resize: none;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.btn-enviar-feed {
+  width: 100%;
+  background-color: var(--inss-blue);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.btn-enviar-feed:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.titulo-feed {
+  color: var(--title-color);
+  font-size: 1.2rem;
+  margin: 15px 0;
+}
+
+.comunidade-aviso {
+  text-align: center;
+  color: var(--text-color);
+  opacity: 0.7;
+  padding: 20px;
+}
+
+/* Cards do Feed */
+.feed-perguntas {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-pergunta {
+  background-color: var(--card-bgType2);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.pergunta-meta {
+  margin-bottom: 8px;
+}
+
+.autor-anonimo {
+  font-size: 0.85rem;
+  color: var(--title-color);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.comunidade-container .pergunta-texto {
+  font-size: 1rem;
+  color: var(--text-color) !important;
+  line-height: 1.4;
+  margin: 0 0 12px 0;
+}
+
+.btn-comentarios {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-comentarios.ativo {
+  border-color: var(--inss-blue);
+  background-color: var(--inss-blue);
+  color: white;
+}
+
+/* Área Interna de Respostas */
+.secao-respostas {
+  margin-top: 15px;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 15px;
+}
+
+.lista-respostas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.sem-respostas {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  opacity: 0.6;
+  font-style: italic;
+  margin: 0;
+}
+
+.item-resposta {
+  background-color: var(--bg-color);
+  padding: 10px 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--inss-blue);
+}
+
+.resposta-autor {
+  font-size: 0.8rem;
+  color: var(--title-color);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.comunidade-container .resposta-texto {
+  font-size: 0.9rem;
+  color: var(--text-color) !important;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Formulário de Resposta */
+.form-responder {
+  display: flex;
+  gap: 8px;
+}
+
+.form-responder input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.btn-enviar-resposta {
+  background-color: var(--success-color);
+  color: var(--bg-color);
+  border: none;
+  width: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-enviar-resposta:disabled {
+  opacity: 0.5;
+}
+
+/* =========================================
+   ÁREA DO ADMINISTRADOR E EASTER EGG
+   ========================================= */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-sair-admin {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+/* Modal Secreto */
+.modal-admin-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-admin-box {
+  background-color: var(--card-bgType2);
+  padding: 25px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 320px;
+  border: 2px solid var(--success-color);
+}
+
+.modal-admin-box h3 {
+  color: var(--title-color);
+  margin: 0 0 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-admin-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  box-sizing: border-box;
+}
+
+.modal-botoes {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-cancelar {
+  flex: 1;
+  padding: 10px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-entrar {
+  flex: 1;
+  padding: 10px;
+  background-color: var(--success-color);
+  border: none;
+  color: var(--bg-color);
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Identidade Visual do Admin (Verde Oficial) */
+.icone-oficial {
+  font-size: 18px;
+  color: var(--success-color);
+}
+
+.autor-oficial, .resposta-oficial {
+  font-size: 0.85rem;
+  color: var(--success-color);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.admin-btn {
+  background-color: var(--success-color) !important;
+  color: var(--bg-color) !important;
+}
+
+.card-oficial {
+  border: 2px solid var(--success-color);
+}
+
+.resposta-oficial-box {
+  border-left: 3px solid var(--success-color) !important;
+  background-color: rgba(22, 163, 74, 0.05);
+}
+
+/* Botões de Exclusão */
+.pergunta-header-flex, .resposta-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.btn-excluir {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.btn-excluir-mini {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0.7;
+}

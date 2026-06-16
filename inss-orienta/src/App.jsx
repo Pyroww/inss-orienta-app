@@ -20,7 +20,7 @@ import ProvaDeVida from './screens/provavida/ProvaDeVida';
 import Calendario from './screens/calendario/Calendario';
 import Agendamento from './screens/agendamento/Agendamento';
 import Documentos from './screens/documentos/Documentos';
-
+import Comunidade from './screens/comunidade/Comunidade';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
@@ -109,6 +109,12 @@ export default function App() {
         {activeTab === 'documentos' && (
           <Documentos setActiveTab={setActiveTab} />
         )}
+        
+        
+        {activeTab === 'comunidade' && (
+       <Comunidade setActiveTab={setActiveTab} />
+        )}
+
         
         {activeTab === 'ajuda' && (
           <Ajuda />
