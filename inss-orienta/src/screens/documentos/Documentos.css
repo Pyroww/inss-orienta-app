@@ -56,7 +56,7 @@
 }
 
 .texto-introducao h3 {
-  color: var(--inss-blue);
+  color: var(--title-color);
   font-size: 1.4rem;
   margin: 0 0 10px 0;
 }
