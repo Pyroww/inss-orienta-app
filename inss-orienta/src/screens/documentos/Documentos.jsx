@@ -9,7 +9,7 @@ import {
   FaExclamationTriangle
 } from 'react-icons/fa';
 
-// import bannerDocumentos from '../../assets/documentos/banner_documentos.png'; // Descomente quando tiver a imagem
+import bannerDocumentos from '../../assets/documentos/banner_documentos.png'; // Descomente quando tiver a imagem
 
 export default function Documentos({ setActiveTab }) {
   return (
@@ -27,10 +27,7 @@ export default function Documentos({ setActiveTab }) {
         
         {/* Banner Principal */}
         <div className="banner-area">
-          {/* <img src={bannerDocumentos} alt="Quais documentos levar no INSS" /> */}
-          <div className="banner-placeholder">
-            <span>[ Banner Documentos ]</span>
-          </div>
+          <img src={bannerDocumentos} alt="Quais documentos levar no INSS" />
         </div>
 
         <div className="texto-introducao">
