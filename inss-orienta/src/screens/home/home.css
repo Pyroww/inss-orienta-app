@@ -49,26 +49,39 @@
 .carrossel-container {
   display: flex;
   overflow-x: auto;
-  justify-content: center;
-  gap: 15px;
-  padding-bottom: 15px;
+  gap: 16px;
+  
+  /* 1. AS TRAVAS MÁGICAS QUE DEIXAM ARRASTAR O DEDO: */
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  
+  /* Dá um respiro nas bordas da tela do celular */
+  padding: 4px 16px 20px 16px; 
+
   scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; /* Força aceleração de hardware no iPhone */
+  
+  /* Impede o Google Chrome de tentar dar "Voltar página" ao arrastar pro lado */
+  overscroll-behavior-x: contain; 
 }
 
 /* Oculta barra de rolagem horizontal nativa, mas mantém funcionamento */
+/* Oculta a barra de rolagem feia, mas mantém a função ativa */
 .carrossel-container::-webkit-scrollbar {
   display: none;
 }
 
 .carrossel-container .news-card {
-  min-width: 290px;
-  max-width: 320px;
-  flex: 0 0 auto;
-  scroll-snap-align: start;
-  position: relative;
+  /* 2. A MATEMÁTICA INTELIGENTE (O Segredo): */
+  flex: 0 0 85%; /* No celular, o card vai ocupar exatamente 85% da tela... */
+  max-width: 320px; /* ...mas se abrir no PC, ele trava em 320px para não virar um outdoor */
+  
+  scroll-snap-align: start; /* Ao soltar o dedo, a ponta esquerda do card crava na tela */
+  
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .imagem-noticia-real {
