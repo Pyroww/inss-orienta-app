@@ -52,6 +52,7 @@
   color: white;
   border-bottom: var(--menu-header-border);
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .menu-lateral-header h2 {
