@@ -1,28 +1,28 @@
 import React from 'react';
-import './servicegrid.css'; // Importamos o CSS específico para a grade de serviços
+import './servicegrid.css'; 
 
+// Importando a fina flor do design moderno: Ionicons 5 (Traços finos e nativos de celular)
 import { 
-  FaClipboardCheck, 
-  FaKey, 
-  FaUserShield, 
-  FaCalendarAlt, 
-  FaCalendarCheck, 
-  FaFileAlt 
-} from 'react-icons/fa';
+  IoShieldCheckmarkOutline, 
+  IoKeyOutline, 
+  IoFingerPrintOutline, // A nova digital biométrica!
+  IoCalendarClearOutline, 
+  IoTimeOutline, 
+  IoDocumentTextOutline 
+} from 'react-icons/io5';
 
 export default function ServicesGrid({ textoPesquisa, setActiveTab }) {
   
-  // Nossa "Base de Dados" local de serviços
+  // Nossa Base de Dados com os novos ícones e os "gatilhos de vida" (animações)
   const listaServicos = [
-    { titulo: "VERIFICAR ELEGIBILIDADE", icone: FaClipboardCheck, corClasse: "green-icon" },
-    { titulo: "RECUPERAR SENHA", icone: FaKey, corClasse: "blue-icon" },
-    { titulo: "PROVA DE VIDA", icone: FaUserShield, corClasse: "green-icon" },
-    { titulo: "CALENDÁRIO DE PAGAMENTO", icone: FaCalendarAlt, corClasse: "gold-icon" },
-    { titulo: "AGENDAR ATENDIMENTO", icone: FaCalendarCheck, corClasse: "blue-icon" },
-    { titulo: "DOCUMENTOS", icone: FaFileAlt, corClasse: "green-icon" },
+    { titulo: "VERIFICAR ELEGIBILIDADE", icone: IoShieldCheckmarkOutline, corClasse: "glow-green", anim: "anim-aura" },
+    { titulo: "RECUPERAR SENHA", icone: IoKeyOutline, corClasse: "glow-blue", anim: "anim-chave" },
+    { titulo: "PROVA DE VIDA", icone: IoFingerPrintOutline, corClasse: "glow-green", anim: "anim-pulso-bio" },
+    { titulo: "CALENDÁRIO DE PAGAMENTO", icone: IoCalendarClearOutline, corClasse: "glow-gold", anim: "anim-flutuar" },
+    { titulo: "AGENDAR ATENDIMENTO", icone: IoTimeOutline, corClasse: "glow-blue", anim: "anim-relogio" },
+    { titulo: "DOCUMENTOS", icone: IoDocumentTextOutline, corClasse: "glow-green", anim: "anim-flutuar" },
   ];
 
-  // A lógica da pesquisa: Se o titulo incluir o que foi digitado, ele fica. Se não, ele some.
   const servicosFiltrados = listaServicos.filter((servico) => 
     servico.titulo.toLowerCase().includes(textoPesquisa.toLowerCase())
   );
@@ -30,14 +30,12 @@ export default function ServicesGrid({ textoPesquisa, setActiveTab }) {
   return (
     <div className="services-grid">
       
-      {/* Se a pesquisa não encontrar nada, mostramos um aviso */}
       {servicosFiltrados.length === 0 && (
-        <p style={{ gridColumn: 'span 2', textAlign: 'center', opacity: 0.7 }}>
+        <p className="vazio-aviso">
           Nenhum serviço encontrado para "{textoPesquisa}".
         </p>
       )}
 
-      {/* O React desenha os botões automaticamente baseado na pesquisa! */}
       {servicosFiltrados.map((servico, index) => {
         const IconeDoServico = servico.icone;
         return (
@@ -45,24 +43,19 @@ export default function ServicesGrid({ textoPesquisa, setActiveTab }) {
             key={index} 
             className="service-btn"
             onClick={() => {
-              // 👇 ADICIONAMOS O GATILHO DA SENHA GOV AQUI 👇
-              if (servico.titulo === "VERIFICAR ELEGIBILIDADE") {
-                setActiveTab('elegibilidade');
-              } else if (servico.titulo === "RECUPERAR SENHA") {
-                setActiveTab('senhaGov');
-              } else if (servico.titulo === "PROVA DE VIDA") {
-                setActiveTab('provaVida'); // 👈 Adicionamos esse aqui!
-              } else if (servico.titulo === "CALENDÁRIO DE PAGAMENTO") {
-                setActiveTab('calendario'); // 👈 Adicione isso!
-              } else if (servico.titulo === "AGENDAR ATENDIMENTO") {
-                setActiveTab('agendamento'); // 👈 O novo gatilho!
-              } else if (servico.titulo === "DOCUMENTOS") {
-                setActiveTab('documentos'); // 👈 O botão final!
-              }
+              if (servico.titulo === "VERIFICAR ELEGIBILIDADE") setActiveTab('elegibilidade');
+              else if (servico.titulo === "RECUPERAR SENHA") setActiveTab('senhaGov');
+              else if (servico.titulo === "PROVA DE VIDA") setActiveTab('provaVida');
+              else if (servico.titulo === "CALENDÁRIO DE PAGAMENTO") setActiveTab('calendario');
+              else if (servico.titulo === "AGENDAR ATENDIMENTO") setActiveTab('agendamento');
+              else if (servico.titulo === "DOCUMENTOS") setActiveTab('documentos');
             }}
           >
-            <IconeDoServico className={`service-icon ${servico.corClasse}`} />
-            {/* Quebra o título se ele for muito grande para caber no botão */}
+            {/* A "Caixa de Luz" que guarda o ícone */}
+            <div className={`caixa-icone ${servico.corClasse} ${servico.anim}`}>
+              <IconeDoServico className="service-icon" />
+            </div>
+            
             <span>{servico.titulo.replace(" DE", "\nDE").replace(" ", "\n")}</span>
           </button>
         );
