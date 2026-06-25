@@ -184,22 +184,23 @@ body {
 
 /* TELA INICIAL (HOME) */
 .logo-card {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%); /* Garante a sangria total nas margens */
   background-color: var(--inss-blue);
-  height: 220px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  overflow: hidden; /* Garante que a imagem não vaze do card */
+  overflow: hidden;
+  /* APAGAMOS O height: 220px DAQUI! */
+  /* 👇 O GUINDASTE DO TETO (Adicione esta linha): 👇 */
+  margin-top: -10px;
 }
 
-/*configuração da nova imagem */
 .logo-image {
-  
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Faz a imagem preencher todo o espaço como uma capa */
-  object-position: center; /* Centraliza o "INS?S" perfeitamente na tela */
+  height: auto; /* A mágica absoluta está aqui */
+  display: block;
 }
 
 /* No modo escuro e alto contraste, caso queira que a imagem fique mais suave */
