@@ -9,7 +9,7 @@
   bottom: 60px; /* Altura média da sua BottomNav */
   left: 0;
   width: 100vw;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
   background-color: var(--bg-color);
