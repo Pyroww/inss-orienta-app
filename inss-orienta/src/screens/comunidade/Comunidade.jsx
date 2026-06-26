@@ -159,7 +159,7 @@ export default function Comunidade({ setActiveTab }) {
         </button>
         {/* EASTER EGG AQUI: onClick no Título */}
         <h2 onClick={lidarToqueSecreto} style={{ userSelect: 'none' }}>
-          Comunidade {adminLogado && '🛡️'}
+          Comunidade {adminLogado && '(Administrador)'}
         </h2>
         <div className="header-actions">
           {adminLogado && (
