@@ -1,5 +1,3 @@
-
-
 /* VARIÁVEIS DO MODO CLARO (PADRÃO) */
 :root {
   --inss-blue: #0b3d60;
@@ -11,25 +9,21 @@
   --nav-bg: #ffffff;
   --nav-gray: #757575;
   --nav-active: #0b3d60; 
-  /* Novas Variáveis Específicas do Menu Lateral */
   --menu-icon-color: #0b3d60;
   --menu-active-border: #0b3d60;
   --menu-header-border: none;
   --menu-close-btn: #ffffff;
-  /* Cores Semânticas (Sucesso/Avisos) */
-  --success-color: #22c55e; /* Verde */
-  --warning-border: #fb923c; /* Laranja Claro */
-  --warning-icon: #ea580c; /* Laranja Forte */
-  --title-color: #0b3d60; /* Azul escuro original */
-  /* Cores das Categorias de Auxílio (Claro) */
-  --cat-doenca: #3b82f6;      /* Azul */
-  --cat-maternidade: #ec4899; /* Rosa */
-  --cat-acidente: #f59e0b;    /* Laranja */
-  --cat-reclusao: #64748b;    /* Cinza */
+  --success-color: #22c55e;
+  --warning-border: #fb923c;
+  --warning-icon: #ea580c;
+  --title-color: #0b3d60;
+  --cat-doenca: #3b82f6;
+  --cat-maternidade: #ec4899;
+  --cat-acidente: #f59e0b;
+  --cat-reclusao: #64748b;
   --cat-text: #ffffff;
   --cat-border: none;
-
-  --facial-color: #8b5cf6; /* Roxo vibrante */
+  --facial-color: #8b5cf6;
 }
 
 /* VARIÁVEIS DO MODO ESCURO */
@@ -43,40 +37,28 @@
   --nav-bg: #1e1e1e;
   --nav-gray: #aaaaaa;
   --nav-active: #64b5f6; 
-  
-  /* Novas Variáveis Específicas do Menu Lateral (Escuro) */
   --menu-icon-color: #64b5f6;
   --menu-active-border: #64b5f6;
   --menu-header-border: none;
   --menu-close-btn: #ffffff;
-
-  /* Cores Semânticas (Escuro) */
-  --success-color: #4ade80; /* Verde mais claro para ler melhor no preto */
+  --success-color: #4ade80;
   --warning-border: #fb923c; 
   --warning-icon: #fb923c;
-  --title-color: #64b5f6; /* Azul bebê que brilha no escuro */
-
-  /* Cores das Categorias de Auxílio (Escuro - Tons levemente mais suaves) */
+  --title-color: #64b5f6;
   --cat-doenca: #1d4ed8;      
   --cat-maternidade: #be185d; 
   --cat-acidente: #b45309;    
   --cat-reclusao: #334155;    
   --cat-text: #ffffff;
   --cat-border: none;
-
-  --facial-color: #a78bfa; /* Roxo mais clarinho para destacar no fundo preto */
+  --facial-color: #a78bfa;
 }
 
-/* =========================================
-   CORREÇÃO DE VISIBILIDADE DOS ÍCONES (TEMA ESCURO E AC)
-   ========================================= */
-
-/* No modo escuro, trocamos o azul escuro por um azul claro vibrante */
+/* CORREÇÃO DE VISIBILIDADE DOS ÍCONES */
 .app-container.dark .blue-icon {
   color: #64b5f6; 
 }
 
-/* No Alto Contraste, a regra de ouro é: TUDO que for ícone importante deve ficar amarelo neon */
 .app-container.high-contrast .service-icon {
   color: #ffff00; 
 }
@@ -92,55 +74,70 @@
   --nav-bg: #000000;
   --nav-gray: #ffff00;
   --nav-active: #ffffff; 
-  /* Novas Variáveis Específicas do Menu Lateral (Alto Contraste) */
   --menu-icon-color: #ffff00;
   --menu-active-border: #ffff00;
   --menu-header-border: 2px solid #ffff00;
   --menu-close-btn: #ffff00;
-  /* Cores Semânticas (Alto Contraste) - TUDO FICA AMARELO NEON! */
   --success-color: #ffff00;
   --warning-border: #ffff00;
   --warning-icon: #ffff00;
-  --title-color: #ffff00; /* Amarelo neon absoluto */
-  /* Cores das Categorias de Auxílio (Alto Contraste) - Tudo Preto e Amarelo! */
+  --title-color: #ffff00;
   --cat-doenca: #000000;
   --cat-maternidade: #000000;
   --cat-acidente: #000000;
   --cat-reclusao: #000000;
   --cat-text: #ffff00;
   --cat-border: 2px solid #ffff00;
-
-  --facial-color: #ffff00; /* Amarelo Neon absoluto! */
+  --facial-color: #ffff00;
 }
 
-body {
+/* =========================================
+   RESET GLOBAL — CRÍTICO PARA WEBVIEW
+   ========================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* CORREÇÃO 1: html e body nunca devem rolar ou vazar lateralmente */
+html, body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden; /* Quem rola é o .app-container, não o body */
   font-family: Arial, sans-serif;
-  background-color: #e0e0e0; 
-  overflow-x: hidden; 
-  overflow-y: auto;
+  background-color: #e0e0e0;
 }
 
-/* Container que simula o celular */
+/* CORREÇÃO 2: imagens nunca estouram o container */
+img, video, iframe {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================
+   CONTAINER PRINCIPAL
+   ========================================= */
+
+/* CORREÇÃO 3: .app-container é o único scroll container */
 .app-container {
-  /* ✅ TROCAMOS 100vw por 100% (muito mais seguro para mobile) */
-  width: 100%; 
+  width: 100%;
+  max-width: 100%; /* Era 100vw — trocado para evitar overflow no Android */
   height: 100vh;
-  overflow-y: auto; /* A rolagem acontece internamente aqui! */
+  height: 100dvh; /* dvh = dynamic viewport height, respeita barra de nav do Android */
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   position: relative;
-  
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
-  
-  /* ✅ ADICIONAMOS O RESPIRO AQUI NO FINAL DA SUA CAIXA PRINCIPAL */
-  padding-bottom: 100px; 
-
-  padding-top: 55px;    /* Empurra o conteúdo para baixo do cabeçalho (Ajuste esse número conforme a altura real do seu cabeçalho) */
-  padding-bottom: 120px; /* Empurra o conteúdo final para cima do rodapé fixo */
+  padding-top: 60px;    /* Altura exata do .app-header */
+  padding-bottom: 120px; /* Espaço para o rodapé fixo */
 }
 
 /* CABEÇALHO SUPERIOR */
@@ -152,12 +149,11 @@ body {
   padding: 20px;
   height: 60px;
   box-sizing: border-box;
-
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Garante que ele fique por cima de todo o resto */
+  z-index: 1000;
 }
 
 .menu-button {
@@ -175,35 +171,35 @@ body {
 }
 
 /* ÁREA CENTRAL ROLÁVEL */
+/* CORREÇÃO 4: .main-content NÃO deve ter overflow-y: auto
+   O scroll deve acontecer apenas no .app-container acima dele */
 .main-content {
   flex: 1;
-  overflow-y: auto;
   padding: 15px;
-  padding-bottom: 70px; /* Espaço para não bater no menu de baixo */
+  padding-bottom: 20px;
+  overflow: visible; /* Era overflow-y: auto — dois scrolls aninhados quebravam o Android */
 }
 
 /* TELA INICIAL (HOME) */
+/* CORREÇÃO 5: logo-card usava 100vw que causa overflow horizontal no WebView */
 .logo-card {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%); /* Garante a sangria total nas margens */
+  width: calc(100% + 30px); /* Compensa o padding: 15px dos dois lados do .main-content */
+  margin-left: -15px;
   background-color: var(--inss-blue);
   margin-bottom: 20px;
+  margin-top: -10px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* APAGAMOS O height: 220px DAQUI! */
-  /* 👇 O GUINDASTE DO TETO (Adicione esta linha): 👇 */
-  margin-top: -10px;
 }
 
 .logo-image {
   width: 100%;
-  height: auto; /* A mágica absoluta está aqui */
+  height: auto;
   display: block;
 }
 
-/* No modo escuro e alto contraste, caso queira que a imagem fique mais suave */
 .app-container.dark .logo-image {
   opacity: 0.9;
 }
@@ -219,7 +215,6 @@ body {
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
   position: relative;
-  
   border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -252,7 +247,7 @@ body {
   padding: 15px;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  margin-top: -60px; /* Puxa o texto pra cima da imagem, igual a foto */
+  margin-top: -60px;
   position: relative;
 }
 
@@ -281,7 +276,7 @@ body {
   background-color: #ccc;
   border-radius: 50%;
 }
+
 .dot.active {
   background-color: #666;
 }
-
