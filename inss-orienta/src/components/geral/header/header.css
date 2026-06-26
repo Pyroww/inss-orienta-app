@@ -188,3 +188,24 @@
   /* Cria uma "lanterna" de clique atrás da seta (Padrão Android Material You) */
   background-color: rgba(255, 255, 255, 0.18); 
 }
+
+/*
+.interno-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--inss-blue);
+  color: white;
+  padding: 15px;
+  gap: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+
+.interno-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+*/
