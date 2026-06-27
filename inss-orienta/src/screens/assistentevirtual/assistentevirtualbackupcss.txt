@@ -3,21 +3,13 @@
    ========================================================= */
 
 .chat-container {
+  /* 1. A TRAVA DE VIDRO: Ancora entre o Cabeçalho (top) e o Rodapé (bottom) */
   position: fixed; 
-  /* CORRIGIDO: valores fixos de top/bottom não respeitam safe area.
-     Usando variáveis CSS que podem ser ajustadas via JS no Expo (injectJavaScript)
-     ou via env() para dispositivos que suportam safe-area nativamente */
-  top: 60px;
-  /* CORRIGIDO: bottom soma a altura da nav (60px) + safe area inferior,
-     evitando que o chat fique atrás da barra de navegação do Android */
-  bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+  top: 60px;    /* Altura média do seu Header azul */
+  bottom: 60px; /* Altura média da sua BottomNav */
   left: 0;
-  /* CORRIGIDO: era 100vw — no WebView Android isso causa overflow horizontal.
-     100% é sempre seguro dentro de um contexto fixed */
-  width: 100%;
-  /* CORRIGIDO: padding-bottom: 40px era redundante com o bottom calculado
-     e causava duplo espaçamento no rodapé */
-  padding-bottom: 0;
+  width: 100vw;
+  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
   background-color: var(--bg-color);
@@ -30,26 +22,21 @@
   flex: 1;
   padding: 20px 16px;
   overflow-y: auto;
-  /* CORRIGIDO: overflow-x: hidden evita que bolhas largas causem
-     scroll horizontal indesejado no WebView Android */
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  
+  /* Comportamento nativo de rolagem */
   scroll-behavior: smooth;
-  overscroll-behavior-y: contain;
-  /* CORRIGIDO: -webkit-overflow-scrolling garante scroll suave no iOS */
-  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain; 
 }
 
 /* AVATARES E ALINHAMENTO DAS BOLHAS */
 .chat-bolha-wrapper {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-end; /* Crava o ícone na base inferior do balão */
   gap: 10px;
-  /* CORRIGIDO: max-width em % funciona melhor que valor absoluto
-     em telas muito estreitas */
-  max-width: 86%;
+  max-width: 86%; 
   animation: bolhaSurgir 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -65,7 +52,7 @@
 .chat-icone-autor {
   width: 32px;
   height: 32px;
-  border-radius: 12px;
+  border-radius: 12px; /* Squircle moderno */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,11 +61,13 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
+/* Crachá IA (Azul Institucional Imponente) */
 .chat-bolha-wrapper.ia .chat-icone-autor {
   background: linear-gradient(135deg, var(--inss-blue), #1e3a8a);
   color: white;
 }
 
+/* Crachá Usuário (Neutro elegante) */
 .chat-bolha-wrapper.usuario .chat-icone-autor {
   background-color: var(--card-bgType2);
   border: 1px solid var(--border-color);
@@ -91,30 +80,28 @@
   border-radius: 20px;
   font-size: 0.96rem;
   line-height: 1.5;
-  word-break: break-word;
-  /* CORRIGIDO: overflow-wrap garante quebra de URLs longas no Android */
-  overflow-wrap: break-word;
+  word-break: break-word; /* Impede que links longos estourem a tela do celular */
   box-shadow: 0 2px 6px rgba(0,0,0,0.025);
-  /* CORRIGIDO: min-width: 0 evita que bolhas com texto curto
-     causem overflow no container flex */
-  min-width: 0;
 }
 
 .chat-bolha p { margin: 0; }
 
+/* Balão IA: Glassmorphism suave */
 .chat-bolha.ia {
   background-color: var(--card-bgType2);
   color: var(--text-color);
   border: 1px solid var(--border-color);
-  border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px; /* Rabicho clássico apontando para a Gertrudes */
 }
 
+/* Balão Usuário: Azul Oficial INSS (Fim do verde Whatsapp!) */
 .chat-bolha.usuario {
   background: linear-gradient(135deg, var(--inss-blue), #1d4ed8);
   color: #ffffff;
   border-bottom-right-radius: 4px;
 }
 
+/* REGRAS DE ACESSIBILIDADE INTOCADAS */
 .app-container.dark .chat-bolha.usuario {
   background: linear-gradient(135deg, #1e40af, #1e3a8a);
   color: white;
@@ -128,28 +115,27 @@
 }
 
 /* =========================================================
-   CÁPSULA DE INPUT
+   A ILUSÃO DE ÓTICA: A ÁREA DE INPUT VIRA A CÁPSULA!
    ========================================================= */
 
 .chat-input-area {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 6px 14px 14px 14px;
+  
+  /* Afasta a barra das paredes da tela, criando a pílula flutuante */
+  margin: 6px 14px 14px 14px; 
   padding: 6px 8px 6px 14px;
+  
   background-color: var(--card-bg);
   border: 1.5px solid var(--border-color);
-  border-radius: 35px;
+  border-radius: 35px; /* Arredondamento extremo */
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
-  /* CORRIGIDO: box-sizing + width: 100% dentro do flex já garante
-     que o margin lateral funcione sem overflow */
   box-sizing: border-box;
-  /* CORRIGIDO: max-width garante que em tablets a cápsula
-     não fique larga demais */
-  max-width: 100%;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* Quando o cidadão toca no input, a cápsula inteira brilha em azul */
 .chat-input-area:focus-within {
   border-color: var(--inss-blue);
   box-shadow: 0 8px 30px rgba(24, 88, 160, 0.16);
@@ -163,13 +149,12 @@
   font-size: 0.98rem;
   padding: 10px 4px;
   outline: none;
-  min-width: 0;
-  /* CORRIGIDO: width: 100% dentro do flex garante que o input
-     não estoure a cápsula em nenhum dispositivo */
-  width: 100%;
+  
+  /* A TRAVA ANTI-EXPLOSÃO DO ANDROID: */
+  min-width: 0; 
 }
 
-/* BOTÕES INTERNOS DA CÁPSULA */
+/* BOTÕES INTERNOS DA CÁPSULA (Microfone e Enviar) */
 .btn-microfone, .btn-enviar {
   width: 40px;
   height: 40px;
@@ -185,6 +170,7 @@
   transition: transform 0.15s ease, background-color 0.2s ease;
 }
 
+/* Microfone agora é um ícone cinza elegante na ponta esquerda */
 .btn-microfone {
   background: transparent;
   color: var(--text-color);
@@ -197,6 +183,7 @@
   background-color: var(--bg-color);
 }
 
+/* Quando entra em gravação, acende o alerta tático */
 .btn-microfone.gravando {
   background-color: rgba(239, 68, 68, 0.15);
   color: #ef4444;
@@ -204,6 +191,7 @@
   animation: pulsarGravacao 1.2s infinite ease-in-out;
 }
 
+/* Botão Enviar na ponta direita */
 .btn-enviar {
   background-color: var(--inss-blue);
   color: white;
@@ -215,7 +203,7 @@
 }
 
 /* =========================================================
-   ANIMAÇÕES
+   ANIMAÇÕES VIVAS
    ========================================================= */
 
 @keyframes bolhaSurgir {
@@ -228,6 +216,7 @@
   50% { transform: scale(1.14); }
 }
 
+/* ANIMAÇÃO "DIGITANDO..." */
 .digitando {
   display: flex;
   align-items: center;
