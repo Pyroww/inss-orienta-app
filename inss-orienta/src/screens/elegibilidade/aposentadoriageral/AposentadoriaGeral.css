@@ -5,9 +5,19 @@
 .aposentadoria-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* CORRIGIDO: height: 100% pode causar colapso em alguns contextos
+     de WebView. Usando min-height garante que o container ocupe
+     pelo menos a tela toda sem travar o scroll */
+  min-height: 100%;
   background-color: var(--bg-color);
-  margin: -15px; 
+  /* CORRIGIDO: margin: -15px negativo causava overflow horizontal
+     no WebView Android. Substituído por largura total com compensação
+     segura via calc */
+  width: calc(100% + 30px);
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: -15px;
+  box-sizing: border-box;
 }
 
 .interno-header {
@@ -18,118 +28,182 @@
   padding: 5px 15px;
   gap: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  flex-shrink: 0; 
+  flex-shrink: 0;
+  /* CORRIGIDO: box-sizing garante que padding não some à largura */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .aposentadoria-conteudo {
-  flex: 1; 
-  overflow-y: auto; 
+  flex: 1;
+  /* CORRIGIDO: overflow-y: auto aninhado dentro do scroll container
+     pai (.app-container ou .main-content) causava conteúdo cortado
+     no Android. O scroll deve acontecer apenas no container raiz.
+     overflow: visible deixa o pai controlar o scroll normalmente */
+  overflow: visible;
   padding: 15px;
-  padding-bottom: 90px; 
+  padding-bottom: 90px;
   display: flex;
   flex-direction: column;
   gap: 30px;
+  /* CORRIGIDO: box-sizing evita que padding estoure a largura */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .secao-info h3, .secao-documentos h3 {
-  color: var(--title-color); /* 👈 A mágica acontece aqui! */
+  color: var(--title-color);
   font-size: 1.3rem;
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 10px;
+  /* CORRIGIDO: texto longo no título não estoura em telas estreitas */
+  flex-wrap: wrap;
+  word-break: break-word;
 }
 
-/* Grid de Requisitos - Visual de "Painel" */
+/* Grid de Requisitos */
 .grid-requisitos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* CORRIGIDO: colunas fixas 1fr 1fr espremiam os cards em telas
+     estreitas ou com fonte grande. auto-fit com minmax garante que
+     os cards quebrem para uma coluna sozinhos quando não couberem */
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 12px;
   margin-top: 15px;
+  /* CORRIGIDO: box-sizing evita overflow lateral */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .requisito-item {
-  background-color: var(--card-bgType2); 
+  background-color: var(--card-bgType2);
   padding: 15px;
   border-radius: 12px;
-  border: 2px solid var(--border-color); 
+  border: 2px solid var(--border-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  /* CORRIGIDO: box-sizing garante que border e padding
+     não estourem o card */
+  box-sizing: border-box;
+  /* CORRIGIDO: min-width: 0 evita que conteúdo longo estoure
+     o card dentro do grid */
+  min-width: 0;
 }
 
 .requisito-item .label {
   font-size: 0.9rem;
-  color: var(--text-color); 
-  opacity: 0.8; 
+  color: var(--text-color);
+  opacity: 0.8;
+  /* CORRIGIDO: texto longo quebra linha em vez de vazar */
+  word-break: break-word;
 }
 
 .requisito-item .valor {
   font-size: 1.4rem;
   font-weight: bold;
-  color: var(--text-color); 
+  color: var(--text-color);
+  /* CORRIGIDO: valores numéricos longos quebram corretamente */
+  word-break: break-word;
 }
 
 .requisito-item.total {
-  grid-column: span 2; 
+  /* CORRIGIDO: span 2 pode causar overflow quando o grid
+     tem apenas 1 coluna em telas estreitas. -1 garante que
+     sempre ocupa toda a largura independente do número de colunas */
+  grid-column: 1 / -1;
   flex-direction: row;
   justify-content: center;
   gap: 10px;
   background-color: var(--card-bg);
-  border-color: var(--inss-blue); 
+  border-color: var(--inss-blue);
+  /* CORRIGIDO: flex-wrap permite que o conteúdo interno
+     quebre linha se necessário */
+  flex-wrap: wrap;
 }
 
 /* Lista de Documentos */
 .lista-documentos {
   list-style: none;
   padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  /* CORRIGIDO: box-sizing e width garantem contenção lateral */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .lista-documentos li {
-  background-color: var(--card-bgType2); 
+  background-color: var(--card-bgType2);
   padding: 15px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   gap: 12px;
-  /* 👇 Agora usa a variável de SUCESSO 👇 */
-  border-left: 5px solid var(--success-color); 
+  border-left: 5px solid var(--success-color);
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  color: var(--text-color); 
+  color: var(--text-color);
+  /* CORRIGIDO: box-sizing evita que border-left some à largura */
+  box-sizing: border-box;
+  width: 100%;
+  /* CORRIGIDO: overflow hidden corta qualquer conteúdo que
+     tente vazar lateralmente */
+  overflow: hidden;
 }
 
 .check-icon {
-  /* 👇 Usa a variável de SUCESSO 👇 */
   color: var(--success-color);
   font-size: 20px;
+  /* flex-shrink: 0 já estava correto — ícone não encolhe */
   flex-shrink: 0;
+}
+
+/* CORRIGIDO: texto do item de documento não estoura o li */
+.lista-documentos li span,
+.lista-documentos li p {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Aviso de rodapé */
 .aviso-auxiliar {
-  background-color: var(--card-bgType2); 
-  /* 👇 Usa a variável de AVISO (Borda) 👇 */
+  background-color: var(--card-bgType2);
   border: 1px dashed var(--warning-border);
   padding: 15px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 15px;
+  /* CORRIGIDO: box-sizing + width garantem contenção */
+  box-sizing: border-box;
+  width: 100%;
+  /* CORRIGIDO: em telas muito estreitas o ícone e o texto
+     ficam espremidos — flex-wrap permite quebrar para duas linhas */
+  flex-wrap: wrap;
 }
 
 .aviso-icone {
-  /* 👇 Usa a variável de AVISO (Ícone) 👇 */
   color: var(--warning-icon);
   font-size: 24px;
+  /* CORRIGIDO: ícone não encolhe junto com o texto */
+  flex-shrink: 0;
 }
 
 .aviso-auxiliar p {
   font-size: 0.95rem;
-  color: var(--text-color); 
+  color: var(--text-color);
   margin: 0;
   line-height: 1.4;
+  /* CORRIGIDO: texto longo quebra linha em vez de vazar */
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
