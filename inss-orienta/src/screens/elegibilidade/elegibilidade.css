@@ -1,12 +1,21 @@
 /* =========================================
    TELA DE ELEGIBILIDADE / BENEFÍCIOS
    ========================================= */
+
 .elegibilidade-screen {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* CORRIGIDO: height: 100% pode colapsar em WebView.
+     min-height garante ocupação mínima sem travar o scroll */
+  min-height: 100%;
   background-color: var(--bg-color);
-  margin: -15px; /* Remove o padding padrão do App.jsx para colar no topo */
+  /* CORRIGIDO: margin: -15px causava overflow horizontal no Android.
+     Substituído por largura estendida compensando o padding do pai */
+  width: calc(100% + 30px);
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: -15px;
+  box-sizing: border-box;
 }
 
 .interno-header {
@@ -17,36 +26,54 @@
   padding: 5px 15px;
   gap: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  /* CORRIGIDO: box-sizing e width contêm o header */
+  box-sizing: border-box;
+  width: 100%;
+  flex-shrink: 0;
 }
-
 
 .interno-header h2 {
   margin: 0;
   font-size: 20px;
   font-weight: 500;
+  /* CORRIGIDO: título longo não estoura o header */
+  word-break: break-word;
+  min-width: 0;
+  flex: 1;
 }
 
 .conteudo-scroll {
   padding: 15px;
-  overflow-y: auto;
-  padding-bottom: 80px; /* Evita que o rodapé cubra o conteúdo */
+  padding-bottom: 80px;
+  /* CORRIGIDO: overflow-y: auto aninhado dentro do scroll container
+     pai causa conteúdo cortado no Android.
+     overflow: visible deixa o .app-container raiz controlar o scroll */
+  overflow: visible;
+  /* CORRIGIDO: box-sizing e width contêm o conteúdo */
+  box-sizing: border-box;
+  width: 100%;
 }
 
-/* Banner Escuro Simulado */
-/* Container do Banner Limpo */
+/* Banner */
 .banner-beneficios {
-  border-radius: 8px; /* Deixa os cantinhos arredondados */
+  border-radius: 8px;
   margin-bottom: 25px;
   display: flex;
-  overflow: hidden; /* Garante que a imagem não vaze das bordas arredondadas */
+  overflow: hidden;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  /* CORRIGIDO: width e box-sizing garantem que o banner
+     não estoure lateralmente */
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* A nova classe da imagem do banner */
 .banner-imagem {
-  width: 100%; /* Ocupa toda a largura da tela do celular */
-  height: auto; /* Mantém a proporção original da imagem */
+  width: 100%;
+  height: auto;
   display: block;
+  /* CORRIGIDO: max-width garante que a imagem nunca estoure
+     o container mesmo sem o overflow: hidden do pai */
+  max-width: 100%;
 }
 
 .titulo-beneficios {
@@ -55,12 +82,18 @@
   text-align: left;
   margin-bottom: 30px;
   line-height: 1.3;
+  /* CORRIGIDO: título longo quebra linha em vez de vazar */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-/* O Grande Aviso */
+/* Aviso */
 .aviso-section {
   text-align: center;
   margin-bottom: 20px;
+  /* CORRIGIDO: box-sizing e width contêm a seção */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .aviso-titulo {
@@ -69,26 +102,43 @@
   justify-content: center;
   gap: 15px;
   margin-bottom: 20px;
+  /* CORRIGIDO: flex-wrap permite que ícone e título quebrem
+     para linhas separadas em telas muito estreitas */
+  flex-wrap: wrap;
 }
 
 .aviso-icone {
-  color: #cda434; /* Amarelo ouro do alerta */
-  font-size: 60px;
+  color: #cda434;
+  /* CORRIGIDO: 60px fixo causava overflow em telas estreitas.
+     clamp() define mínimo, ideal e máximo responsivos:
+     nunca menor que 36px, ideal 8vw, nunca maior que 60px */
+  font-size: clamp(36px, 8vw, 60px);
+  flex-shrink: 0;
 }
 
 .aviso-titulo h2 {
   margin: 0;
-  font-size: 50px;
+  /* CORRIGIDO: 50px fixo vazava em telas estreitas.
+     clamp() garante legibilidade em qualquer largura de tela */
+  font-size: clamp(28px, 10vw, 50px);
   font-weight: 900;
   color: var(--text-color);
   letter-spacing: -2px;
+  /* CORRIGIDO: min-width: 0 permite o título encolher no flex */
+  min-width: 0;
+  word-break: break-word;
 }
 
 .aviso-texto {
-  font-size: 18px;
+  /* CORRIGIDO: 18px fixo pode ser grande demais em telas estreitas.
+     clamp() garante leitura confortável em qualquer dispositivo */
+  font-size: clamp(14px, 4vw, 18px);
   line-height: 1.5;
   color: var(--text-color);
   text-align: left;
+  /* CORRIGIDO: texto longo quebra linha em vez de vazar */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Ajustes para Alto Contraste e Escuro */
