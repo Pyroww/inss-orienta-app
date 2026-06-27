@@ -1,14 +1,18 @@
 .senhagov-container {
-  /* O Prego na Parede (Evita as bordas do index.css) */
   position: fixed;
-  top: 60px; 
-  bottom: 70px; 
+  top: 60px;
+  /* CORRIGIDO: bottom fixo não respeita safe area do Android gestual.
+     env(safe-area-inset-bottom) soma o espaço correto em cada dispositivo */
+  bottom: calc(70px + env(safe-area-inset-bottom, 0px));
   left: 0;
   width: 100%;
   background-color: var(--bg-color);
-  z-index: 15; 
+  z-index: 15;
   display: flex;
   flex-direction: column;
+  /* CORRIGIDO: overflow hidden evita vazamento lateral */
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .interno-header {
@@ -19,13 +23,20 @@
   padding: 5px 15px;
   gap: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  flex-shrink: 0; 
+  flex-shrink: 0;
+  /* CORRIGIDO: box-sizing e width contêm o header */
+  box-sizing: border-box;
+  width: 100%;
 }
 
-
 .senhagov-conteudo {
-  flex: 1; 
-  overflow-y: auto; 
+  flex: 1;
+  /* CORRIGIDO: overflow-y: auto é correto aqui pois o container
+     pai é position: fixed — contexto isolado de scroll.
+     overflow-x: hidden evita vazamento lateral */
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
   padding-bottom: 30px;
@@ -35,39 +46,57 @@
 .banner-area {
   width: 100%;
   background-color: #f1f5f9;
+  /* CORRIGIDO: overflow hidden garante que a imagem
+     não vaze das bordas do container */
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .banner-area img {
   width: 100%;
   height: auto;
   display: block;
+  /* CORRIGIDO: max-width garante contenção mesmo sem o overflow do pai */
+  max-width: 100%;
 }
-
 
 /* Introdução */
 .texto-introducao {
   padding: 20px;
+  /* CORRIGIDO: box-sizing evita que padding estoure a largura */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .texto-introducao h3 {
   color: var(--inss-blue);
   font-size: 1.3rem;
   margin: 0 0 10px 0;
+  /* CORRIGIDO: título longo quebra linha em vez de vazar */
+  word-break: break-word;
 }
 
 .texto-introducao p {
-  color: #475569;
+  /* CORRIGIDO: cor hardcoded #475569 não respeitava modo escuro
+     nem alto contraste. var(--text-color) é o equivalente semântico */
+  color: var(--text-color);
+  opacity: 0.75;
   font-size: 1rem;
   line-height: 1.5;
   margin: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-/* Botões Modernos (Melhor que o Fabapp) */
+/* Botões de Método */
 .lista-metodos {
   padding: 0 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  /* CORRIGIDO: box-sizing evita overflow com padding lateral */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .card-metodo {
@@ -76,12 +105,17 @@
   width: 100%;
   padding: 16px;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  background-color: white;
+  border: 1px solid var(--border-color);
+  /* CORRIGIDO: background hardcoded white não respeitava modo escuro.
+     var(--card-bg) é o equivalente semântico correto */
+  background-color: var(--card-bg);
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   cursor: pointer;
   transition: transform 0.1s, box-shadow 0.1s;
   text-align: left;
+  /* CORRIGIDO: box-sizing garante que padding e border
+     não somem à largura e vazem o container */
+  box-sizing: border-box;
 }
 
 .card-metodo:active {
@@ -98,29 +132,40 @@
   justify-content: center;
   font-size: 24px;
   margin-right: 15px;
+  /* flex-shrink: 0 já estava correto — ícone não encolhe */
   flex-shrink: 0;
 }
 
-/* Cores dos Ícones */
-.card-metodo.banco .metodo-icone { background-color: #dbeafe; color: #2563eb; }
+/* Cores dos Ícones — mantidas pois são identidade visual específica */
+.card-metodo.banco .metodo-icone   { background-color: #dbeafe; color: #2563eb; }
 .card-metodo.celular .metodo-icone { background-color: #dcfce7; color: #16a34a; }
-.card-metodo.facial .metodo-icone { background-color: #f3e8ff; color: #9333ea; }
+.card-metodo.facial .metodo-icone  { background-color: #f3e8ff; color: #9333ea; }
 
 .metodo-texto {
   display: flex;
   flex-direction: column;
+  /* CORRIGIDO: min-width: 0 permite o texto encolher
+     sem vazar o card quando o título é longo */
+  min-width: 0;
+  flex: 1;
 }
 
 .metodo-texto h4 {
   margin: 0;
   font-size: 1.1rem;
-  color: #1e293b;
+  /* CORRIGIDO: cor hardcoded #1e293b não respeitava modo escuro.
+     var(--title-color) é o equivalente semântico */
+  color: var(--title-color);
+  word-break: break-word;
 }
 
 .metodo-texto span {
   font-size: 0.85rem;
-  color: #64748b;
+  /* CORRIGIDO: cor hardcoded #64748b não respeitava modo escuro.
+     var(--nav-gray) é o equivalente semântico mais próximo */
+  color: var(--nav-gray);
   margin-top: 2px;
+  word-break: break-word;
 }
 
 /* Seção de Avisos */
@@ -129,11 +174,17 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  /* CORRIGIDO: box-sizing evita overflow com padding lateral */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .aviso-box {
   padding: 15px;
   border-radius: 8px;
+  /* CORRIGIDO: box-sizing garante que padding não estoure o aviso */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .aviso-cabecalho {
@@ -141,35 +192,42 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 8px;
+  /* CORRIGIDO: flex-wrap permite quebrar em telas muito estreitas */
+  flex-wrap: wrap;
 }
 
 .aviso-cabecalho h4 {
   margin: 0;
   font-size: 1.1rem;
+  word-break: break-word;
+  min-width: 0;
+  flex: 1;
 }
 
 .icone-aviso {
   font-size: 20px;
+  flex-shrink: 0;
 }
 
 .aviso-box p {
-  
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-/* Cores específicas dos avisos */
+/* Cores específicas dos avisos — mantidas */
 .aviso-box.alerta {
-  background-color: var(--card-bgType2); /* Fundo inteligente */
+  background-color: var(--card-bgType2);
   border: 1px solid var(--border-color);
 }
 .aviso-box.alerta .aviso-cabecalho { color: var(--text-color); }
 .aviso-box.alerta p { color: var(--text-color); }
 
 .aviso-box.inss {
-  background-color: var(--card-bgType2); /* Fundo inteligente */
-  border: 1px solid var(--border-color); /* Borda inteligente puxada do index */
+  background-color: var(--card-bgType2);
+  border: 1px solid var(--border-color);
 }
 .aviso-box.inss .aviso-cabecalho { color: var(--text-color); }
 .aviso-box.inss p { color: var(--text-color); }
