@@ -1,14 +1,18 @@
 .assistenciais-container {
-  /* O Prego na Parede para ignorar o index.css (Estrutura mantida!) */
   position: fixed;
-  top: 60px; 
-  bottom: 70px; 
+  top: 60px;
+  /* CORRIGIDO: bottom fixo não respeita safe area do Android gestual.
+     env(safe-area-inset-bottom) soma o espaço correto em cada dispositivo */
+  bottom: calc(70px + env(safe-area-inset-bottom, 0px));
   left: 0;
   width: 100%;
   background-color: var(--bg-color);
-  z-index: 15; 
+  z-index: 15;
   display: flex;
   flex-direction: column;
+  /* CORRIGIDO: overflow-x hidden evita vazamento lateral */
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .interno-header {
@@ -19,27 +23,43 @@
   padding: 5px 15px;
   gap: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  flex-shrink: 0; 
+  flex-shrink: 0;
+  /* CORRIGIDO: box-sizing garante que padding não estoure a largura */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .assistenciais-conteudo {
-  flex: 1; 
-  overflow-y: auto; 
+  flex: 1;
+  /* CORRIGIDO: overflow-y: auto aqui dentro do position: fixed
+     é a exceção correta — o container fixed isola o scroll
+     do resto da página, então aqui pode ter overflow-y: auto */
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   padding: 20px;
+  /* CORRIGIDO: padding-bottom garante que o último item
+     não fique colado no rodapé em nenhum dispositivo */
+  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-/* Alerta de "Não é aposentadoria" */
+/* Alerta importante */
 .alerta-importante {
-  background-color: var(--card-bgType2); /* Fundo inteligente */
-  border-left: 5px solid #ef4444; /* Mantido o vermelho para alerta */
+  background-color: var(--card-bgType2);
+  border-left: 5px solid #ef4444;
   padding: 15px;
   border-radius: 8px;
   display: flex;
   align-items: flex-start;
   gap: 12px;
+  /* CORRIGIDO: box-sizing evita que border-left some à largura */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .icone-alerta {
@@ -52,15 +72,22 @@
 .alerta-importante p {
   margin: 0;
   font-size: 0.95rem;
-  color: var(--text-color); /* Texto inteligente */
+  color: var(--text-color);
   line-height: 1.4;
+  /* CORRIGIDO: texto longo quebra linha em vez de vazar */
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .titulo-secao {
   font-size: 1.2rem;
-  color: var(--title-color); /* Mudado para title-color para brilhar no escuro */
+  color: var(--title-color);
   margin: 0;
   margin-top: 10px;
+  /* CORRIGIDO: título longo não estoura em telas estreitas */
+  word-break: break-word;
 }
 
 .mt-3 {
@@ -72,14 +99,20 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  /* CORRIGIDO: width e box-sizing contêm a lista lateralmente */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .card-assistencial {
-  background-color: var(--card-bgType2); /* Fundo inteligente */
+  background-color: var(--card-bgType2);
   border-radius: 12px;
-  border: 1px solid var(--border-color); /* Borda inteligente */
+  border: 1px solid var(--border-color);
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  /* CORRIGIDO: width 100% garante que o card não estoure a lista */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .card-header {
@@ -87,75 +120,107 @@
   align-items: center;
   gap: 12px;
   padding: 15px;
-  color: var(--cat-text); /* Variável de texto de categoria do index */
+  color: var(--cat-text);
   border-bottom: var(--cat-border);
+  /* CORRIGIDO: box-sizing e width contêm o header */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .card-header h3 {
   margin: 0;
   font-size: 1.15rem;
+  /* CORRIGIDO: título longo quebra linha em vez de vazar o card */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;
+  flex: 1;
 }
 
 .icone-assistencial {
   font-size: 24px;
+  /* CORRIGIDO: ícone não encolhe quando o título é longo */
+  flex-shrink: 0;
 }
 
-/* Cores dos cards dinâmicas puxadas do index.css */
-.card-header.idoso { background-color: var(--cat-idoso); } 
-.card-header.pcd { background-color: var(--cat-pcd); } 
+.card-header.idoso { background-color: var(--cat-idoso); }
+.card-header.pcd { background-color: var(--cat-pcd); }
 
 .card-body {
   padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  /* CORRIGIDO: box-sizing evita overflow com padding */
+  box-sizing: border-box;
+  width: 100%;
 }
 
-/* Blindagem MÁXIMA dos parágrafos contra o cache/WebView do celular */
 .assistenciais-container .card-assistencial .card-body p {
   margin: 0;
   font-size: 0.95rem;
-  color: var(--text-color) !important; /* Força a cor do tema */
+  color: var(--text-color) !important;
   line-height: 1.4;
+  /* CORRIGIDO: texto longo quebra linha dentro do card */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Card Especial CadÚnico */
 .card-cadunico {
   display: flex;
-  background-color: var(--card-bgType2); /* Fundo inteligente */
+  background-color: var(--card-bgType2);
   border-radius: 12px;
-  border: 2px dashed var(--border-color); /* Borda inteligente */
+  border: 2px dashed var(--border-color);
   overflow: hidden;
   align-items: center;
+  /* CORRIGIDO: flex-wrap permite que ícone e texto quebrem
+     para linhas separadas em telas estreitas */
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .cadunico-icone-area {
-  background-color: var(--bg-color); /* Inverte suavemente conforme o tema */
+  background-color: var(--bg-color);
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* CORRIGIDO: flex-shrink: 0 evita que a área do ícone
+     encolha e deforme quando o texto é longo */
+  flex-shrink: 0;
 }
 
 .icone-grande {
   font-size: 40px;
-  color: var(--title-color); /* Ícone inteligente */
+  color: var(--title-color);
 }
 
 .cadunico-texto {
   padding: 15px;
+  /* CORRIGIDO: flex: 1 e min-width: 0 garantem que o texto
+     ocupe o espaço restante sem vazar o card */
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .cadunico-texto h4 {
   margin: 0 0 5px 0;
-  color: var(--title-color); /* Título inteligente */
+  color: var(--title-color);
   font-size: 1.1rem;
+  /* CORRIGIDO: título longo quebra linha em vez de vazar */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-/* Blindagem do parágrafo do CadÚnico */
 .assistenciais-container .card-cadunico .cadunico-texto p {
   margin: 0;
   font-size: 0.9rem;
-  color: var(--text-color) !important; /* Força a cor do tema */
+  color: var(--text-color) !important;
   line-height: 1.3;
+  /* CORRIGIDO: texto longo quebra linha dentro do card */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
