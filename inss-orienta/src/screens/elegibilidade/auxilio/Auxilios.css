@@ -3,27 +3,40 @@
    ========================================= */
 
 .auxilios-container {
-  /* 👇 Nova arquitetura anti-corte 👇 */
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* CORRIGIDO: height: 100% pode colapsar em WebView.
+     min-height garante ocupação mínima sem travar o scroll */
+  min-height: 100%;
   background-color: var(--bg-color);
-  margin: -15px; 
+  /* CORRIGIDO: margin: -15px causava overflow horizontal no Android.
+     Substituído por largura estendida com calc, compensando o
+     padding: 15px do .main-content pai */
+  width: calc(100% + 30px);
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: -15px;
+  box-sizing: border-box;
 }
 
+/* Blindagem dos parágrafos do card-body */
 .auxilios-container .card-auxilio .card-body p {
   margin: 0;
   font-size: 0.95rem;
-  color: var(--text-color) !important; /* 👈 O !important garante que o modo escuro/AC mude a cor de forma obrigatória */
+  color: var(--text-color) !important;
   line-height: 1.4;
+  /* CORRIGIDO: texto longo quebra linha em vez de vazar */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-/* Forçamos o caminho completo para garantir que nenhuma outra regra ignore o tema */
 .auxilios-container .texto-introdutorio {
   margin: 0;
   font-size: 0.95rem;
-  color: var(--text-color) !important; /* 👈 O !important garante que o modo escuro/AC mude a cor de forma obrigatória */
+  color: var(--text-color) !important;
   line-height: 1.4;
+  /* CORRIGIDO: texto introdutório também pode ser longo */
+  word-break: break-word;
 }
 
 .interno-header {
@@ -34,40 +47,57 @@
   padding: 5px 15px;
   gap: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  flex-shrink: 0; 
+  flex-shrink: 0;
+  /* CORRIGIDO: box-sizing e width contêm o header */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .auxilios-conteudo {
-  flex: 1; 
-  overflow-y: auto; 
+  flex: 1;
+  /* CORRIGIDO: overflow-y: auto aninhado dentro do scroll
+     container pai causa conteúdo cortado no Android.
+     overflow: visible deixa o .app-container raiz controlar o scroll */
+  overflow: visible;
   padding: 15px;
-  padding-bottom: 90px; /* O respiro salvador */
+  padding-bottom: 90px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  /* CORRIGIDO: box-sizing e width contêm o conteúdo */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .texto-introdutorio {
-  color: var(--text-color); /* 👈 Variável inteligente */
+  color: var(--text-color);
   font-size: 1.05rem;
   line-height: 1.4;
   margin-bottom: 5px;
+  /* CORRIGIDO: texto longo quebra linha em vez de vazar */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
-
 
 /* Design dos Cards de Auxílio */
 .lista-auxilios {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  /* CORRIGIDO: width e box-sizing contêm a lista */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .card-auxilio {
-  background-color: var(--card-bgType2); /* 👈 Fundo inteligente */
+  background-color: var(--card-bgType2);
   border-radius: 12px;
-  border: 1px solid var(--border-color); /* 👈 Borda inteligente */
+  border: 1px solid var(--border-color);
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  /* CORRIGIDO: width 100% garante que o card não estoure a lista */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .card-header {
@@ -75,39 +105,57 @@
   align-items: center;
   gap: 12px;
   padding: 15px;
-  color: var(--cat-text); /* 👈 Cor do texto controlada pelo index */
-  border-bottom: var(--cat-border); /* 👈 Borda controlada pelo index */
+  color: var(--cat-text);
+  border-bottom: var(--cat-border);
+  /* CORRIGIDO: box-sizing e width contêm o header do card */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .card-header h3 {
   margin: 0;
   font-size: 1.2rem;
+  /* CORRIGIDO: título longo quebra linha em vez de vazar o card */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  /* CORRIGIDO: flex: 1 + min-width: 0 permitem o título
+     ocupar o espaço restante sem empurrar o ícone pra fora */
+  flex: 1;
+  min-width: 0;
 }
 
 .icone-auxilio {
   font-size: 24px;
+  /* CORRIGIDO: ícone não encolhe quando o título é longo */
+  flex-shrink: 0;
 }
 
-/* Cores específicas para cada Auxílio (Puxadas do index.css) */
-.card-header.doenca { background-color: var(--cat-doenca); } 
-.card-header.maternidade { background-color: var(--cat-maternidade); } 
-.card-header.acidente { background-color: var(--cat-acidente); } 
-.card-header.reclusao { background-color: var(--cat-reclusao); } 
+/* Cores específicas para cada Auxílio */
+.card-header.doenca     { background-color: var(--cat-doenca); }
+.card-header.maternidade { background-color: var(--cat-maternidade); }
+.card-header.acidente   { background-color: var(--cat-acidente); }
+.card-header.reclusao   { background-color: var(--cat-reclusao); }
 
 .card-body {
   padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  /* CORRIGIDO: box-sizing evita overflow com padding */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .card-body p {
   margin: 0;
   font-size: 0.95rem;
-  color: var(--text-color); /* 👈 Variável inteligente */
+  color: var(--text-color);
   line-height: 1.4;
+  /* CORRIGIDO: texto longo quebra linha dentro do card */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .card-body strong {
-  color: var(--title-color); /* 👈 Usando a variável de títulos que criamos antes! */
+  color: var(--title-color);
 }
