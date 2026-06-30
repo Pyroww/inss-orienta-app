@@ -6,7 +6,7 @@ import Home from './screens/home/Home';
 import Acessibilidade from './screens/footer/acessabilidade/Acessibilidade';
 import Ajuda from './screens/footer/ajuda/Ajuda';
 import Elegibilidade from './screens/elegibilidade/Elegibilidade';
-import TermosDeUso from './screens/termosdeuso/TermosDeUso';
+import TermosDeUso from './screens/header/termosdeuso/TermosDeUso';
 import PoliticaPrivacidade from './screens/politicadeprivacidade/PoliticaPrivacidade';
 import AssistenteVirtual from './screens/assistentevirtual/AssistenteVirtual';
 import AposentadoriaGeral from './screens/elegibilidade/aposentadoriageral/aposentadoriageral';
@@ -20,7 +20,7 @@ import ProvaDeVida from './screens/provavida/ProvaDeVida';
 import Calendario from './screens/calendario/Calendario';
 import Agendamento from './screens/agendamento/Agendamento';
 import Documentos from './screens/documentos/Documentos';
-import Comunidade from './screens/comunidade/Comunidade';
+import Comunidade from './screens/header/comunidade/Comunidade';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');

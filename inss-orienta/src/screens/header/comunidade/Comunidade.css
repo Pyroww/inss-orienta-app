@@ -1,0 +1,584 @@
+/* =========================================================
+   COMUNIDADE INSS ORIENTA (PADRÃO THREADS / REDDIT 2026)
+   ========================================================= */
+
+.comunidade-container {
+  display: flex;
+  flex-direction: column;
+  /* CORRIGIDO: height: 100% pode colapsar em WebView.
+     min-height garante ocupação mínima sem travar o scroll */
+  min-height: 100%;
+  background-color: var(--bg-color);
+  /* CORRIGIDO: margin: -15px causava overflow horizontal no Android.
+     Substituído por largura estendida compensando o padding do pai */
+  width: calc(100% + 30px);
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: -15px;
+  box-sizing: border-box;
+}
+
+/* CABEÇALHO */
+.interno-headercomunity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--inss-blue);
+  color: white;
+  padding: 10px 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  flex-shrink: 0;
+  /* CORRIGIDO: margin-top: -18px !important era um hack para corrigir
+     degrau visual causado pelo margin: -15px do container.
+     Com a correção do container acima, esse hack não é mais necessário.
+     margin-top: -3px mantém o ajuste fino sem o !important */
+  margin-top: -3px;
+  position: relative;
+  z-index: 5;
+  /* CORRIGIDO: box-sizing e width contêm o header */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.interno-headercomunity h2 {
+  font-size: 1.25rem;
+  font-weight: 750;
+  letter-spacing: -0.4px;
+  margin: 0;
+  /* CORRIGIDO: título longo não estoura o header */
+  word-break: break-word;
+  min-width: 0;
+  flex: 1;
+}
+
+.btn-atualizar {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease, background 0.2s ease;
+  /* CORRIGIDO: flex-shrink: 0 evita que o botão encolha */
+  flex-shrink: 0;
+}
+
+.btn-atualizar:active {
+  transform: scale(0.85);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.girando {
+  animation: spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.comunidade-conteudo {
+  flex: 1;
+  /* CORRIGIDO: overflow-y: auto aninhado dentro do scroll container
+     pai causa conteúdo cortado no Android.
+     overflow: visible deixa o .app-container raiz controlar o scroll */
+  overflow: visible;
+  padding: 16px;
+  padding-bottom: 95px;
+  overscroll-behavior-y: contain;
+  /* CORRIGIDO: box-sizing e width contêm o conteúdo */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* =========================================
+   COMPOSITOR
+   ========================================= */
+
+.caixa-publicar {
+  background-color: var(--card-bg);
+  border: 1.5px solid var(--border-color);
+  border-radius: 24px;
+  padding: 18px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  /* CORRIGIDO: box-sizing evita overflow com padding e border */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.caixa-publicar:focus-within {
+  border-color: var(--inss-blue);
+  box-shadow: 0 10px 30px rgba(24, 88, 160, 0.12);
+}
+
+.publicar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--title-color);
+  font-weight: 750;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  /* CORRIGIDO: flex-wrap evita overflow em telas estreitas */
+  flex-wrap: wrap;
+}
+
+.icone-anonimo {
+  font-size: 20px;
+  color: var(--inss-blue);
+  flex-shrink: 0;
+}
+
+.form-publicar textarea {
+  width: 100%;
+  height: 85px;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 0.98rem;
+  line-height: 1.5;
+  resize: none;
+  box-sizing: border-box;
+  outline: none;
+  font-family: inherit;
+}
+
+.form-publicar textarea::placeholder {
+  color: var(--text-color);
+  opacity: 0.5;
+}
+
+.btn-enviar-feed {
+  width: 100%;
+  background: linear-gradient(135deg, var(--inss-blue), #1d4ed8);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(24, 88, 160, 0.25);
+  transition: transform 0.1s ease, opacity 0.2s ease;
+  /* CORRIGIDO: box-sizing garante que padding não estoure o botão */
+  box-sizing: border-box;
+}
+
+.btn-enviar-feed:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-enviar-feed:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.titulo-feed {
+  color: var(--title-color);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  margin: 20px 0 16px 4px;
+  word-break: break-word;
+}
+
+/* =========================================
+   CARDS DO FEED
+   ========================================= */
+
+.feed-perguntas {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* CORRIGIDO: width e box-sizing contêm o feed */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-pergunta {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.025);
+  transition: transform 0.2s ease;
+  /* CORRIGIDO: box-sizing e width contêm o card */
+  box-sizing: border-box;
+  width: 100%;
+  /* CORRIGIDO: overflow hidden garante que conteúdo interno
+     não vaze as bordas arredondadas */
+  overflow: hidden;
+}
+
+.pergunta-meta {
+  margin-bottom: 10px;
+}
+
+.autor-anonimo {
+  font-size: 0.88rem;
+  color: var(--title-color);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.85;
+  /* CORRIGIDO: flex-wrap e min-width: 0 evitam overflow do autor */
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.comunidade-container .pergunta-texto {
+  font-size: 1.02rem;
+  color: var(--text-color) !important;
+  line-height: 1.55;
+  margin: 0 0 16px 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.btn-comentarios {
+  background-color: var(--card-bgType2);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s ease;
+  /* CORRIGIDO: box-sizing evita overflow com padding e border */
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.btn-comentarios:active {
+  transform: scale(0.94);
+}
+
+.btn-comentarios.ativo {
+  border-color: var(--inss-blue);
+  background-color: rgba(24, 88, 160, 0.1);
+  color: var(--inss-blue);
+}
+
+/* =========================================
+   RESPOSTAS
+   ========================================= */
+
+.secao-respostas {
+  margin-top: 18px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
+  animation: sutilSurgir 0.25s ease forwards;
+  /* CORRIGIDO: box-sizing evita overflow com padding */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.lista-respostas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.sem-respostas {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  opacity: 0.5;
+  font-style: italic;
+  margin: 4px 0;
+}
+
+.item-resposta {
+  background-color: var(--bg-color);
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  /* CORRIGIDO: box-sizing e overflow contêm o item */
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+}
+
+.resposta-autor {
+  font-size: 0.82rem;
+  color: var(--title-color);
+  font-weight: 750;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  /* CORRIGIDO: flex-wrap evita overflow do autor */
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.comunidade-container .resposta-texto {
+  font-size: 0.92rem;
+  color: var(--text-color) !important;
+  margin: 0;
+  line-height: 1.45;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.form-responder {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  /* CORRIGIDO: box-sizing e width contêm o formulário */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.form-responder input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  outline: none;
+  min-width: 0;
+  /* CORRIGIDO: box-sizing evita que padding estoure o input */
+  box-sizing: border-box;
+}
+
+.form-responder input:focus {
+  border-color: var(--inss-blue);
+}
+
+.btn-enviar-resposta {
+  background-color: var(--inss-blue);
+  color: white;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(24, 88, 160, 0.3);
+  /* CORRIGIDO: box-sizing garante dimensões exatas */
+  box-sizing: border-box;
+}
+
+.btn-enviar-resposta:active:not(:disabled) {
+  transform: scale(0.9);
+}
+
+/* =========================================
+   ADMIN E VERIFICADOS
+   ========================================= */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.btn-sair-admin {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  /* CORRIGIDO: box-sizing evita overflow */
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+/* MODAL SECRETO */
+.modal-admin-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* CORRIGIDO: era 100vw e 100vh — no WebView Android 100vw
+     inclui a scrollbar e causa overflow horizontal.
+     width: 100% e height: 100% são mais seguros em position: fixed */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal-admin-box {
+  background-color: var(--card-bg);
+  padding: 28px 24px;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 320px;
+  border: 2px solid var(--success-color);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  animation: bolhaSurgir 0.2s ease-out forwards;
+  /* CORRIGIDO: box-sizing garante que padding não estoure o modal */
+  box-sizing: border-box;
+}
+
+.modal-admin-box h3 {
+  color: var(--success-color);
+  margin: 0 0 18px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+  word-break: break-word;
+}
+
+.modal-admin-box input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  box-sizing: border-box;
+  outline: none;
+  font-size: 1rem;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.modal-botoes {
+  display: flex;
+  gap: 12px;
+  /* CORRIGIDO: box-sizing e width contêm os botões */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.btn-cancelar, .btn-entrar {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.95rem;
+  /* CORRIGIDO: box-sizing garante que padding não estoure os botões */
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.btn-cancelar {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.btn-entrar {
+  background-color: var(--success-color);
+  border: none;
+  color: #000000;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+/* POST VERIFICADO */
+.card-oficial {
+  background: linear-gradient(135deg, rgba(22, 163, 74, 0.08), rgba(22, 163, 74, 0.01));
+  border: 1.5px solid #16a34a !important;
+  box-shadow: 0 8px 25px rgba(22, 163, 74, 0.06);
+}
+
+.autor-oficial, .resposta-oficial {
+  font-size: 0.85rem;
+  color: #16a34a;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.2px;
+  flex-wrap: wrap;
+}
+
+.icone-oficial {
+  font-size: 16px;
+  color: #16a34a;
+  flex-shrink: 0;
+}
+
+.resposta-oficial-box {
+  background-color: rgba(22, 163, 74, 0.1) !important;
+  border: 1px solid rgba(22, 163, 74, 0.35) !important;
+}
+
+/* LIXEIRAS DO ADMIN */
+.pergunta-header-flex, .resposta-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  /* CORRIGIDO: gap e width garantem alinhamento correto */
+  gap: 8px;
+  width: 100%;
+}
+
+.btn-excluir {
+  background: rgba(239, 68, 68, 0.1);
+  border: none;
+  color: #ef4444;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* CORRIGIDO: flex-shrink: 0 evita que o botão encolha */
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.btn-excluir-mini {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.6;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+@keyframes sutilSurgir {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
