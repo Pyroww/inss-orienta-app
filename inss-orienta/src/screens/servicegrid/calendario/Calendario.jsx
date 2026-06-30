@@ -9,10 +9,10 @@ import {
   FaCreditCard
 } from 'react-icons/fa';
 
-import imgCartaoExemplo from '../../assets/calendario/calendario.png'; 
-import bannerCalendario from '../../assets/calendario/bannercalendario.png';
-import bannerEscuro from '../../assets/calendario/bannercalendario_dark_mode.png'; 
-import bannerAltoContraste from '../../assets/calendario/bannercalendario_alto_contraste.png'; 
+import imgCartaoExemplo from '../../../assets/calendario/calendario.png'; 
+import bannerCalendario from '../../../assets/calendario/bannercalendario.png';
+import bannerEscuro from '../../../assets/calendario/bannercalendario_dark_mode.png'; 
+import bannerAltoContraste from '../../../assets/calendario/bannercalendario_alto_contraste.png'; 
 
 export default function Calendario({ theme, setActiveTab }) {
   const [nb, setNb] = useState('');

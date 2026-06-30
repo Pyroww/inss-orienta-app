@@ -17,9 +17,9 @@ import RecuperarBanco from './screens/servicegrid/senhagov/banco/RecuperarBanco'
 import RecuperarSms from './screens/servicegrid/senhagov/sms/RecuperarSms';
 import RecuperarFacial from './screens/servicegrid/senhagov/facial/RecuperarFacial';
 import ProvaDeVida from './screens/servicegrid/provavida/ProvaDeVida';
-import Calendario from './screens/calendario/Calendario';
+import Calendario from './screens/servicegrid/calendario/Calendario';
 import Agendamento from './screens/agendamento/Agendamento';
-import Documentos from './screens/documentos/Documentos';
+import Documentos from './screens/servicegrid/documentos/Documentos';
 import Comunidade from './screens/header/comunidade/Comunidade';
 
 export default function App() {

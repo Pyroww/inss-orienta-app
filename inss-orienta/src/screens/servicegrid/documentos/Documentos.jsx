@@ -9,7 +9,7 @@ import {
   FaExclamationTriangle
 } from 'react-icons/fa';
 
-import bannerDocumentos from '../../assets/documentos/banner_documentos.png'; // Descomente quando tiver a imagem
+import bannerDocumentos from '../../../assets/documentos/banner_documentos.png'; // Descomente quando tiver a imagem
 
 export default function Documentos({ setActiveTab }) {
   return (
