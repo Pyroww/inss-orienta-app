@@ -8,26 +8,26 @@ import {
 } from 'react-icons/fa';
 
 // Banner (Opcional, descomente quando tiver a imagem)
-import bannerSenhaGov from '../../assets/senhagov/banner.jpg'; 
-import SenhaGovGrid from '../../components/senhagov/SenhaGovGrid'; // 👈 Importando o nosso novo componente!
+import bannerSenhaGov from '../../../assets/senhagov/banner.jpg'; 
+import SenhaGovGrid from '../../../components/senhagov/SenhaGovGrid'; // 👈 Importando o nosso novo componente!
 
 // ==========================================
 // IMPORTAÇÃO DAS IMAGENS DOS BOTÕES
 // ==========================================
 // 1. Entrar pelo Banco (Usando a mesma imagem para todos por enquanto)
-import bancoNormal from '../../assets/senhagov/img_banco.png';
-import bancoEscuro from '../../assets/senhagov/img_banco.png'; 
-import bancoHC from '../../assets/senhagov/img_banco.png'; 
+import bancoNormal from '../../../assets/senhagov/img_banco.png';
+import bancoEscuro from '../../../assets/senhagov/img_banco.png'; 
+import bancoHC from '../../../assets/senhagov/img_banco.png'; 
 
 // 2. SMS ou E-mail (Usando a mesma imagem para todos por enquanto)
-import smsNormal from '../../assets/senhagov/img_sms.png';
-import smsEscuro from '../../assets/senhagov/img_sms.png'; 
-import smsHC from '../../assets/senhagov/img_sms.png'; 
+import smsNormal from '../../../assets/senhagov/img_sms.png';
+import smsEscuro from '../../../assets/senhagov/img_sms.png'; 
+import smsHC from '../../../assets/senhagov/img_sms.png'; 
 
 // 3. Reconhecimento Facial (Usando a mesma imagem para todos por enquanto)
-import facialNormal from '../../assets/senhagov/img_facial.png';
-import facialEscuro from '../../assets/senhagov/img_facial.png'; 
-import facialHC from '../../assets/senhagov/img_facial.png'; 
+import facialNormal from '../../../assets/senhagov/img_facial.png';
+import facialEscuro from '../../../assets/senhagov/img_facial.png'; 
+import facialHC from '../../../assets/senhagov/img_facial.png'; 
 
 export default function SenhaGov({ theme, setActiveTab }) {
   

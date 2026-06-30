@@ -3,9 +3,9 @@ import './ProvaDeVida.css';
 import { FaArrowLeft, FaCheckCircle, FaInfoCircle } from 'react-icons/fa';
 
 
-import bannerProvaVida from '../../assets/provavida/provavida.png';
-import bannerEscuro from '../../assets/provavida/provavida_dark_mode.png'; 
-import bannerAltoContraste from '../../assets/provavida/provavida_alto_contraste.png'; 
+import bannerProvaVida from '../../../assets/provavida/provavida.png';
+import bannerEscuro from '../../../assets/provavida/provavida_dark_mode.png'; 
+import bannerAltoContraste from '../../../assets/provavida/provavida_alto_contraste.png'; 
 
 export default function ProvaDeVida({ theme, setActiveTab }) {
 
