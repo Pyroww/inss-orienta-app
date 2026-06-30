@@ -8,7 +8,7 @@ import Ajuda from './screens/footer/ajuda/Ajuda';
 import Elegibilidade from './screens/elegibilidade/Elegibilidade';
 import TermosDeUso from './screens/header/termosdeuso/TermosDeUso';
 import PoliticaPrivacidade from './screens/politicadeprivacidade/PoliticaPrivacidade';
-import AssistenteVirtual from './screens/assistentevirtual/AssistenteVirtual';
+import AssistenteVirtual from './screens/header/assistentevirtual/AssistenteVirtual';
 import AposentadoriaGeral from './screens/elegibilidade/aposentadoriageral/aposentadoriageral';
 import Auxilios from './screens/elegibilidade/auxilio/Auxilios';
 import BeneficiosAssistenciais from './screens/elegibilidade/assistenciais/BeneficiosAssistenciais';
