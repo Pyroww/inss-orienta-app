@@ -8,10 +8,10 @@ import {
   FaCalendarPlus
 } from 'react-icons/fa';
 
-import bannerAgendamento from '../../assets/agendamento/banneragendamento.png'; // Descomente quando tiver a imagem
-import bannerCalendario from '../../assets/agendamento/banneragendamento.png';
-import bannerEscuro from '../../assets/agendamento/banneragendamento_dark_mode.png'; 
-import bannerAltoContraste from '../../assets/agendamento/banneragendamento_Alto_contraste.png'; 
+import bannerAgendamento from '../../../assets/agendamento/banneragendamento.png'; // Descomente quando tiver a imagem
+import bannerCalendario from '../../../assets/agendamento/banneragendamento.png';
+import bannerEscuro from '../../../assets/agendamento/banneragendamento_dark_mode.png'; 
+import bannerAltoContraste from '../../../assets/agendamento/banneragendamento_Alto_contraste.png'; 
 
 export default function Agendamento({ theme, setActiveTab }) {
 

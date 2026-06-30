@@ -18,7 +18,7 @@ import RecuperarSms from './screens/servicegrid/senhagov/sms/RecuperarSms';
 import RecuperarFacial from './screens/servicegrid/senhagov/facial/RecuperarFacial';
 import ProvaDeVida from './screens/servicegrid/provavida/ProvaDeVida';
 import Calendario from './screens/servicegrid/calendario/Calendario';
-import Agendamento from './screens/agendamento/Agendamento';
+import Agendamento from './screens/servicegrid/agendamento/Agendamento';
 import Documentos from './screens/servicegrid/documentos/Documentos';
 import Comunidade from './screens/header/comunidade/Comunidade';
 
