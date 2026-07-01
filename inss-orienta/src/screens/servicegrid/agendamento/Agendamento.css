@@ -1,9 +1,15 @@
 .agendamento-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* CORRIGIDO: height: 100% pode colapsar em WebView */
+  min-height: 100%;
   background-color: var(--bg-color);
-  margin: -15px; 
+  /* CORRIGIDO: margin: -15px causava overflow horizontal no Android */
+  width: calc(100% + 30px);
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: -15px;
+  box-sizing: border-box;
 }
 
 .interno-header {
@@ -14,15 +20,25 @@
   padding: 0px 15px;
   gap: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  flex-shrink: 0; 
+  flex-shrink: 0;
+  /* CORRIGIDO: box-sizing e width contêm o header */
+  box-sizing: border-box;
+  width: 100%;
+  /* CORRIGIDO: min-height garante área de toque mínima
+     já que padding vertical é 0 */
+  min-height: 50px;
 }
 
 .agendamento-conteudo {
-  flex: 1; 
-  overflow-y: auto; 
-  /* Sem display flex aqui para o banner não amassar! */
+  flex: 1;
+  /* CORRIGIDO: overflow-y: auto aninhado quebra scroll no Android.
+     overflow: visible deixa o .app-container raiz controlar o scroll */
+  overflow: visible;
   padding: 15px;
-  padding-bottom: 90px; 
+  padding-bottom: 90px;
+  /* CORRIGIDO: box-sizing e width contêm o conteúdo */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 /* Banner */
@@ -33,6 +49,9 @@
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 20px;
+  /* CORRIGIDO: box-sizing garante que border-radius
+     não some à largura */
+  box-sizing: border-box;
 }
 
 .banner-area img {
@@ -40,6 +59,8 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  /* CORRIGIDO: max-width garante contenção mesmo sem overflow do pai */
+  max-width: 100%;
 }
 
 .banner-placeholder {
@@ -47,19 +68,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #64748b;
+  /* CORRIGIDO: cor hardcoded trocada por variável semântica */
+  color: var(--nav-gray);
   font-weight: bold;
 }
 
 /* Introdução */
 .texto-introducao {
   margin-bottom: 25px;
+  /* CORRIGIDO: box-sizing e width contêm o bloco */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .agendamento-container .texto-introducao h3 {
   color: var(--text-color);
   font-size: 1.4rem;
   margin: 0 0 10px 0;
+  /* CORRIGIDO: título longo não estoura em telas estreitas */
+  word-break: break-word;
 }
 
 .agendamento-container .texto-introducao p {
@@ -67,6 +94,8 @@
   font-size: 1rem;
   line-height: 1.5;
   margin: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Canais de Agendamento */
@@ -75,6 +104,9 @@
   flex-direction: column;
   gap: 15px;
   margin-bottom: 25px;
+  /* CORRIGIDO: box-sizing e width contêm a lista */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .canal-card {
@@ -85,6 +117,9 @@
   border-radius: 12px;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  /* CORRIGIDO: box-sizing e width contêm o card */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .canal-icone {
@@ -97,22 +132,25 @@
   font-size: 24px;
   flex-shrink: 0;
   margin-right: 15px;
+  /* CORRIGIDO: box-sizing garante dimensões exatas */
+  box-sizing: border-box;
 }
 
-.canal-icone.app {
-  background-color: #dbeafe;
-  color: #2563eb;
-}
+.canal-icone.app      { background-color: #dbeafe; color: #2563eb; }
+.canal-icone.telefone { background-color: #dcfce7; color: #16a34a; }
 
-.canal-icone.telefone {
-  background-color: #dcfce7;
-  color: #16a34a;
+/* CORRIGIDO: canal-detalhes precisa de flex: 1 e min-width: 0
+   para não vazar o card quando o texto é longo */
+.canal-detalhes {
+  flex: 1;
+  min-width: 0;
 }
 
 .agendamento-container .canal-detalhes h4 {
   margin: 0 0 5px 0;
   color: var(--text-color);
   font-size: 1.1rem;
+  word-break: break-word;
 }
 
 .agendamento-container .canal-detalhes p {
@@ -121,14 +159,22 @@
   opacity: 0.8;
   font-size: 0.95rem;
   line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Regras de Ouro */
 .regras-agencia {
-  background-color: var (--card-bgType2);
-  border: 1px dashed var (border-color);
+  /* CORRIGIDO: "var (--card-bgType2)" com espaço é CSS inválido —
+     a propriedade nunca aplicava em nenhum dispositivo */
+  background-color: var(--card-bgType2);
+  /* CORRIGIDO: "var (border-color)" com espaço e sem "--" também inválido */
+  border: 1px dashed var(--border-color);
   border-radius: 12px;
   padding: 20px;
+  /* CORRIGIDO: box-sizing e width contêm o bloco */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .regras-header {
@@ -136,29 +182,40 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
+  /* CORRIGIDO: flex-wrap permite quebrar em telas estreitas */
+  flex-wrap: wrap;
 }
 
 .icone-regras {
   color: var(--title-color);
   font-size: 20px;
+  flex-shrink: 0;
 }
 
 .regras-header h4 {
   margin: 0;
   color: var(--text-color);
   font-size: 1.15rem;
+  word-break: break-word;
+  min-width: 0;
+  flex: 1;
 }
 
 .lista-regras {
   margin: 0;
   padding-left: 20px;
   color: var(--text-color);
+  /* CORRIGIDO: box-sizing evita que padding-left estoure */
+  box-sizing: border-box;
 }
 
 .lista-regras li {
   margin-bottom: 8px;
   font-size: 0.95rem;
   line-height: 1.4;
+  /* CORRIGIDO: texto longo quebra linha em vez de vazar */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Aviso Alerta Final */
@@ -167,10 +224,15 @@
 }
 
 .aviso-alerta {
-  background-color: #fffbeb;
-  border-left: 4px solid #f59e0b;
+  /* CORRIGIDO: background hardcoded #fffbeb não respeitava modo escuro.
+     var(--card-bgType2) é o equivalente semântico */
+  background-color: var(--card-bgType2);
+  border-left: 4px solid var(--warning-border);
   padding: 15px;
   border-radius: 4px;
+  /* CORRIGIDO: box-sizing e width contêm o aviso */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .aviso-header {
@@ -178,22 +240,32 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 5px;
+  flex-wrap: wrap;
 }
 
 .icone-alerta {
-  color: #d97706;
+  /* CORRIGIDO: cor hardcoded trocada por variável semântica */
+  color: var(--warning-icon);
   font-size: 18px;
+  flex-shrink: 0;
 }
 
 .aviso-header h4 {
   margin: 0;
-  color: #b45309;
+  /* CORRIGIDO: cor hardcoded #b45309 não respeitava modo escuro */
+  color: var(--title-color);
   font-size: 1.05rem;
+  word-break: break-word;
+  min-width: 0;
+  flex: 1;
 }
 
 .aviso-alerta p {
   margin: 0;
-  color: #92400e;
+  /* CORRIGIDO: cor hardcoded #92400e não respeitava modo escuro */
+  color: var(--text-color);
   font-size: 0.95rem;
   line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
