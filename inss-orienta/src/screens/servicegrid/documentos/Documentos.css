@@ -1,9 +1,15 @@
 .documentos-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* CORRIGIDO: height: 100% pode colapsar em WebView */
+  min-height: 100%;
   background-color: var(--bg-color);
-  margin: -15px; 
+  /* CORRIGIDO: margin: -15px causava overflow horizontal no Android */
+  width: calc(100% + 30px);
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: -15px;
+  box-sizing: border-box;
 }
 
 .interno-header {
@@ -14,14 +20,22 @@
   padding: 5px 15px;
   gap: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  flex-shrink: 0; 
+  flex-shrink: 0;
+  /* CORRIGIDO: box-sizing e width contêm o header */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .documentos-conteudo {
-  flex: 1; 
-  overflow-y: auto; 
+  flex: 1;
+  /* CORRIGIDO: overflow-y: auto aninhado quebra scroll no Android.
+     overflow: visible deixa o .app-container raiz controlar o scroll */
+  overflow: visible;
   padding: 15px;
-  padding-bottom: 90px; 
+  padding-bottom: 90px;
+  /* CORRIGIDO: box-sizing e width contêm o conteúdo */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 /* Banner */
@@ -32,6 +46,8 @@
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 20px;
+  /* CORRIGIDO: box-sizing garante que border-radius não some à largura */
+  box-sizing: border-box;
 }
 
 .banner-area img {
@@ -39,6 +55,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  max-width: 100%;
 }
 
 .banner-placeholder {
@@ -46,19 +63,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #64748b;
+  /* CORRIGIDO: cor hardcoded trocada por variável semântica */
+  color: var(--nav-gray);
   font-weight: bold;
 }
 
 /* Introdução */
 .texto-introducao {
   margin-bottom: 20px;
+  /* CORRIGIDO: box-sizing e width contêm o bloco */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .texto-introducao h3 {
   color: var(--title-color);
   font-size: 1.4rem;
   margin: 0 0 10px 0;
+  /* CORRIGIDO: título longo não estoura em telas estreitas */
+  word-break: break-word;
 }
 
 .texto-introducao p {
@@ -66,6 +89,8 @@
   font-size: 1rem;
   line-height: 1.5;
   margin: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Categorias de Documentos */
@@ -76,47 +101,70 @@
   padding: 20px;
   margin-bottom: 15px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  /* CORRIGIDO: box-sizing e width contêm o card */
+  box-sizing: border-box;
+  width: 100%;
+  /* CORRIGIDO: overflow hidden garante que border-top colorida
+     não vaze as bordas arredondadas */
+  overflow: hidden;
 }
 
-/* Cores das Bordas Superiores por Categoria */
-.doc-categoria.basico { border-top: 4px solid #3b82f6; }    /* Azul */
-.doc-categoria.trabalho { border-top: 4px solid #f59e0b; }  /* Laranja */
-.doc-categoria.saude { border-top: 4px solid #10b981; }     /* Verde */
-.doc-categoria.maternidade { border-top: 4px solid #ec4899; } /* Rosa */
+/* Bordas superiores por categoria — mantidas pois são identidade visual */
+.doc-categoria.basico     { border-top: 4px solid #3b82f6; }
+.doc-categoria.trabalho   { border-top: 4px solid #f59e0b; }
+.doc-categoria.saude      { border-top: 4px solid #10b981; }
+.doc-categoria.maternidade { border-top: 4px solid #ec4899; }
 
 .doc-header {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
+  /* CORRIGIDO: sem flex-wrap e min-width, título longo
+     empurrava o ícone para fora do card */
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .doc-icone {
   font-size: 22px;
+  /* CORRIGIDO: ícone não encolhe quando título é longo */
+  flex-shrink: 0;
 }
 
-/* Cores dos Ícones */
-.doc-categoria.basico .doc-icone { color: #3b82f6; }
-.doc-categoria.trabalho .doc-icone { color: #f59e0b; }
-.doc-categoria.saude .doc-icone { color: #10b981; }
+/* Cores dos ícones — mantidas pois são identidade visual */
+.doc-categoria.basico .doc-icone      { color: #3b82f6; }
+.doc-categoria.trabalho .doc-icone    { color: #f59e0b; }
+.doc-categoria.saude .doc-icone       { color: #10b981; }
 .doc-categoria.maternidade .doc-icone { color: #ec4899; }
 
 .doc-header h4 {
   margin: 0;
   color: var(--text-color);
   font-size: 1.15rem;
+  /* CORRIGIDO: flex: 1 + min-width: 0 permitem o título
+     ocupar o espaço restante sem empurrar o ícone */
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
 }
 
 .doc-lista {
   margin: 0;
   padding-left: 20px;
   color: var(--text-color);
+  /* CORRIGIDO: box-sizing evita que padding-left estoure */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .doc-lista li {
   margin-bottom: 10px;
   font-size: 0.95rem;
   line-height: 1.5;
+  /* CORRIGIDO: itens longos da lista quebram linha corretamente */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .doc-lista strong {
@@ -130,10 +178,14 @@
 }
 
 .aviso-alerta {
-  background-color: #fef2f2;
+  /* CORRIGIDO: #fef2f2 não respeitava modo escuro nem alto contraste */
+  background-color: var(--card-bgType2);
   border-left: 4px solid #ef4444;
   padding: 15px;
   border-radius: 4px;
+  /* CORRIGIDO: box-sizing e width contêm o aviso */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .aviso-header {
@@ -141,22 +193,31 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 5px;
+  flex-wrap: wrap;
 }
 
 .icone-alerta {
   color: #dc2626;
   font-size: 18px;
+  flex-shrink: 0;
 }
 
 .aviso-header h4 {
   margin: 0;
-  color: #b91c1c;
+  /* CORRIGIDO: #b91c1c não respeitava modo escuro */
+  color: var(--title-color);
   font-size: 1.05rem;
+  word-break: break-word;
+  min-width: 0;
+  flex: 1;
 }
 
 .aviso-alerta p {
   margin: 0;
-  color: #991b1b;
+  /* CORRIGIDO: #991b1b não respeitava modo escuro nem alto contraste */
+  color: var(--text-color);
   font-size: 0.95rem;
   line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
