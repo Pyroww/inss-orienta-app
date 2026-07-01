@@ -3,41 +3,31 @@
 /*--------------------------------------------*/
 .services-grid {
   display: grid;
-  /* CORRIGIDO: auto-fill com minmax garante que em telas muito estreitas
-     ou com fonte grande os cards quebrem para uma coluna automaticamente,
-     sem precisar de media query. 140px é o mínimo para um card legível */
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 16px;
+  grid-template-columns: 1fr 1fr; 
+  gap: 16px; 
   margin-top: 25px;
   margin-bottom: 30px;
-  padding: 0 4px;
-  /* CORRIGIDO: box-sizing garante que padding não estoure a largura */
-  box-sizing: border-box;
-  width: 100%;
+  padding: 0 4px; /* Pequeno respiro lateral */
 }
 
 .service-btn {
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 20px;
+  border-radius: 20px; /* Bordas muito mais suaves e modernas */
   padding: 22px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
+  
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  
+  /* Física de mola da Apple ao tocar no botão */
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  /* CORRIGIDO: box-sizing garante que padding e border
-     não somem à largura do card no grid */
-  box-sizing: border-box;
-  /* CORRIGIDO: min-width: 0 evita que o card estoure a coluna
-     quando o label é muito longo */
-  min-width: 0;
-  width: 100%;
 }
 
 .service-btn:active {
@@ -46,78 +36,59 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
-/* CAIXA DE LUZ (Glassmorphism) */
+/* A CAIXA DE LUZ (O grande segredo do design 2026) */
 .caixa-icone {
   width: 62px;
   height: 62px;
-  /* CORRIGIDO: min-width e min-height garantem que o squircle
-     não deforme quando o card é apertado */
-  min-width: 62px;
-  min-height: 62px;
-  border-radius: 16px;
+  border-radius: 16px; /* Squircle perfeito */
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 14px;
   transition: transform 0.3s ease;
-  /* CORRIGIDO: flex-shrink: 0 evita que a caixa encolha
-     quando o label abaixo dela é longo */
-  flex-shrink: 0;
-  box-sizing: border-box;
 }
 
-/* Glassmorphism — intocado */
-.glow-green {
-  background-color: rgba(39, 174, 96, 0.12);
-  color: #27ae60;
+/* Fundos translúcidos em Glassmorphism (12% de opacidade da cor original) */
+.glow-green { 
+  background-color: rgba(39, 174, 96, 0.12); 
+  color: #27ae60; 
 }
-.glow-blue {
-  background-color: rgba(24, 88, 160, 0.12);
-  color: var(--inss-blue);
+.glow-blue { 
+  background-color: rgba(24, 88, 160, 0.12); 
+  color: var(--inss-blue); 
 }
-.glow-gold {
-  background-color: rgba(243, 156, 18, 0.12);
-  color: #f39c12;
+.glow-gold { 
+  background-color: rgba(243, 156, 18, 0.12); 
+  color: #f39c12; 
 }
 
 .service-icon {
-  font-size: 32px;
+  font-size: 32px; /* Reduzido de 42 para 32 porque traços finos pedem elegância */
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-  /* CORRIGIDO: flex-shrink: 0 evita que o ícone encolha */
-  flex-shrink: 0;
 }
 
 .service-btn span {
   font-size: 0.75rem;
   font-weight: 750;
-  color: var(--title-color);
+  color: var(--title-color); 
   text-align: center;
   line-height: 1.25;
   letter-spacing: -0.2px;
-  /* CORRIGIDO: labels longos como "Benefícios Assistenciais"
-     quebram linha em vez de vazar o card */
-  word-break: break-word;
-  overflow-wrap: break-word;
-  /* CORRIGIDO: width: 100% garante que o texto ocupe
-     toda a largura disponível para centralizar corretamente */
-  width: 100%;
 }
 
 .vazio-aviso {
-  /* CORRIGIDO: -1 garante que ocupa toda a largura do grid
-     independente do número de colunas (1 ou 2) */
-  grid-column: 1 / -1;
+  grid-column: span 2;
   text-align: center;
   opacity: 0.6;
   font-size: 0.9rem;
   padding: 20px 0;
-  word-break: break-word;
 }
 
 /* ==========================================
-   ANIMAÇÕES VIVAS — INTOCADAS
+   AS 4 ANIMAÇÕES VIVAS (MICRO-INTERAÇÕES)
    ========================================== */
 
+/* 1. O Escudo (Elegibilidade) emitindo um leve campo de força */
 @keyframes auraGlow {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.06); filter: drop-shadow(0 0 6px rgba(39, 174, 96, 0.5)); }
@@ -126,6 +97,7 @@
   animation: auraGlow 4s infinite ease-in-out;
 }
 
+/* 2. A Chave da Senha tentando abrir a fechadura sozinha */
 @keyframes girarChave {
   0%, 85%, 100% { transform: rotate(0deg); }
   88% { transform: rotate(-15deg); }
@@ -137,6 +109,7 @@
   transform-origin: top right;
 }
 
+/* 3. A Digital da Prova de Vida pulsando como um scanner biométrico */
 @keyframes pulsoBiometrico {
   0%, 100% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.12); opacity: 0.75; }
@@ -145,6 +118,7 @@
   animation: pulsoBiometrico 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 
+/* 4. Flutuação espacial suave (Para Calendário e Documentos) */
 @keyframes flutuar {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-3px); }
