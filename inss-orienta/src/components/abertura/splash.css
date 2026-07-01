@@ -1,0 +1,39 @@
+/* =========================================================
+   TELA DE ABERTURA (SPLASH SCREEN CINEMATOGRÁFICA)
+   ========================================================= */
+
+.splash-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff; /* Fundo branco ou var(--bg-color) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999; /* Fica acima de TUDO no aplicativo */
+  
+  /* A transição que faz a tela inteira sumir suavemente */
+  transition: opacity 0.6s ease-out, visibility 0.6s;
+}
+
+/* Quando o React avisar que é hora de sumir, ativamos esta classe */
+.splash-container.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-logo {
+  width: 160px; /* Tamanho inicial da logo */
+  height: auto;
+  
+  /* A curva de aceleração de cinema (começa rápido, termina suave) */
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease-in;
+}
+
+/* O Super Zoom que engole a tela */
+.splash-logo.zoom-in {
+  transform: scale(25); /* Cresce 25 vezes o tamanho original! */
+  opacity: 0; /* A logo se desfaz enquanto cresce */
+}
