@@ -10,7 +10,6 @@
   padding: 12px 20px;
   margin-bottom: 25px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  /* CORRIGIDO: garante que o padding não estoure a largura */
   box-sizing: border-box;
   width: 100%;
 }
@@ -23,7 +22,6 @@
   color: var(--nav-gray);
   font-size: 18px;
   margin-right: 12px;
-  /* CORRIGIDO: ícone não encolhe junto com o input */
   flex-shrink: 0;
 }
 
@@ -34,7 +32,6 @@
   font-size: 16px;
   color: var(--text-color);
   outline: none;
-  /* CORRIGIDO: min-width: 0 permite o input encolher corretamente no flex */
   min-width: 0;
 }
 
@@ -49,46 +46,81 @@
 
 
 /* =========================================
-   CARROSSEL E NOTÍCIAS REAIS
+   CARROSSEL DE NOTÍCIAS
    ========================================= */
 
 .carrossel-container {
+  /* CORRIGIDO: margin negativo para sangrar até as bordas da tela,
+     compensando o padding: 15px do .main-content pai */
+  width: calc(100% + 30px);
+  margin-left: -15px;
+  margin-right: -15px;
+
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
-  gap: 16px;
-  width: 100%;
-  /* CORRIGIDO: era 100vw — no WebView Android isso causa overflow horizontal */
-  max-width: 100%;
-  box-sizing: border-box;
+  gap: 12px;
+
+  /* CORRIGIDO: padding lateral cria a "janela" que revela
+     a borda do próximo card — sinaliza ao usuário que há mais */
   padding: 4px 16px 20px 16px;
+
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
+
+  /* CORRIGIDO: box-sizing garante que padding não some à largura */
+  box-sizing: border-box;
 }
 
 .carrossel-container::-webkit-scrollbar {
   display: none;
 }
 
+/* CARD DE NOTÍCIA */
 .carrossel-container .news-card {
-  flex: 0 0 85%;
-  max-width: 320px;
+  /* CORRIGIDO: calc desconta o padding lateral do container (16px x 2)
+     da largura total, então o card ocupa exatamente a "janela" visível.
+     O 24px extra revela a borda do próximo card — UX de carrossel correto */
+  flex: 0 0 calc(100% - 32px - 24px);
+
+  /* CORRIGIDO: max-width baseado em vw para escalar com a tela,
+     nunca maior que 340px em telas grandes */
+  max-width: min(340px, calc(100vw - 56px));
+
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  /* CORRIGIDO: sem min-width: 0 o card não encolhe quando deveria */
   min-width: 0;
+
+  /* CORRIGIDO: border-radius no card para visual moderno */
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* IMAGEM DO CARD */
+.news-image-placeholder {
+  /* CORRIGIDO: altura responsiva com aspect-ratio em vez de px fixo.
+     16/9 é o padrão para imagens de notícia */
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background-color: var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
 }
 
 .imagem-noticia-real {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* CORRIGIDO: display block remove o espaço fantasma abaixo da imagem */
   display: block;
   max-width: 100%;
+  /* CORRIGIDO: evita que a imagem encolha abaixo de sua altura */
+  flex-shrink: 0;
 }
 
 .link-oficial-btn {
@@ -103,8 +135,10 @@
   border-radius: 6px;
   font-size: 0.85rem;
   font-weight: bold;
-  /* CORRIGIDO: botão não estoura o card em telas estreitas */
   box-sizing: border-box;
+  /* CORRIGIDO: align-self contém o botão dentro do card
+     sem esticar até a borda */
+  align-self: flex-start;
   max-width: 100%;
 }
 
@@ -114,8 +148,34 @@
   font-style: italic;
   font-size: 0.9rem;
   margin-bottom: 20px;
-  /* CORRIGIDO: texto não estoura o container */
   word-break: break-word;
+  /* CORRIGIDO: padding lateral alinha com o restante do conteúdo */
+  padding: 0 16px;
+}
+
+/* INDICADORES DE POSIÇÃO DO CARROSSEL */
+/* CORRIGIDO: dots para indicar quantos cards existem e qual está ativo */
+.carrossel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: -8px;
+  margin-bottom: 16px;
+}
+
+.carrossel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--border-color);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.carrossel-dot.ativo {
+  width: 18px;
+  border-radius: 3px;
+  background-color: var(--inss-blue);
 }
 
 
@@ -127,7 +187,6 @@
   margin-top: 30px;
   padding-top: 20px;
   border-top: 1px solid var(--border-color);
-  /* CORRIGIDO: seção contida dentro do pai */
   box-sizing: border-box;
   width: 100%;
 }
@@ -147,7 +206,6 @@
   border-radius: 8px;
   border: 1px solid var(--border-color);
   position: relative;
-  /* CORRIGIDO: card não estoura lateralmente */
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
@@ -158,11 +216,9 @@
   height: 70px;
   border-radius: 6px;
   object-fit: cover;
-  /* CORRIGIDO: imagem não encolhe quando o título é longo */
   flex-shrink: 0;
 }
 
-/* CORRIGIDO: sem flex: 1 e min-width: 0, o texto estoura o card */
 .historico-textos {
   flex: 1;
   min-width: 0;
@@ -174,7 +230,6 @@
   font-size: 0.9rem;
   color: var(--title-color);
   line-height: 1.3;
-  /* CORRIGIDO: títulos longos quebram linha em vez de vazar */
   word-break: break-word;
   overflow-wrap: break-word;
 }
@@ -186,7 +241,6 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  /* CORRIGIDO: link longo não estoura o card */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -204,7 +258,6 @@
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 20px;
-  /* CORRIGIDO: painel contido no pai */
   box-sizing: border-box;
   width: 100%;
 }
@@ -216,6 +269,7 @@
   align-items: center;
   gap: 8px;
   font-size: 1rem;
+  flex-wrap: wrap;
 }
 
 .admin-form-upload {
@@ -230,7 +284,6 @@
   border: 1px solid var(--border-color);
   background-color: var(--bg-color);
   color: var(--text-color);
-  /* CORRIGIDO: inputs sem box-sizing e width estouravam em mobile */
   box-sizing: border-box;
   width: 100%;
 }
@@ -247,7 +300,6 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  /* CORRIGIDO: botão ocupa largura total */
   width: 100%;
   box-sizing: border-box;
 }
@@ -268,6 +320,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .btn-deletar-mini {
